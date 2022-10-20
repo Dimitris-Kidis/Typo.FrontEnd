@@ -1,6 +1,7 @@
 
 <div>
-    <h1>{{user.firstName}} {{user.lastName}}, {{user.age}}</h1>
+    <h1>{{user.id}}</h1>
+    <h3>{{user.firstName}} {{user.lastName}}, {{user.age}}</h3>
     <img *ngIf="user.avatar != null; else elseBlock" src={{user.avatar}} alt="" width="200px" height="200px">
     <ng-template #elseBlock><img src="https://thumbs.dreamstime.com/b/default-avatar-profile-trendy-style-social-media-user-icon-187599373.jpg" alt="" width="200px" height="200px"></ng-template>
     <p>Email: {{user.email}}</p>
