@@ -1,4 +1,4 @@
-export class TextViewModel {
+export class Text {
     id: number;
     textContent: string;
     language: string;

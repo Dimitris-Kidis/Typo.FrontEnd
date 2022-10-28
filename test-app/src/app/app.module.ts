@@ -5,16 +5,28 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HttpClientModule } from '@angular/common/http';
 
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
+
+import { NoopAnimationsModule } from '@angular/platform-browser/animations';
+import { RouterModule } from '@angular/router';
+
+
+
+
 
 
 @NgModule({
   declarations: [
-    AppComponent,
+    AppComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    FormsModule,
+    ReactiveFormsModule,
+    NoopAnimationsModule,
+    RouterModule
   ],
   providers: [],
   bootstrap: [AppComponent],

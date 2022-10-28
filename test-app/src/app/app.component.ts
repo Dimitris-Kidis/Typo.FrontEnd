@@ -1,7 +1,8 @@
-import { HttpParams } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
-import { AllUsersViewModel } from 'src/view-models/allUsersViewModel';
-import { TypoService } from '../services/typo.service';
+import { CreateTextCommand } from 'src/commands/Texts/CreateTextCommand';
+import { TextsService } from 'src/services/texts.service';
+
+
 
 
 
@@ -12,19 +13,20 @@ import { TypoService } from '../services/typo.service';
 })
 
 export class AppComponent implements OnInit {
-  users: AllUsersViewModel[] = [];
-  text: any;
-  user: any;
-  
+
+  constructor(private service: TextsService) {}
+
+
+  request3: CreateTextCommand = new CreateTextCommand(
+    "hello hellohello hellohello hellohello hellohello hellohello hellohello hellohello hello",
+    "Ray Rider",
+    4,
+    "English");
    
-  constructor(private service: TypoService) {}
-   
+
   ngOnInit() {
-    
-      this.service.getAllUsers()
-        .subscribe(response => {
-          this.users = response;
-        }); 
+    // this.service.createText(this.request3).subscribe(console.log);
+    // this.service.deleteTextById(16).subscribe(console.log);
   }
   
   
