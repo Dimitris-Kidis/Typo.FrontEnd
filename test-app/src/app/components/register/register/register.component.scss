@@ -1,0 +1,136 @@
+
+
+form {
+    margin: 0 auto;
+    background-color: white;
+    // border: 1px solid #3d3d3d;
+    box-shadow: 0 4px 6px -1px #0000001a,0 2px 4px -1px #0000000f;
+    border-radius: 10px;
+    padding: 20px;
+    width: 400px;
+
+}
+
+h1 {
+    text-align: center;
+    font-weight: 600;
+    font-size: 32px;
+}
+
+#container {
+    width: 334px;
+    height: 700px;
+    margin-top: 15vh;
+    margin-bottom: 15vh;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+
+input {
+    width: 80%;
+    margin: 10px;
+    border-radius: 10px;
+    border: 1px solid #ececee;
+    box-shadow: 0 2px 3px -1px #25252505,0 2px 4px -1px #0000000f;
+    padding-left: 15px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    
+}
+
+input:focus {
+    outline: none;
+}
+
+label {
+    margin-top: 18px;
+    display: block;
+    width: 100%;
+    margin: 0;
+    text-align: center;
+}
+
+img {
+    height: 900px;
+    width: 900px;
+    position: absolute;
+    z-index: -1;
+}
+
+
+.grandParentContaniner{ 
+    position: absolute;
+    text-align: center;
+    // margin-bottom: 200px;
+    justify-content: center;
+
+}
+
+small {
+    font-size: 10px;
+    display: block;
+    transition: all 0.5s ease;
+    color: #ec3434;
+}
+
+#invalid {
+    color: #ec3434;
+}
+
+button {
+    // margin-top: 20px;
+    border-radius: 10px;
+    cursor: pointer;
+    background-image: none;
+    font-weight: 500;
+    padding: 10px 20px;
+    font-size: 15px;
+    line-height: 1.25rem;
+    border-width: 1px;
+    border-color: #0000;
+    background-color: #3d3d3d;
+    color: white;
+    transition: background 0.4s;
+}
+
+button:hover {
+    background: #8AE393;
+    color: #3d3d3d;
+    
+}
+
+#already {
+    display: block;
+    color: #a9a9a9;
+    text-decoration: underline;
+    font-size: 12px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.ng-dirty.ng-invalid:not(form)  {
+    border: 1px solid red !important; /* red */
+}
+
+.ng-valid:not(form)  {
+    border: 1px solid green !important;/* red */
+}
+
+select {
+    width: 80%;
+    text-align: center;
+    margin: 10px;
+    border-radius: 10px;
+    border: 1px solid #ececee;
+    box-shadow: 0 2px 3px -1px #25252505,0 2px 4px -1px #0000000f;
+    padding-left: 15px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+}
+
+select:focus {
+    outline: 1px solid #3d3d3d;
+}

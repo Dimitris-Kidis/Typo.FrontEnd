@@ -1,0 +1,147 @@
+<div id="container" class="container">
+  <img src="https://typostorage.blob.core.windows.net/avatars/Rectangle 97.svg" #image alt="">
+    <div class="grandParentContaniner">
+      <div class="parentContainer">
+        <form class="loginForm" [formGroup]="loginForm" (ngSubmit)="login(loginForm.value)" >
+          <div>
+            <h1>Sign In</h1>
+            <span #invalidLogin id="invalid"></span>
+  
+            <!-- <mat-form-field style="display: block;"> -->
+              <label for="email">Email</label>
+              <input type="text" placeholder="Email*" formControlName="email" />
+              <div>
+                <small *ngIf="loginForm.get('email')?.errors?.['minlength']">
+                  Email has to be at least 5 characters long.
+                </small>
+                <small *ngIf="loginForm.get('email')?.errors?.['maxlength']">
+                  Email can't be more than 30 characters long.
+                </small>
+                <small *ngIf="loginForm.get('email')?.errors?.['email']">
+                  Email doesn't fit to email format. Please check your email.
+                </small>
+              </div>
+            <!-- </mat-form-field> -->
+            <label for="password">Password</label>
+            <!-- <mat-form-field style="display: block"> -->
+              
+              <input type="password" placeholder="Password*" formControlName="password" />
+              <div>
+                <small *ngIf="loginForm.get('password')?.errors?.['minlength']">
+                  Password has to be at least 8 characters long.
+                </small>
+                <small *ngIf="loginForm.get('password')?.errors?.['maxlength']">
+                  Password can't be more than 20 characters long.
+                </small>
+                <small *ngIf="loginForm.get('password')?.errors?.['lowercaseLetterCheck']">
+                    Password has to contain at least one lowercase letter.
+                </small>
+                <small *ngIf="loginForm.get('password')?.errors?.['uppercaseLetterCheck']">
+                  Password has to contain at least one uppercase letter.
+                </small>
+                <small *ngIf="loginForm.get('password')?.errors?.['digitCheck']">
+                  Password has to contain at least one digit.
+                </small>
+                <small *ngIf="loginForm.get('password')?.errors?.['specialCharCheck']">
+                  Password has to contain at least one special character.
+              </small>
+            </div>
+            <a id="yet" href="" [routerLink]="['/typo/registration']">Don't have an account yet? Sign Up!</a>
+            <!-- </mat-form-field> -->
+            <button mat-raised-button>Sign In</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+<!--   
+
+  <div class="form">
+    <h2 id="registration">Registration Form</h2>
+    <form action="" [formGroup]="reactiveForm" (ngSubmit)="onSubmit()">
+        <label for="fname">First Name</label>
+        <input type="text" id="fname" placeholder="Your First Name..." formControlName="firstName">
+        <div>
+            <small *ngIf="reactiveForm.get('firstName').errors?.['required']">
+                First name is a required field.
+            </small>
+            <small *ngIf="reactiveForm.get('firstName').errors?.['noSpaceAllowed']">
+                First name can't contain a space.
+            </small>
+            <small *ngIf="reactiveForm.get('firstName').errors?.['noNumbersAllowed']">
+                First name can't contain numbers.
+            </small>
+        </div>
+
+        <label for="lname">Last Name</label>
+        <input type="text" id="lname" placeholder="Your Last Name..." formControlName="lastName">
+        <div>
+            <small *ngIf="reactiveForm.get('lastName').errors?.['required']">
+                Last name is a required field.
+            </small>
+            <small *ngIf="reactiveForm.get('lastName').errors?.['noSpaceAllowed']">
+                Last name can't contain a space.
+            </small>
+            <small *ngIf="reactiveForm.get('lastName').errors?.['noNumbersAllowed']">
+                Last name can't contain numbers.
+            </small>
+        </div>
+
+        <label for="email">Email</label>
+        <input type="email" id="email" placeholder="Your email..." formControlName="email">
+        <div>
+            <small *ngIf="reactiveForm.get('email').errors?.['required']">
+                Email is a required field.
+            </small>
+            <small *ngIf="reactiveForm.get('email').errors?.['noSpaceAllowed']">
+                Email can't contain a space.
+            </small>
+            <small *ngIf="reactiveForm.get('email').errors?.['emailNotAllowed']">
+                Email admin@admin.com is not allowed.
+            </small>
+        </div>
+
+        <label for="age">Age</label>
+        <input type="text" id="age" placeholder="Your Age..." formControlName="age">
+        <div>
+            <small *ngIf="reactiveForm.get('age').errors?.['required']">
+                Age is a required field.
+            </small>
+            <small *ngIf="reactiveForm.get('age').errors?.['noLettersAllowed']">
+                Age can't contain letters.
+            </small>
+            <small *ngIf="reactiveForm.get('age').errors?.['noSpaceAllowed']">
+                Age can't contain a space.
+            </small>
+        </div>
+
+        <label for="password">Password</label>
+        <input type="text" id="password" placeholder="Your password..." formControlName="password">
+        <div>
+            <small *ngIf="reactiveForm.get('password').errors?.['required']">
+                Password is a required field.
+            </small>
+            <small *ngIf="reactiveForm.get('password').errors?.['minlength']">
+                Password has to be minimum 8 letters long.
+            </small>
+            <small *ngIf="reactiveForm.get('password').errors?.['containsNumber']">
+                Password has to contain at least one number.
+            </small>
+        </div>
+
+        <label for="gender">Gender</label>
+        <select name="" id="gender" formControlName="gender">
+            <option value="male">Male</option>
+            <option value="female">Female</option>
+        </select>
+
+        <div formArrayName="skills">
+            <ng-container *ngFor="let skill of reactiveForm.get('skills')['controls']; index as i">
+                <input type="text" name="" placeholder="Add skill.." id="" formControlName="{{i}}">
+            </ng-container>
+            <button (click)="addSkill()">+ Add Skills</button>
+        </div>
+
+        <input type="submit" name="" id="btn" value="Submit">
+    </form>
+</div> -->

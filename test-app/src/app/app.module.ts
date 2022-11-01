@@ -9,15 +9,21 @@ import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { RouterModule } from '@angular/router';
+import { LoginComponent } from './components/login/login/login.component';
+import { RegisterComponent } from './components/register/register/register.component';
 
-
+import {  } from '@angular/material'
+import { MatInputModule } from '@angular/material/input';
+import { MatFormFieldModule } from '@angular/material/form-field';
 
 
 
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    LoginComponent,
+    RegisterComponent
   ],
   imports: [
     BrowserModule,
@@ -26,13 +32,16 @@ import { RouterModule } from '@angular/router';
     FormsModule,
     ReactiveFormsModule,
     NoopAnimationsModule,
-    RouterModule
+    RouterModule,
+    MatFormFieldModule,
+    MatInputModule
   ],
   providers: [],
   bootstrap: [AppComponent],
 
   exports: [
-
+    MatFormFieldModule
+    
   ]
 })
 export class AppModule { }
