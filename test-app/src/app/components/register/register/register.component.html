@@ -9,8 +9,10 @@
           <span #invalidRegistration id="invalid"></span>
 
 
+          <mat-form-field floatLabel="always" hideRequiredMarker style="display: block;" >
           <label for="firstName">First Name</label>
-          <input type="text" placeholder="First Name*" formControlName="firstName" />
+          <mat-label></mat-label>
+          <input type="text" matInput placeholder="First Name*" formControlName="firstName" />
           <div>
             <small *ngIf="registrationForm.get('firstName')?.errors?.['nameLengthError']">
                 First Name has from 2 to 30 characters long.
@@ -19,10 +21,13 @@
                 First Name can't contain numbers, spaces or special characters.
             </small>
           </div>
+        </mat-form-field>
 
 
+        <mat-form-field floatLabel="always" hideRequiredMarker style="display: block;" >
           <label for="lastName">Last Name</label>
-          <input type="text" placeholder="Last Name*" formControlName="lastName" />
+          <mat-label></mat-label>
+          <input type="text" matInput placeholder="Last Name*" formControlName="lastName" />
           <div>
             <small *ngIf="registrationForm.get('lastName')?.errors?.['nameLengthError']">
                 Last Name has from 2 to 30 characters long.
@@ -31,10 +36,14 @@
                 Last Name can't contain numbers, spaces or special characters.
             </small>
           </div>
+        </mat-form-field>
 
 
+
+        <mat-form-field floatLabel="always" hideRequiredMarker style="display: block;" >
           <label for="email">Email</label>
-          <input type="text" placeholder="Email*" formControlName="email" />
+          <mat-label></mat-label>
+          <input type="text" matInput placeholder="Email*" formControlName="email" />
           <div>
             <small *ngIf="registrationForm.get('email')?.errors?.['minlength']">
               Email has to be at least 5 characters long.
@@ -46,11 +55,14 @@
               Email doesn't fit to email format. Please check your email.
             </small>
           </div>
+        </mat-form-field>
 
 
 
+        <mat-form-field floatLabel="always" hideRequiredMarker style="display: block;" >
           <label for="password">Password</label>
-          <input type="password" placeholder="Password*" formControlName="password" />
+          <mat-label></mat-label>
+          <input type="password" matInput placeholder="Password*" formControlName="password" />
           <div>
             <small *ngIf="registrationForm.get('password')?.errors?.['minlength']">
               Password has to be at least 8 characters long.
@@ -71,10 +83,14 @@
               Password has to contain at least one special character.
             </small>
           </div>
+        </mat-form-field>
 
 
+
+        <mat-form-field floatLabel="always" hideRequiredMarker style="display: block;" >
           <label for="age">Age</label>
-          <input type="text" placeholder="Age*" formControlName="age" />
+          <mat-label></mat-label>
+          <input type="text" matInput placeholder="Age*" formControlName="age" />
           <div>
             <small *ngIf="registrationForm.get('age')?.errors?.['noLettersAllowed']">
                 Age has to be written only with digits.
@@ -83,8 +99,10 @@
                 Age has to be greater than 3 and less 102. 
             </small>
           </div>
+        </mat-form-field>
+         
 
-          
+
           <label for="gender">Gender</label>
           <div>
             <small *ngIf="registrationForm.get('gender')?.errors?.['required']">
@@ -95,7 +113,6 @@
             <option value="F">F</option>
             <option value="M">M</option>
           </select>
-
 
           <a id="already" href="" [routerLink]="['/typo/login']" >Already have an account? Sign In!</a>
           <button mat-raised-button>Sign Up</button>

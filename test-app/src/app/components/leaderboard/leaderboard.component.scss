@@ -1,0 +1,78 @@
+.avg-wrapper {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin-top: 25px;
+}
+
+.card {
+    width: 360px;
+    height: 180px;
+    border-radius: 10px;
+    padding: 20px;
+}
+
+.card-speed {
+    border: 2px solid #fc8e90;
+    background-color: #fde6e6;
+}
+
+.card-accuracy {
+    border: 2px solid #f0c594;
+    background-color: #fef2e5;
+}
+
+.card-time {
+    border: 2px solid #99e1bb;
+    background-color: #e7f9f1;
+}
+
+.avg-name {
+    font-size: 15px;
+    font-weight: 700;
+    width: 30%;
+    height: 70%;
+}
+
+.avg-data {
+    font-size: 80px;
+    font-weight: 700;
+    display: block;
+    text-align: right;
+    height: 30%;
+}
+
+.share {
+    margin-top: 30px;
+    margin-bottom: 30px;
+    border: 2px solid #95c0f5;
+    background-color: #ebf5ff;
+    border-radius: 10px;
+    padding: 20px;
+    font-weight: 700;
+    font-size: 15px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+
+    .icons {
+        display: inline;
+        
+    }
+    
+    img {
+        width: 40px;
+        height: 40px;
+        margin-left: 20px;
+        cursor: pointer;
+        transition: all 0.3s ease-in;
+    }
+
+    img:hover {
+        width: 45px;
+        height: 45px;
+    }
+}
+
+

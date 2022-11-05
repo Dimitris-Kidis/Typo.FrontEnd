@@ -1,7 +1,9 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, Subject } from 'rxjs';
+import { User } from 'src/models/User';
 import { headers, RegistrationResponseDto, UserForAuthenticationDto, UserForRegistrationDto } from '../models/auth';
+import { UsersService } from './users.service';
 
 @Injectable({
   providedIn: 'root'
@@ -11,7 +13,7 @@ export class AuthenticationService {
   private _authChangeSub = new Subject<boolean>()
   public authChanged = this._authChangeSub.asObservable();
 
-  constructor(private _http: HttpClient) { }
+  constructor(private _http: HttpClient, private userService: UsersService) { }
 
   sendAuthStateChangeNotification = (isAuthenticated: boolean) => {
     this._authChangeSub.next(isAuthenticated);
@@ -57,6 +59,17 @@ export class AuthenticationService {
     else {
       return false;
     }
+  }
+
+  getUserId(): number {
+    const token: any = localStorage.getItem('token');
+    return parseInt(this.parseJwt(token).id);
+  }
+
+  getUserdata (): Observable<User> {
+    const token: any = localStorage.getItem('token');
+    var id:string = this.parseJwt(token).id;
+    return this._http.get<User>(`api/users/${id}`);
   }
 
   isUserAdmin(): boolean {

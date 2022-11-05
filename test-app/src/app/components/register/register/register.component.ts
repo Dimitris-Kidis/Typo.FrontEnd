@@ -4,6 +4,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { UserForAuthenticationDto, UserForRegistrationDto } from 'src/models/auth';
 import { AuthenticationService } from 'src/services/authentification.service';
 import { lowercaseLetterCheck, uppercaseLetterCheck, digitCheck, specialCharCheck, noSpaceAllowed, noNumbersAllowed, noSpecialCharAllowed, noLettersAllowed, noNumbersCharsSpaces, nameLength, ageRange } from '../../../../shared/form-validators';
+import { MatFormFieldControl } from '@angular/material/form-field';
 
 @Component({
   selector: 'app-register',

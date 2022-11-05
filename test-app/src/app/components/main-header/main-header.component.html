@@ -1,0 +1,16 @@
+<header>
+    <div style="text-align: left;" *ngIf="isLoggedIn" id="nav-menu" class="point">
+        <a href="" class="arrow">
+            <img src="https://typostorage.blob.core.windows.net/avatars/arrow.svg" alt="">
+        </a>
+        <a id="menu">
+            Menu
+        </a>
+    </div>
+    <a href="" id="logo" class="point">TYPO</a>
+    <div [routerLink]="['/typo/account']" style="text-align: right;" *ngIf="isLoggedIn" id="nav-menu" class="point">
+            <img src="{{user.avatar}}" id="nav-user-avatar" alt="me"/>
+            <span id="nav-user-name">Hello, {{user.firstName}}!</span>
+    </div>
+</header>
+<div class="divider"></div>

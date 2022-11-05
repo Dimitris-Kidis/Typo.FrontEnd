@@ -28,12 +28,7 @@ h1 {
     justify-content: center;
 }
 
-mat-form-field {
-    color: red;
-    background-color: white;
-    border-radius: 10px;
-    box-shadow: 0 40px 60px -1px #25252505,0 2px 40px -1px #0000000f;
-}
+
 
 input {
     width: 80%;
@@ -41,7 +36,7 @@ input {
     border-radius: 10px;
     border: 1px solid #ececee;
     box-shadow: 0 2px 3px -1px #25252505,0 2px 4px -1px #0000000f;
-    padding-left: 15px;
+    // padding-left: 15px;
     padding-top: 5px;
     padding-bottom: 5px;
 }
@@ -117,9 +112,97 @@ button:hover {
 }
 
 .ng-dirty.ng-invalid:not(form)  {
-    border: 1px solid red !important; /* red */
+    border: 1px solid red ; /* red */
 }
 
 .ng-valid:not(form)  {
-    border: 1px solid green !important;/* red */
+    border: 1px solid green;/* red */
+}
+
+
+//------------------
+
+
+
+:host {
+    ::ng-deep {
+        .mat-form-field-wrapper {
+            padding-bottom: 0;
+        }
+
+        .mat-form-field {
+            color: black;
+            border: transparent !important;
+            background-color: white;
+            box-shadow: none;
+            text-align: center;
+            display: none;
+        }
+        .mat-form-field-underline {
+            display: none; //
+        }
+
+        .mat-form-field-appearance {
+            display: none !important;
+            color: transparent;
+        }
+
+        .mat-focused .mat-form-field-outline .mat-form-field-outline-start,
+        .mat-focused .mat-form-field-outline .mat-form-field-outline-gap,
+        .mat-focused .mat-form-field-outline .mat-form-field-outline-end
+        {
+            border-bottom: none;
+            border-radius: 0;
+            color: transparent;
+        }
+
+        .mat-form-field-infix {
+            border: transparent;
+        }
+
+        
+        .mat-input-element {
+            
+        }
+        
+        ::placeholder {
+            color: lightgrey;
+        }
+
+
+        .mat-form-field input {
+            height: 20px;
+            transition: height ease-in-out 400ms;
+        }
+        
+        .mat-form-field input:focus {
+
+        }
+        // .mat-focused
+        .mat-form-field-label {
+            /*change color of label*/
+            color: transparent !important;
+           }
+
+        .mat-form-field-ripple {
+            /*change color of underline when focused*/
+            background-color: transparent !important;
+           }
+
+        .mat-form-field-outline-start,
+        .mat-form-field-outline-end {
+        border-radius: 0px !important;
+        }
+
+        .mat-form-field-outline {}
+
+        .mat-form-field-fill {}
+
+        .mat-form-field-standard {}
+
+        .mat-button-base {
+            border-radius: 0px !important;
+    
+        }
+    }
 }

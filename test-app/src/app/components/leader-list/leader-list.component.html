@@ -1,0 +1,52 @@
+<mat-card class='light' style="height: 100%;">
+    <mat-card-header>
+      <mat-card-title class="view-card-title">
+        <h1>Top Speed Leaders</h1>
+      </mat-card-title>
+    </mat-card-header>
+
+    <mat-table 
+      matSortActive="lastName"
+      matSortDirection="asc" 
+      #table 
+      [dataSource]="pagedUsersWithStats?.items!" 
+      matSort matSortActive="firstName" 
+      matSortDirection="asc">
+     
+      <ng-container matColumnDef="firstName">
+        <mat-header-cell *matHeaderCellDef mat-sort-header style="border-top-left-radius: 10px;"> First Name </mat-header-cell>
+        <mat-cell *matCellDef="let user"> {{user.firstName}} </mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="lastName">
+        <mat-header-cell *matHeaderCellDef mat-sort-header> Last Name </mat-header-cell>
+        <mat-cell *matCellDef="let user"> {{user.lastName}} </mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="avgSymbolsPerMin">
+        <mat-header-cell *matHeaderCellDef mat-sort-header> Speed </mat-header-cell>
+        <mat-cell *matCellDef="let user"> {{user.avgSymbolsPerMin}} </mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="avgAccuracy">
+        <mat-header-cell *matHeaderCellDef mat-sort-header> Accuracy </mat-header-cell>
+        <mat-cell *matCellDef="let user"> {{user.avgAccuracy}} </mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="avgTime">
+        <mat-header-cell *matHeaderCellDef mat-sort-header style="border-top-right-radius: 10px;"> Time </mat-header-cell>
+        <mat-cell *matCellDef="let user"> {{user.avgTime}} </mat-cell>
+      </ng-container>
+      
+      <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+      <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+    
+    </mat-table>
+
+    <mat-paginator [pageSizeOptions]="[5, 10, 25, 50]" [pageSize]="5" [length]="pagedUsersWithStats?.total" ></mat-paginator>
+
+  </mat-card>
+
+
+
+

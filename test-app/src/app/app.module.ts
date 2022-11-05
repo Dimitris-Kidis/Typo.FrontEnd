@@ -15,6 +15,24 @@ import { RegisterComponent } from './components/register/register/register.compo
 import {  } from '@angular/material'
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatFormFieldControl } from '@angular/material/form-field';
+import { MainComponent } from './components/main/main.component';
+import { LeaderboardComponent } from './components/leaderboard/leaderboard.component';
+import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
+import { MatPaginator, MatPaginatorModule } from '@angular/material/paginator';
+import { MatTableDataSource, MatTableModule } from '@angular/material/table';
+import { MatSort, MatSortModule } from '@angular/material/sort';
+import { MatIcon, MatIconModule } from '@angular/material/icon';
+import { MatCard, MatCardHeader, MatCardModule, MatCardTitle } from '@angular/material/card';
+import { MatToolbar, MatToolbarModule, MatToolbarRow } from '@angular/material/toolbar';
+import { LeaderListComponent } from './components/leader-list/leader-list.component';
+import { MainHeaderComponent } from './components/main-header/main-header.component';
+import { MainFooterComponent } from './components/main-footer/main-footer.component';
+import { AccountComponent } from './components/account/account.component';
+
+
+
+
 
 
 
@@ -23,7 +41,13 @@ import { MatFormFieldModule } from '@angular/material/form-field';
   declarations: [
     AppComponent,
     LoginComponent,
-    RegisterComponent
+    RegisterComponent,
+    MainComponent,
+    LeaderboardComponent,
+    LeaderListComponent,
+    MainHeaderComponent,
+    MainFooterComponent,
+    AccountComponent
   ],
   imports: [
     BrowserModule,
@@ -34,13 +58,22 @@ import { MatFormFieldModule } from '@angular/material/form-field';
     NoopAnimationsModule,
     RouterModule,
     MatFormFieldModule,
-    MatInputModule
+    MatInputModule,
+    MatIconModule,
+    MatInputModule,
+    MatSortModule,
+    MatCardModule,
+    MatTableModule,
+    MatToolbarModule,
+    MatPaginatorModule,
+    MatSnackBarModule,
   ],
   providers: [],
   bootstrap: [AppComponent],
 
   exports: [
-    MatFormFieldModule
+    MatFormFieldModule,
+    MatPaginatorModule
     
   ]
 })

@@ -1,6 +1,7 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
+import { MatFormFieldControl } from '@angular/material/form-field';
 
 import { UserForAuthenticationDto } from 'src/models/auth';
 import { AuthenticationService } from 'src/services/authentification.service';
@@ -13,15 +14,16 @@ import { digitCheck, lowercaseLetterCheck, specialCharCheck, uppercaseLetterChec
   styleUrls: ['./login.component.scss']
 })
 export class LoginComponent implements OnInit {
+    emailPlaceholderText: string = 'text'
     public loginForm!: FormGroup;
-    public errorMessage: string = '';
-    public showError!: boolean;
     private _returnUrl!: string;
     errorFlag: boolean = false;
   
     constructor(private _authService: AuthenticationService,
                 private _router: Router,
                 private _route: ActivatedRoute){}
+
+    @ViewChild('inputEmail') inputEmail!: ElementRef;
 
     ngOnInit(): void {
       // if (this._authService.isLoggedIn()) this._router.navigate(['/typo/main']); !!!
@@ -41,12 +43,13 @@ export class LoginComponent implements OnInit {
       this._returnUrl = this._route.snapshot.queryParams['returnUrl'] || '/';
     }
 
+    
     @ViewChild('invalidLogin') loginErrorMessage!: ElementRef;
     @ViewChild('image') image!: ElementRef;
     
+    
     login = async (loginFormValue: any) => {
       console.log(this.loginForm);
-      this.showError = false;
       const login = { ...loginFormValue };
       const userForAuth: UserForAuthenticationDto = {
         email: login.email,
@@ -54,15 +57,15 @@ export class LoginComponent implements OnInit {
       }
       this._authService.loginUser(userForAuth)
         .subscribe({
-        next: (res: any) => {
+        next: async (res: any) => {
           localStorage.setItem("token", res.token);
           console.log('GOT IT ' + res.token);
-          this._router.navigate(['/typo/main']);
+          this._router.navigate(['/typo/main']).then(() => {
+             window.location.reload();
+          });
         },
         error:
           async () => {
-            this.errorMessage = 'Invalid Email or Password';
-            this.showError = true;
             await changeContent(this, 'Invalid email or password.');
             await setBackgroundImage(this, true);
             await delay(5000);

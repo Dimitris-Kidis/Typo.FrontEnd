@@ -1,0 +1,63 @@
+:host {
+    ::ng-deep {
+        .mat-card {
+            background-color: rgb(226, 226, 226);
+            border: 2px solid #adadad;
+            color: #3d3d3d;
+            font-weight: 400;
+            font-family: "Poppins" !important;
+            border-radius: 10px;
+            padding: 20px;
+        }
+
+        h1 {
+            font-weight: 700;
+        }
+
+        .mat-sort-header-content {
+            font-weight: 700 !important;
+            color: #3d3d3d; // headers text colors
+        }
+        .mat-sort-header { // header cell color
+            background-color: #adadad;
+            justify-content: center;
+        }
+        .mat-sort-header-arrow{
+            color: #3d3d3d;
+        }
+
+        .mat-cell {
+            background-color: #adadad;
+            color: #3d3d3d;
+            justify-content: center;
+            
+        }
+        .mat-paginator-container,
+        .mat-select-value,
+        .mat-select-arrow-wrapper,
+        .mat-select-arrow,
+        .mat-select-arrow {
+            background-color: #adadad;
+            color: #3d3d3d;
+            // border-bottom: 1px solid red;
+        }
+
+        .mat-form-field-infix {
+            border-bottom: 1px solid #3d3d3d;
+        }
+
+        .mat-header-row, .mat-row {
+            background-color: rgb(226, 226, 226);
+        }
+
+        .mat-paginator-container {
+            border-bottom-left-radius: 10px;
+            border-bottom-right-radius: 10px;
+        }
+
+        .mat-paginator-outer-container {
+            background-color: rgb(226, 226, 226);
+        }
+       
+    }
+}
