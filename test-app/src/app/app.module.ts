@@ -29,6 +29,7 @@ import { LeaderListComponent } from './components/leader-list/leader-list.compon
 import { MainHeaderComponent } from './components/main-header/main-header.component';
 import { MainFooterComponent } from './components/main-footer/main-footer.component';
 import { AccountComponent } from './components/account/account.component';
+import { UploadAvatarComponent } from './components/upload-avatar/upload-avatar.component';
 
 
 
@@ -47,7 +48,8 @@ import { AccountComponent } from './components/account/account.component';
     LeaderListComponent,
     MainHeaderComponent,
     MainFooterComponent,
-    AccountComponent
+    AccountComponent,
+    UploadAvatarComponent
   ],
   imports: [
     BrowserModule,

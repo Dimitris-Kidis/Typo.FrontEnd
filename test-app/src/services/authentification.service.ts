@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, Subject } from 'rxjs';
 import { User } from 'src/models/User';
@@ -86,5 +86,24 @@ export class AuthenticationService {
     }).join(''));
 
     return JSON.parse(jsonPayload);
-};
+  };
+
+  uploadPhoto = (file: File): Observable<any>  => {
+    const formData = new FormData(); 
+    
+    const blob = new Blob();
+
+    const token: any = localStorage.getItem('token');
+    var id: number = this.parseJwt(token).id;
+    formData.append("Files", file);
+    formData.append("UserId", `${id}`);
+    return this._http.post<any>(`api/avatars`, formData);
+  }
+
+  deletePhoto = (): Observable<any> => {        
+    const token: any = localStorage.getItem('token');
+    var id: number = this.parseJwt(token).id;
+    return this._http.delete<any>(`api/avatars/${id}`);
+  }
+
 }

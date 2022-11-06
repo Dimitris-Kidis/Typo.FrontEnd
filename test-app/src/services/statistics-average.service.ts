@@ -24,7 +24,7 @@ export class StatisticsAverageService {
 
   getPagedUsersAndStatsAvg(paginatedRequest: PaginatedRequest): Observable<PagedResult<AverageStatsGridRow>> {
     console.log(paginatedRequest);
-    return this.httpService.post<PagedResult<AverageStatsGridRow>>('api/users/paginated-search-average', paginatedRequest);
+    return this.httpService.post<PagedResult<AverageStatsGridRow>>('api/users/paginated-users-average', paginatedRequest);
   }
 
   // PUT

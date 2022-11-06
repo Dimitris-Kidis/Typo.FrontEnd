@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { UploadAvatarComponent } from '../upload-avatar/upload-avatar.component'
 
 @Component({
   selector: 'app-account',

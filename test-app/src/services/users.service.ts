@@ -31,7 +31,7 @@ export class UsersService {
 
   getPagedUsers(paginatedRequest: PaginatedRequest): Observable<PagedResult<User>> {
     console.log(paginatedRequest);
-    return this.httpService.post<PagedResult<User>>('api/users/paginated-search', paginatedRequest);
+    return this.httpService.post<PagedResult<User>>('api/users/paginated', paginatedRequest);
   }
 
   // DELETE
