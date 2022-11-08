@@ -1,0 +1,11 @@
+<div class="user-stats-graph-1 chart_container" id="text" style="padding: 5px !important;">
+    <h3 class="graph-name">Speed Dynamics</h3>
+    <div class="graph-container">
+        <canvas #lineCanvas id="myChart"></canvas>
+    </div>
+
+    <div class="graph-description">
+        <div style="display: flex; align-items: center;"><div class="legend-circle">&nbsp;</div><span>Chars For Min</span></div>
+        <span class="restart" id="restart" (click)="deleteAllStats()">Reset All Statistics</span>
+    </div>
+</div>

@@ -9,7 +9,7 @@ table {
 
 header {
     margin: 0 auto;
-    width: 1170px;
+    width: 1270px;
     display: flex;
     align-items: center;
     // justify-content: space-around;
@@ -82,10 +82,16 @@ a {
     text-decoration: none;
 }
 
-.divider {
-    border-top: 1px solid #c4c4c4;
-    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
-    margin-top: 20px;
-    margin-bottom: 20px;
+.go-back {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
 
+.go-back-text {
+    padding-left: 4px !important;
+}
+
+.horizontal-arrow {
+    padding-right: 3px !important;
 }

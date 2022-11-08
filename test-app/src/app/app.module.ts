@@ -30,6 +30,15 @@ import { MainHeaderComponent } from './components/main-header/main-header.compon
 import { MainFooterComponent } from './components/main-footer/main-footer.component';
 import { AccountComponent } from './components/account/account.component';
 import { UploadAvatarComponent } from './components/upload-avatar/upload-avatar.component';
+import { BioComponent } from './components/bio/bio.component';
+import { DescriptionComponent } from './components/description/description.component';
+import { GenderPipe } from './pipes/gender.pipe';
+import { ChangepasswordComponent } from './components/changepassword/changepassword.component';
+import { DividerComponent } from './components/divider/divider.component';
+import { ChartComponent } from './components/chart/chart.component';
+import { SocialsComponent } from './components/socials/socials.component';
+import { UsersListComponent } from './components/users-list/users-list.component';
+import { Chart } from 'chart.js'
 
 
 
@@ -49,7 +58,15 @@ import { UploadAvatarComponent } from './components/upload-avatar/upload-avatar.
     MainHeaderComponent,
     MainFooterComponent,
     AccountComponent,
-    UploadAvatarComponent
+    UploadAvatarComponent,
+    BioComponent,
+    DescriptionComponent,
+    GenderPipe,
+    ChangepasswordComponent,
+    DividerComponent,
+    ChartComponent,
+    SocialsComponent,
+    UsersListComponent
   ],
   imports: [
     BrowserModule,
@@ -69,13 +86,16 @@ import { UploadAvatarComponent } from './components/upload-avatar/upload-avatar.
     MatToolbarModule,
     MatPaginatorModule,
     MatSnackBarModule,
+    // ChartChartsModule
+    
   ],
   providers: [],
   bootstrap: [AppComponent],
 
   exports: [
     MatFormFieldModule,
-    MatPaginatorModule
+    MatPaginatorModule,
+    GenderPipe,
     
   ]
 })

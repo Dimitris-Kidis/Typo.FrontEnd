@@ -1,7 +1,8 @@
-<p>upload-avatar works!</p>
-
-
-<label for="file">Choose your photo to upload</label>
-<input type="file" id="file" name="file" (change)="onChange($event)" accept="image/png, image/jpeg">
-<button (click)="onFileSelected()">Upload</button>
-<button (click)="onDeletePhoto()">Delete</button>
+<div class="container">
+    <label for="file">Choose avatar</label>
+    <input type="file" id="file" name="file" (change)="onChange($event)" accept="image/png, image/jpeg">
+    <div>
+        <button id="upload" (click)="onFileSelected()">Upload</button>
+        <button id="delete" (click)="onDeletePhoto()">Delete</button>
+    </div>
+</div>

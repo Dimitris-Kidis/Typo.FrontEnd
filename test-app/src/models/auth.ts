@@ -11,6 +11,12 @@ export interface UserForAuthenticationDto {
     password: string;
 }
 
+export interface ChangePasswordDto {
+    userId: number;
+    oldPassword: string;
+    newPassword: string;
+}
+
 export interface BearerToken {
     accessToken: string;
 }

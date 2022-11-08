@@ -15,7 +15,7 @@ import { digitCheck, lowercaseLetterCheck, specialCharCheck, uppercaseLetterChec
 })
 export class LoginComponent implements OnInit {
     emailPlaceholderText: string = 'text'
-    public loginForm!: FormGroup;
+    loginForm!: FormGroup;
     private _returnUrl!: string;
     errorFlag: boolean = false;
   
@@ -26,7 +26,7 @@ export class LoginComponent implements OnInit {
     @ViewChild('inputEmail') inputEmail!: ElementRef;
 
     ngOnInit(): void {
-      // if (this._authService.isLoggedIn()) this._router.navigate(['/typo/main']); !!!
+      if (this._authService.isLoggedIn()) this._router.navigate(['/typo/main']);
       this.loginForm = new FormGroup({
         email: new FormControl("", [Validators.required,
                                        Validators.email,

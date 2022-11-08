@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { UsersService } from 'src/services/users.service';
 import { UploadAvatarComponent } from '../upload-avatar/upload-avatar.component'
 
 @Component({
@@ -8,7 +9,7 @@ import { UploadAvatarComponent } from '../upload-avatar/upload-avatar.component'
 })
 export class AccountComponent implements OnInit {
 
-  constructor() { }
+  constructor(private userService: UsersService) { }
 
   ngOnInit(): void {
   }

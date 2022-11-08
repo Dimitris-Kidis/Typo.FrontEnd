@@ -1,0 +1,35 @@
+.container {
+    margin-top: 60px;
+    width: 100%;
+}
+
+.name {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+
+    .role {
+        padding-top: 3px;
+        color: #6b6b6b;
+        margin-left: 10px;
+        font-weight: 700;
+    }
+}
+
+h1 {
+    margin: 0;
+    font-weight: 900;
+}
+
+.common {
+    margin-top: 13px;
+    display: flex;
+    flex-direction: column;
+
+    span {
+        margin-bottom: 15px;
+    }
+}
+
+
+

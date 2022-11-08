@@ -1,0 +1,19 @@
+
+<div class="container">
+    <div class="name">
+        <h1>{{user.firstName}} {{user.lastName}}</h1>
+        <span *ngIf="!user.isAdmin; else elseBlock">user</span>
+        <ng-template #elseBlock>
+            <span class="role">adminitrator</span>
+        </ng-template>
+    </div>
+    
+    <div class="common">
+        <span>Email: {{user.email}}</span>
+        <span>Age: {{user.age}}</span>
+        <span>Gender: {{user.gender | gender}}</span>
+    </div>
+
+    <app-changepassword></app-changepassword>
+
+</div>

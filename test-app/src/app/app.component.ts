@@ -25,28 +25,15 @@ import { UsersService } from 'src/services/users.service';
 
 export class AppComponent implements OnInit {
 
-  constructor(private _authService: AuthenticationService,
-     private usersService: UsersService,
-     private activatedRoute: ActivatedRoute) {
-  }
+  constructor(private _authService: AuthenticationService) { }
 
   isLoggedIn: boolean = this._authService.isLoggedIn();
   user: User = new User(0, "", "", "", "", 0, "", false);
- 
   
 
+
   ngOnInit() {
-    // console.log(this.activatedRoute.data);
-    // this.activatedRoute.data.subscribe((response: any) => {
-    //   this.user = response.main;
-    //   console.log(response);
-    // });
     if (this.isLoggedIn) this._authService.getUserdata().subscribe((res: User) => this.user = res);
-    
-    // const id = this._authService.getUserId()
-    // this.usersService
-    //   .getUserById(id)
-    //   .subscribe((res: User) => this.user = res);
   }
   
   

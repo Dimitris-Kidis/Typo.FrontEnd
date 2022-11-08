@@ -1,0 +1,39 @@
+.network {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    justify-content: center;
+    text-align: center;
+    height: 40px;
+
+}
+
+#telegram {
+    width: 40px;
+    cursor: pointer;
+    margin-left: 20px;
+    margin-bottom: 4px;
+}
+
+img {
+    width: 40px;
+    height: 40px;
+    margin-left: 20px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    // transition: background 0.4s;
+    padding: 0px;
+    border-radius: 50%;
+    vertical-align: none !important;
+}
+
+img:hover {
+    cursor: pointer;
+    background-color:#000;
+    // opacity:0.5;
+    filter: brightness(75%);
+    border: none;
+
+}

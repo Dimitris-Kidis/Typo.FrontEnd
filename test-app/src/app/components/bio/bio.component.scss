@@ -1,0 +1,21 @@
+.avatar {
+    width: 300px;
+    height: 300px;
+    border-radius: 50%;
+}
+
+.bio {
+    margin-top: 40px;
+    width: 100%;
+}
+
+.avatar-part {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.avatar {
+    margin-bottom: 20px;
+}

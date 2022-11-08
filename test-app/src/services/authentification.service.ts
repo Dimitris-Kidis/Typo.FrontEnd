@@ -1,8 +1,9 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { ActivatedRoute, Route, Router } from '@angular/router';
 import { Observable, Subject } from 'rxjs';
 import { User } from 'src/models/User';
-import { headers, RegistrationResponseDto, UserForAuthenticationDto, UserForRegistrationDto } from '../models/auth';
+import { ChangePasswordDto, headers, RegistrationResponseDto, UserForAuthenticationDto, UserForRegistrationDto } from '../models/auth';
 import { UsersService } from './users.service';
 
 @Injectable({
@@ -13,18 +14,14 @@ export class AuthenticationService {
   private _authChangeSub = new Subject<boolean>()
   public authChanged = this._authChangeSub.asObservable();
 
-  constructor(private _http: HttpClient, private userService: UsersService) { }
+  constructor(private _http: HttpClient,
+    private userService: UsersService,
+    private router: Router,
+    private activeRoute: ActivatedRoute) { }
 
   sendAuthStateChangeNotification = (isAuthenticated: boolean) => {
     this._authChangeSub.next(isAuthenticated);
   }
-  
-
-  // public getUserdata = (): Observable<Person>  => {
-  //   const token: any = localStorage.getItem('token');
-  //   var email:string = this.parseJwt(token).username;
-  //   return this._http.post<Person>(`/api/accounts/getUserdata`, {email: email});
-  // }
 
   loginUser(dto: UserForAuthenticationDto): Observable<any> {
     return this._http.post<any>("api/auth/login", dto);
@@ -34,26 +31,20 @@ export class AuthenticationService {
     return this._http.post<RegistrationResponseDto>("api/auth/registration", dto);
   }
 
-//   public uploadPhoto = (file: File): Observable<any>  => {
-//     const token: any = localStorage.getItem('token');
-//     var id:number = this.parseJwt(token).id;
-//     return this._http.post<any>(`/api/accounts/uploadPhoto`, {file: file, userId: id});
-//   }
-
+  changePassword(dto: ChangePasswordDto): Observable<any> {
+    return this._http.post<ChangePasswordDto>("api/auth/password-reset", dto);
+  }
 
   logOut(): Observable<any> {
     localStorage.removeItem('token');
     return this._http.post("api/auth/logout", {});
   }
 
-  
-
   isLoggedIn() {
     const token: any = localStorage.getItem('token'); // get token from local storage
     if (token) {
       const payload = atob(token.split('.')[1]); // decode payload of token
       const parsedPayload = JSON.parse(payload); // convert payload into an Object
-
       return parsedPayload.exp > Date.now() / 1000; // check if token is expired
     }
     else {
@@ -90,9 +81,6 @@ export class AuthenticationService {
 
   uploadPhoto = (file: File): Observable<any>  => {
     const formData = new FormData(); 
-    
-    const blob = new Blob();
-
     const token: any = localStorage.getItem('token');
     var id: number = this.parseJwt(token).id;
     formData.append("Files", file);
@@ -105,5 +93,4 @@ export class AuthenticationService {
     var id: number = this.parseJwt(token).id;
     return this._http.delete<any>(`api/avatars/${id}`);
   }
-
 }

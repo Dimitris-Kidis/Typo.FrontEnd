@@ -1,0 +1,63 @@
+.user-stats-graph-1 {
+    width: 670px;
+    height: 410px;
+    margin-bottom: 60px;
+}
+
+#text {
+    border: 1px solid #4e4e4e;
+    box-shadow: 2px 2px 7px rgb(0 0 0 / 14%);
+    border-radius: 5px;
+    font-size: 15px;
+    padding: 23px;
+}
+
+.graph-name {
+    text-align: center;
+    padding: 8px;
+    margin: 0;
+}
+
+.graph-container {
+    justify-content: center;
+    width: 620px;
+    margin: 0 auto;
+}
+
+.graph-description {
+    font-weight: 300;
+    display: flex;
+    flex-direction: row;
+    margin-top: 10px;
+    justify-content: space-around;
+    font-size: 12px;
+    vertical-align: middle;
+    align-items: center;
+}
+
+.legend-circle {
+    width: 15px;
+    height: 15px;
+    display: inline-flex;
+    align-items: center;
+    margin-right: 8px;
+    border-radius: 50%;
+    background-color: #5ee26b;
+}
+
+.restart {
+    color: #ff5454;
+    margin-left: 20px;
+    font-weight: 400;
+    border: 1.5px solid #ff5454;
+    border-radius: 5px;
+    padding: 4px 12px;
+    transition: all 0.3s ease-in;
+    cursor: pointer;
+}
+  
+.restart:hover {
+    background-color: #ff5454;
+    color: white;
+}
+

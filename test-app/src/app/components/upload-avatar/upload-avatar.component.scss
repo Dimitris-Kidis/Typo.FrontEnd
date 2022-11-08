@@ -2,3 +2,66 @@ img {
     width: 100%;
     height: 100%;
 }
+
+.container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+
+input {
+    display: none;
+}
+
+label {
+    font-weight: 400;
+    color: #6b6b6b;
+    font-size: 14px;
+    margin: 0;
+    background: rgba(0, 0, 0, 0.087);
+    padding: 8px;
+    border-radius: 10px;
+    // background-color: #3d3d3d;
+    transition: background 0.4s;
+    cursor: pointer;
+    box-shadow: 0 2px 3px -1px #25252505,0 2px 4px -1px #0000000f;
+}
+
+label:hover {
+    background: rgba(0, 0, 0, 0.155);
+}
+
+button {
+    border: 0px;
+    background-color: transparent;
+    padding: 0;
+    margin: 5px;
+    display: inline;
+}
+
+#upload {
+    color: #60c56a;
+    transition: background 0.4s;
+    padding: 5px;
+    border-radius: 10px;
+}
+
+#delete {
+    color: #f85149;
+    transition: background 0.4s;
+    padding: 5px;
+    border-radius: 10px;
+    
+}
+
+#upload:hover {
+    background: rgba(81, 206, 81, 0.11);
+    cursor: pointer;
+}
+
+#delete:hover {
+    background: rgba(206, 81, 81, 0.11);
+    cursor: pointer;
+}
