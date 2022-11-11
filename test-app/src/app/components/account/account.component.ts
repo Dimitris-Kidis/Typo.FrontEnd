@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AuthenticationService } from 'src/services/authentification.service';
 import { UsersService } from 'src/services/users.service';
 import { UploadAvatarComponent } from '../upload-avatar/upload-avatar.component'
 
@@ -9,7 +10,10 @@ import { UploadAvatarComponent } from '../upload-avatar/upload-avatar.component'
 })
 export class AccountComponent implements OnInit {
 
-  constructor(private userService: UsersService) { }
+  constructor(private userService: UsersService,
+    private authService: AuthenticationService) { }
+
+  isAdmin: boolean = this.authService.isUserAdmin();
 
   ngOnInit(): void {
   }

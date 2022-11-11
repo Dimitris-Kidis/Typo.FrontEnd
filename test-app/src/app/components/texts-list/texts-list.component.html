@@ -1,0 +1,183 @@
+<mat-card class='light' style="height: 100%;">
+    <div *ngIf="paginationFlag">
+          <mat-card-header>
+            <mat-card-title class="view-card-title">
+              <h1>Texts lists</h1>
+            </mat-card-title>
+          </mat-card-header>
+          <mat-toolbar>
+            <mat-toolbar-row>
+              <mat-form-field>
+                <mat-placeholder>
+                  <mat-icon>subject</mat-icon>
+                  <b> Search</b>
+                </mat-placeholder>
+                <input matInput [formControl]="searchInput" (keyup.enter)="applySearch()">
+              </mat-form-field>
+              <div class="buttons">
+                <span class="title-spacer"></span>
+                <button mat-mini-fab class="add-button" (click)="hidePagination('Add', -1)"> <!--  -->
+                  <mat-icon >add</mat-icon>
+                </button>
+                <button mat-mini-fab class="refresh-button" (click)="loadPagedTexts()">
+                  <mat-icon>refresh</mat-icon>
+                </button>
+              </div>
+              
+            </mat-toolbar-row>
+          </mat-toolbar>
+      
+          <mat-table #table [dataSource]="pagedTexts?.items!" matSort matSortActive="author" matSortDirection="asc">
+  
+            <ng-container matColumnDef="textContent">
+              <mat-header-cell *matHeaderCellDef mat-sort-header style="padding-left: 10px; padding-right: 60px;"> Text </mat-header-cell>
+              <mat-cell *matCellDef="let user" style="padding-left: 10px; padding-right: 60px;"> <p style="font-size: 10px;">{{user.textContent}}</p> </mat-cell>
+            </ng-container>
+  
+            <ng-container matColumnDef="author">
+              <mat-header-cell *matHeaderCellDef mat-sort-header class="mat-header-cell-author"> Author </mat-header-cell>
+              <mat-cell *matCellDef="let user"> {{user.author}} </mat-cell>
+            </ng-container>
+  
+            <ng-container matColumnDef="language">
+                <mat-header-cell *matHeaderCellDef mat-sort-header > Language </mat-header-cell>
+                <mat-cell *matCellDef="let user"> {{user.language}} </mat-cell>
+            </ng-container>
+            
+            <ng-container matColumnDef="level">
+                <mat-header-cell *matHeaderCellDef mat-sort-header > Level </mat-header-cell>
+                <mat-cell *matCellDef="let user"> {{user.level}} </mat-cell>
+            </ng-container>
+      
+            <ng-container matColumnDef="id">
+              <mat-header-cell *matHeaderCellDef style="justify-content:right;">
+                <button mat-button class="reset-button" (click)="resetGrid()">Reset</button>
+              </mat-header-cell>
+              <mat-cell *matCellDef="let book" style="justify-content:right;">
+                <button mat-mini-fab class="edit-button" (click)="hidePagination('Edit', book.id)">
+                  <mat-icon>edit</mat-icon>
+                </button>
+                <button mat-mini-fab class="delete-button" (click)="deleteDialog(book.id)">
+                  <mat-icon>delete</mat-icon>
+                </button>
+              </mat-cell>
+            </ng-container>
+           
+            
+            <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+          <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+          
+          </mat-table>
+      
+          <mat-paginator [length]="pagedTexts?.total" [pageSizeOptions]="[2, 4, 8, 16]" pageSize="2"></mat-paginator>
+        </div>
+  
+        <div *ngIf="!paginationFlag">
+          <mat-card>
+            <mat-card-header>
+              <mat-card-title class="view-card-title">
+                <h1>{{pageTitle}}</h1>
+              </mat-card-title>
+            </mat-card-header>
+            <form novalidate [formGroup]="textForm" (ngSubmit)="saveText()">
+              <mat-toolbar style="background-color: #FFF">
+                <mat-toolbar-row>
+                  <span class="title-spacer"></span>
+          
+                  <mat-card-actions>
+                    <button mat-mini-fab class="save-button"  type="submit" [disabled]="!textForm.valid">
+                      <mat-icon>save</mat-icon>
+                    </button>
+                    <button mat-mini-fab class="cancel-button" (click)="refresh()">
+                      <mat-icon>cancel</mat-icon>
+                    </button>
+                  </mat-card-actions>
+          
+                </mat-toolbar-row>
+              </mat-toolbar>
+          
+              <mat-card-content >
+                <div class="form-card">
+                  
+                  <div class="spacing">
+                    <mat-form-field floatLabel="always" hideRequiredMarker style="display: block; width: 100%;">
+                        <label for="textContent">Text</label>
+                        <mat-label></mat-label>
+                        <input matInput type="text" placeholder="Text *" formControlName="textContent" />
+                        <div>
+                          <small *ngIf="textForm.get('textContent')?.errors?.['minlength']">
+                            Text has to be between 50 and 500 characters long.
+                          </small>
+                          <small *ngIf="textForm.get('textContent')?.errors?.['maxlength']">
+                            Text has to be between 50 and 500 characters long.
+                          </small>
+                        </div>
+                    </mat-form-field>
+                  </div>
+
+                  <div class="spacing">
+                    <mat-form-field floatLabel="always" hideRequiredMarker style="display: block; width: 33%;" >
+                      <label for="author">Author</label>
+                      <mat-label></mat-label>
+                      <input type="text" matInput placeholder="Author Name*" formControlName="author" />
+                      <div>
+                        <small *ngIf="textForm.get('author')?.errors?.['minlength']">
+                          Author Name has from 3 to 20 characters long.
+                        </small>
+                        <small *ngIf="textForm.get('author')?.errors?.['maxlength']">
+                            Author Name has from 3 to 20 characters long.
+                        </small>
+                      </div>
+                    </mat-form-field>
+<!--  -->
+                    <div style="width: 33%; display: flex; flex-direction: column; justify-content: center; align-items: center;">
+                        <label for="language">Language</label>
+                        
+                        <select id="language" formControlName="language">
+                        <option value="Russian">Russian</option>
+                        <option value="English">English</option>
+                        <option value="Romanian">Romanian</option>
+                        </select>
+                        <div>
+                        <small *ngIf="textForm.get('language')?.errors?.['required']">
+                            Language is required.
+                        </small>
+                        </div>
+                    </div>
+
+                    <div style="width: 33%; display: flex; flex-direction: column; justify-content: center; align-items: center;">
+                        <label for="level">Level</label>
+                        
+                        <select id="level" formControlName="level">
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                        </select>
+                        <div>
+                        <small *ngIf="textForm.get('level')?.errors?.['required']">
+                            Level is required.
+                        </small>
+                        </div>
+                    </div>
+
+                  </div>
+                  
+  
+                  
+                      
+      
+                
+          
+                  
+          
+                 
+                </div>
+              </mat-card-content>
+            </form>
+          </mat-card>
+        </div>
+      </mat-card>
+        
+        

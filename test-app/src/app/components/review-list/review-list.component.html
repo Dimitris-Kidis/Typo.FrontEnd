@@ -1,0 +1,174 @@
+<mat-card class='light' style="height: 100%;">
+  <div *ngIf="paginationFlag">
+    <mat-card-header>
+      <mat-card-title class="view-card-title">
+        <h1>Text reviews</h1>
+      </mat-card-title>
+    </mat-card-header>
+    <mat-toolbar>
+      <mat-toolbar-row>
+        <mat-form-field>
+          <mat-placeholder>
+            <mat-icon>subject</mat-icon>
+            <b> Search</b>
+          </mat-placeholder>
+          <input matInput [formControl]="searchInput" (keyup.enter)="applySearch()">
+        </mat-form-field>
+        <div class="buttons">
+          <span class="title-spacer"></span>
+          <button mat-mini-fab class="add-button" (click)="hidePagination('Add', -1)">
+            <!--  -->
+            <mat-icon>add</mat-icon>
+          </button>
+          <button mat-mini-fab class="refresh-button" (click)="loadPagedReviews()">
+            <mat-icon>refresh</mat-icon>
+          </button>
+        </div>
+
+      </mat-toolbar-row>
+    </mat-toolbar>
+
+    <mat-table #table [dataSource]="pagedReviews?.items!" matSort matSortActive="userEmail" matSortDirection="asc">
+
+      <ng-container matColumnDef="reviewContent">
+        <mat-header-cell *matHeaderCellDef mat-sort-header> Review </mat-header-cell>
+        <mat-cell *matCellDef="let user"> {{user.reviewContent}} </mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="userEmail">
+        <mat-header-cell *matHeaderCellDef mat-sort-header style="padding-left: 10px; padding-right: 20px;"> User Email </mat-header-cell>
+        <mat-cell *matCellDef="let user" style="padding-left: 10px; padding-right: 20px;"> {{user.userEmail}} </mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="textContent">
+        <mat-header-cell *matHeaderCellDef mat-sort-header style="padding-left: 10px; padding-right: 30px;"> Text </mat-header-cell>
+        <mat-cell *matCellDef="let user" style="padding-left: 10px; padding-right: 30px;"> <p style="font-size: 10px;">{{user.textContent}}</p> </mat-cell>
+      </ng-container>
+
+
+      <ng-container matColumnDef="id">
+        <mat-header-cell *matHeaderCellDef style="justify-content:right;">
+          <button mat-button class="reset-button" (click)="resetGrid()">Reset</button>
+        </mat-header-cell>
+        <mat-cell *matCellDef="let book" style="justify-content:right;">
+          <button mat-mini-fab class="edit-button" (click)="hidePagination('Edit', book.id)">
+            <mat-icon>edit</mat-icon>
+          </button>
+          <button mat-mini-fab class="delete-button" (click)="deleteDialog(book.id)">
+            <mat-icon>delete</mat-icon>
+          </button>
+        </mat-cell>
+      </ng-container>
+
+
+      <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+      <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+
+    </mat-table>
+
+    <mat-paginator [length]="pagedReviews?.total" [pageSizeOptions]="[2, 4, 16]" pageSize="2"></mat-paginator>
+  </div>
+
+  <div *ngIf="!paginationFlag">
+    <mat-card>
+      <mat-card-header>
+        <mat-card-title class="view-card-title">
+          <h1>{{pageTitle}}</h1>
+        </mat-card-title>
+      </mat-card-header>
+      <form novalidate [formGroup]="reviewForm" (ngSubmit)="saveReview()">
+        <mat-toolbar style="background-color: #FFF">
+          <mat-toolbar-row>
+            <span class="title-spacer"></span>
+
+            <mat-card-actions>
+              <button mat-mini-fab class="save-button" type="submit" [disabled]="!reviewForm.valid">
+                <mat-icon>save</mat-icon>
+              </button>
+              <button mat-mini-fab class="cancel-button" (click)="refresh()">
+                <mat-icon>cancel</mat-icon>
+              </button>
+            </mat-card-actions>
+
+          </mat-toolbar-row>
+        </mat-toolbar>
+        <mat-card-content>
+          <div class="form-card">
+            <div #invalid style="color: red; text-align: center;" id="invalid"></div>
+
+            <div class="spacing">
+              <mat-form-field floatLabel="always" hideRequiredMarker style="display: block; width: 100%;">
+                <label for="reviewContent">Review</label>
+                <mat-label></mat-label>
+                <input matInput type="text" placeholder="Review Text *" formControlName="reviewContent" />
+                <div>
+                  <small *ngIf="reviewForm.get('reviewContent')?.errors?.['minlength']">
+                    Review has to be between 50 and 300 characters long.
+                  </small>
+                  <small *ngIf="reviewForm.get('reviewContent')?.errors?.['maxlength']">
+                    Review has to be between 50 and 300 characters long.
+                  </small>
+                </div>
+              </mat-form-field>
+            </div>
+
+              <div class="spacing">
+                <mat-form-field floatLabel="always" hideRequiredMarker style="display: block; width: 50%;">
+                  <label for="textId">Text Id</label>
+                  <mat-label></mat-label>
+                  <input type="number" matInput placeholder="Text Id *" formControlName="textId" />
+                  <div>
+                    <small *ngIf="reviewForm.get('textId')?.errors?.['noLettersAllowed']">
+                      Text Id has to be written only with digits.
+                    </small>
+                  </div>
+                </mat-form-field>
+
+
+                <mat-form-field floatLabel="always" hideRequiredMarker style="display: block; width: 50%;">
+                  <label for="userId">User Id</label>
+                  <mat-label></mat-label>
+                  <input type="number" matInput placeholder="User Id *" formControlName="userId" />
+                  <div>
+                    <small *ngIf="reviewForm.get('userId')?.errors?.['noLettersAllowed']">
+                      User Id has to be written only with digits.
+                    </small>
+                  </div>
+                </mat-form-field>
+
+
+
+
+
+
+
+
+                <!-- <mat-form-field class="form-field-90">
+                    <input matInput type="number" placeholder="Age. (required)" formControlName="age"/>
+                  </mat-form-field>
+  
+                  <mat-form-field class="form-field-90">
+                    <input matInput type="text" placeholder="Gender. (required)" formControlName="gender"/>
+                  </mat-form-field>
+  
+                  <mat-form-field class="form-field-90">
+                    <input matInput type="text" placeholder="IsAdmin. (required)" formControlName="isAdmin"/>
+                  </mat-form-field> -->
+
+                <!-- <mat-form-field class="form-field-30">
+                    <mat-select placeholder="Select Publisher" formControlName="publisherId">
+                      <mat-option *ngFor="let publisher of publishers" [value]="publisher.id">
+                        {{publisher.name}}
+                      </mat-option>
+                    </mat-select>
+                  </mat-form-field> -->
+
+
+
+              </div>
+              </div>
+        </mat-card-content>
+      </form>
+    </mat-card>
+  </div>
+</mat-card>

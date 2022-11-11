@@ -8,8 +8,19 @@
                <app-description></app-description>
           </div>
      </div>
+     <h1 style="text-align: center; font-weight: 900; margin: 30px;">Personal Dynamic Speed Chart</h1>
      <div class="chart">
           <app-chart></app-chart>
+     </div>
+     <h1 *ngIf="isAdmin" style="text-align: center; font-weight: 900; margin: 30px;">Admin Dashboard</h1>
+     <div *ngIf="isAdmin" >
+          <app-users-list></app-users-list>
+     </div>
+     <div *ngIf="isAdmin" style="margin: 40px;">
+          <app-review-list></app-review-list>
+     </div>
+     <div *ngIf="isAdmin" style="margin: 40px;">
+          <app-texts-list></app-texts-list>
      </div>
 </div>
 

@@ -21,7 +21,7 @@ export class MainHeaderComponent implements OnInit {
   }
 
   isLoggedIn: boolean = this._authService.isLoggedIn();
-  user: User = new User(0, "", "", "", "", 0, "", false);
+  user: User = new User(0, "", "", "", "", "", 0, "", false);
 
   account: boolean;
 

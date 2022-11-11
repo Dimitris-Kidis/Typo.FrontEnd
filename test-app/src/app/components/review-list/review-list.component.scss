@@ -1,0 +1,307 @@
+.delete-button {
+    background-color:#f32430;
+    border: none;
+    border-radius: 50%;
+    padding: 5px;
+    padding-top: 8px;
+    width: 40px;
+    height: 40px;
+    transition: all 0.3s ease;
+    margin: 5px;
+}
+
+.delete-button:hover {
+    background-color:#c21d25;
+}
+
+.edit-button {
+    background-color:#f88e28;
+    margin: 5px;
+    border: none;
+    border-radius: 50%;
+    padding: 5px;
+    padding-top: 8px;
+    width: 40px;
+    height: 40px;
+    transition: all 0.3s ease;
+}
+
+.edit-button:hover {
+    background-color:#c67327;
+}
+
+:host {
+    @import 'https://fonts.googleapis.com/icon?family=Material+Icons';
+    .material-icons{
+        font-family: 'Material Icons' !important;
+    }
+    .mat-toolbar-row {
+        justify-content: space-between !important;
+        background-color: #424242;
+    }
+}
+
+.add-button {
+    background-color:#3dc37d;
+    margin: 5px;
+    border: none;
+    border-radius: 50%;
+    padding: 5px;
+    padding-top: 8px;
+    width: 40px;
+    height: 40px;
+    transition: all 0.3s ease;
+}
+
+.add-button:hover {
+    background-color:#329a64;
+}
+
+.refresh-button {
+    background-color:#519dfb;
+    margin: 5px;
+    border: none;
+    border-radius: 50%;
+    padding: 5px;
+    padding-top: 8px;
+    width: 40px;
+    height: 40px;
+    transition: all 0.3s ease;
+}
+
+.refresh-button:hover {
+    background-color:#4077bb;
+}
+
+.reset-button {
+    background-color:#9d9d9d;
+    color: white;
+    margin: 5px;
+    border: none;
+    border-radius: 50%;
+    padding:3px;
+    height: 40px;
+    width: 40px;
+    transition: all 0.3s ease;
+}
+
+.reset-button:hover {
+    background-color:rgb(123, 123, 123);
+}
+
+.buttons {
+    margin-right: 10px;
+}
+
+
+.save-button {
+    background-color:#3dc37d !important;
+    margin: 5px;
+    border: none;
+    border-radius: 50%;
+    padding: 5px;
+    padding-top: 8px;
+    width: 40px;
+    height: 40px;
+    transition: all 0.3s ease;
+}
+
+.save-button:hover {
+    background-color:#329a64 !important;
+    cursor: pointer;
+}
+
+.cancel-button {
+    background-color:#ec5699 !important;
+    margin: 5px;
+    border: none;
+    border-radius: 50%;
+    padding: 5px;
+    padding-top: 8px;
+    width: 40px;
+    height: 40px;
+    transition: all 0.3s ease;
+}
+
+.cancel-button:hover {
+    background-color:#b7346f !important;
+    cursor: pointer;
+}
+
+:host {
+    .mat-header-cell {
+        width: 200px !important;
+    }
+    .mat-cell {
+        width: 100%;
+        
+    }
+}
+
+:host {
+    ::ng-deep {
+        .form-card {
+
+        
+        .mat-form-field-wrapper {
+            padding-bottom: 0;
+        }
+
+        .mat-form-field {
+            color: white;
+            border: transparent !important;
+            // background-color: white;
+            box-shadow: none;
+            text-align: center;
+            display: none;
+        }
+        .mat-form-field-underline {
+            display: none; //
+        }
+
+        .mat-form-field-appearance {
+            display: none !important;
+            color: transparent;
+        }
+
+        .mat-focused .mat-form-field-outline .mat-form-field-outline-start,
+        .mat-focused .mat-form-field-outline .mat-form-field-outline-gap,
+        .mat-focused .mat-form-field-outline .mat-form-field-outline-end
+        {
+            border-bottom: none;
+            border-radius: 0;
+            color: transparent;
+        }
+
+        .mat-form-field-infix {
+            border: transparent;
+        }
+
+        
+        .mat-input-element {
+            
+        }
+        
+        ::placeholder {
+            color: lightgrey;
+        }
+
+
+        .mat-form-field input {
+            height: 20px;
+            transition: height ease-in-out 400ms;
+        }
+        
+        .mat-form-field input:focus {
+
+        }
+        // .mat-focused
+        .mat-form-field-label {
+            /*change color of label*/
+            color: transparent !important;
+           }
+
+        .mat-form-field-ripple {
+            /*change color of underline when focused*/
+            background-color: transparent !important;
+           }
+
+        .mat-form-field-outline-start,
+        .mat-form-field-outline-end {
+        border-radius: 0px !important;
+        }
+
+        .mat-form-field-outline {}
+
+        .mat-form-field-fill {}
+
+        .mat-form-field-standard {}
+
+        .mat-button-base {
+            border-radius: 0px !important;
+    
+        }
+
+
+        .ng-dirty.ng-invalid:not(form)  {
+            border: 1px solid red ; /* red */
+        }
+        
+        .ng-valid:not(form)  {
+            border: 1px solid green;/* red */
+        }
+        
+        small {
+            font-size: 10px;
+            display: block;
+            transition: all 0.5s ease;
+            color: #ec3434;
+        }
+        
+        input {
+            width: 80%;
+            margin: 10px;
+            border-radius: 10px;
+            border: 1px solid #ececee;
+            box-shadow: 0 2px 3px -1px #25252505,0 2px 4px -1px #0000000f;
+            // padding-left: 15px;
+            padding-top: 5px;
+            padding-bottom: 5px;
+        }
+        
+        input:focus {
+            outline: none;
+        }
+        
+        label {
+            margin-top: 18px;
+            display: block;
+            width: 100%;
+            margin: 0;
+            text-align: center;
+        }
+
+        select {
+            
+
+            width: 80%;
+            text-align: center;
+            margin: 10px;
+            border-radius: 10px;
+            border: 1px solid #ececee;
+            background-color: #424242;
+            box-shadow: 0 2px 3px -1px #25252505,0 2px 4px -1px #0000000f;
+            padding-left: 15px;
+            padding-top: 5px;
+            padding-bottom: 5px;
+        }
+        
+        select:focus {
+            outline: 1px solid #3d3d3d;
+        }
+
+        select:hover {
+            cursor: pointer;
+        }
+        
+        
+        }
+    }
+}
+
+.spacing {
+    display: flex;
+    justify-content: space-between;
+    flex-direction: row;
+}
+
+
+.mat-column-id {
+    width: 130px;
+    max-width: 130px;
+}
+
+.mat-column-userEmail {
+    width: 180px;
+    max-width: 180px;
+}

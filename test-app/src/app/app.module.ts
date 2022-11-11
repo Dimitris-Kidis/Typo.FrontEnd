@@ -37,8 +37,17 @@ import { ChangepasswordComponent } from './components/changepassword/changepassw
 import { DividerComponent } from './components/divider/divider.component';
 import { ChartComponent } from './components/chart/chart.component';
 import { SocialsComponent } from './components/socials/socials.component';
-import { UsersListComponent } from './components/users-list/users-list.component';
+import { UsersListComponent } from './components/users/users-list/users-list.component';
 import { Chart } from 'chart.js'
+import { MatDialog, MatDialogActions, MatDialogClose, MatDialogModule } from '@angular/material/dialog'
+import { ConfirmDialogComponent } from 'src/shared/confirm-dialog.component';
+import { MatDialogRef, MAT_DIALOG_DATA, MatDialogContent } from '@angular/material/dialog'
+import { MatButtonModule } from '@angular/material/button';
+import { MatSidenav } from '@angular/material/sidenav';
+import { MatSelect, MatSelectModule } from '@angular/material/select';
+import { ReviewListComponent } from './components/review-list/review-list.component';
+import { TextsListComponent } from './components/texts-list/texts-list.component';
+
 
 
 
@@ -66,7 +75,11 @@ import { Chart } from 'chart.js'
     DividerComponent,
     ChartComponent,
     SocialsComponent,
-    UsersListComponent
+    ConfirmDialogComponent,
+    UsersListComponent,
+    ReviewListComponent,
+    TextsListComponent
+    
   ],
   imports: [
     BrowserModule,
@@ -86,6 +99,8 @@ import { Chart } from 'chart.js'
     MatToolbarModule,
     MatPaginatorModule,
     MatSnackBarModule,
+    MatDialogModule,
+    MatSelectModule
     // ChartChartsModule
     
   ],
@@ -96,6 +111,9 @@ import { Chart } from 'chart.js'
     MatFormFieldModule,
     MatPaginatorModule,
     GenderPipe,
+    MatDialogContent,
+    MatDialogActions
+    
     
   ]
 })

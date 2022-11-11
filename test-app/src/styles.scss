@@ -1,5 +1,6 @@
 /* You can add global styles to this file, and also import other style files */
 @import url('https://unpkg.com/bootstrap@3.3.7/dist/css/bootstrap.min.css');
+@import 'https://fonts.googleapis.com/icon?family=Material+Icons';
 
 // .ng-valid[required], .ng-valid.required  {
 //     border-left: 5px solid #42A948; /* green */
@@ -10,3 +11,8 @@
 //   }
 html, body { height: 100%; }
 * { margin: 0; font-family: "Poppins" !important }
+
+
+.material-icons{
+    font-family: 'Material Icons' !important;
+}

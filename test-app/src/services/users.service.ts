@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { CreateUserCommand } from 'src/commands/Users/CreateUserCommand';
+import { UpdateUserCommand } from 'src/commands/Users/UpdateUserCommand';
 import { ChartData } from 'src/models/Chart';
 import { User } from 'src/models/User';
 import { PagedResult } from 'src/pagination/PagedResult';
@@ -41,8 +42,16 @@ export class UsersService {
 
   // POST
   createUser(command: CreateUserCommand): Observable<any> {
-    return this.httpService.post<any>("/api/users", command);
+    return this.httpService.post<any>("/api/auth/registration", command);
   }
+
+  // PUT
+  updateUser(command: UpdateUserCommand): Observable<any> {
+    return this.httpService.put<any>("api/users", command);
+  }
+
+  // -----
+
 }
 
 

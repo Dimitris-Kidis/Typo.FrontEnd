@@ -28,7 +28,7 @@ export class AppComponent implements OnInit {
   constructor(private _authService: AuthenticationService) { }
 
   isLoggedIn: boolean = this._authService.isLoggedIn();
-  user: User = new User(0, "", "", "", "", 0, "", false);
+  user: User = new User(0, "", "", "", "", "", 0, "", false);
   
 
 

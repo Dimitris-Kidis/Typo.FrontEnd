@@ -2,7 +2,7 @@
 <div class="container">
     <div class="name">
         <h1>{{user.firstName}} {{user.lastName}}</h1>
-        <span *ngIf="!user.isAdmin; else elseBlock">user</span>
+        <span *ngIf="!user.isAdmin; else elseBlock" class="role">user</span>
         <ng-template #elseBlock>
             <span class="role">adminitrator</span>
         </ng-template>

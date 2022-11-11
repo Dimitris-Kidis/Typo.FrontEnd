@@ -34,6 +34,10 @@ const routes: Routes = [
     path: 'typo/account',
     component: AccountComponent
   },
+  {
+    path: '**',
+    component: LoginComponent
+  },
   
 ];
 

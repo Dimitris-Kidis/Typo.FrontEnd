@@ -26,7 +26,7 @@ export class ChartComponent implements OnInit {
     private statsService: StatisticsService,
     private router: Router) {}
 
-  async ngOnInit() {
+  ngOnInit() {
     const id = this.authService.getUserId();
     this.usersService
       .getChartDataById(id)

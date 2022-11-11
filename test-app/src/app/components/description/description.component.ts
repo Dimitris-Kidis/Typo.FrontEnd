@@ -11,7 +11,7 @@ export class DescriptionComponent implements OnInit {
 
   constructor(private authService: AuthenticationService) { }
 
-  user: User = new User(0, "", "", "", "", 0, "", false);
+  user: User = new User(0, "", "", "", "", "", 0, "", false);
 
   ngOnInit() {
     this.authService.getUserdata().subscribe((res: User) => this.user = res);

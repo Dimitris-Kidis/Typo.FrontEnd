@@ -1,0 +1,300 @@
+<mat-card class='light' style="height: 100%;">
+  <div *ngIf="paginationFlag">
+        <mat-card-header>
+          <mat-card-title class="view-card-title">
+            <h1>All Users</h1>
+          </mat-card-title>
+        </mat-card-header>
+        <mat-toolbar>
+          <mat-toolbar-row>
+            <mat-form-field>
+              <mat-placeholder>
+                <mat-icon>subject</mat-icon>
+                <b> Search</b>
+              </mat-placeholder>
+              <input matInput [formControl]="searchInput" (keyup.enter)="applySearch()">
+            </mat-form-field>
+            <div class="buttons">
+              <span class="title-spacer"></span>
+              <button mat-mini-fab class="add-button" (click)="hidePagination('Add', -1)"> <!--  -->
+                <mat-icon >add</mat-icon>
+              </button>
+              <button mat-mini-fab class="refresh-button" (click)="loadPagedUsers()">
+                <mat-icon>refresh</mat-icon>
+              </button>
+            </div>
+            
+          </mat-toolbar-row>
+        </mat-toolbar>
+    
+        <mat-table #table [dataSource]="pagedUsers?.items!" matSort matSortActive="firstName" matSortDirection="asc">
+
+          <ng-container matColumnDef="firstName">
+            <mat-header-cell *matHeaderCellDef mat-sort-header> First Name </mat-header-cell>
+            <mat-cell *matCellDef="let user"> {{user.firstName}} </mat-cell>
+          </ng-container>
+
+          <ng-container matColumnDef="lastName">
+            <mat-header-cell *matHeaderCellDef mat-sort-header > Last Name </mat-header-cell>
+            <mat-cell *matCellDef="let user"> {{user.lastName}} </mat-cell>
+          </ng-container>
+
+          <ng-container matColumnDef="email">
+            <mat-header-cell *matHeaderCellDef mat-sort-header style="padding-left: 10px; padding-right: 20px;"> Email </mat-header-cell>
+            <mat-cell *matCellDef="let user" style="padding-left: 10px; padding-right: 20px;"> {{user.email}} </mat-cell>
+          </ng-container>
+
+          <ng-container matColumnDef="avatar">
+            <mat-header-cell *matHeaderCellDef mat-sort-header > Avatar </mat-header-cell>
+            <mat-cell *matCellDef="let user"><img style="width: 30px; height: 30px; margin-left: 10px;" src="{{user.avatar}}" alt=""></mat-cell>
+          </ng-container>
+
+          <ng-container matColumnDef="age">
+            <mat-header-cell *matHeaderCellDef mat-sort-header> Age </mat-header-cell>
+            <mat-cell *matCellDef="let user"> {{user.age}} </mat-cell>
+          </ng-container>
+
+          <ng-container matColumnDef="gender">
+            <mat-header-cell *matHeaderCellDef mat-sort-header> Gender </mat-header-cell>
+            <mat-cell *matCellDef="let user"> {{user.gender | gender}} </mat-cell>
+          </ng-container>
+
+          <ng-container matColumnDef="isAdmin">
+            <mat-header-cell *matHeaderCellDef mat-sort-header> Admin </mat-header-cell>
+            <mat-cell *matCellDef="let user"> {{user.isAdmin}} </mat-cell>
+          </ng-container>
+    
+          <ng-container matColumnDef="id">
+            <mat-header-cell *matHeaderCellDef style="justify-content:right;">
+              <button mat-button class="reset-button" (click)="resetGrid()">Reset</button>
+            </mat-header-cell>
+            <mat-cell *matCellDef="let book" style="justify-content:right;">
+              <button mat-mini-fab class="edit-button" (click)="test(book.id)" (click)="hidePagination('Edit', book.id)">
+                <mat-icon>edit</mat-icon>
+              </button>
+              <button mat-mini-fab class="delete-button" (click)="deleteDialog(book.id)">
+                <mat-icon>delete</mat-icon>
+              </button>
+            </mat-cell>
+          </ng-container>
+         
+          
+          <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+        <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+        
+        </mat-table>
+    
+        <mat-paginator [length]="pagedUsers?.total" [pageSizeOptions]="[5, 10, 25, 50]" pageSize="5"></mat-paginator>
+      </div>
+
+      <div *ngIf="!paginationFlag">
+        <mat-card>
+          <mat-card-header>
+            <mat-card-title class="view-card-title">
+              <h1>{{pageTitle}}</h1>
+            </mat-card-title>
+          </mat-card-header>
+          <form novalidate [formGroup]="userForm" (ngSubmit)="saveUser()">
+            <mat-toolbar style="background-color: #FFF">
+              <mat-toolbar-row>
+                <span class="title-spacer"></span>
+        
+                <mat-card-actions>
+                  <button mat-mini-fab class="save-button"  type="submit" [disabled]="!userForm.valid">
+                    <mat-icon>save</mat-icon>
+                  </button>
+                  <button mat-mini-fab class="cancel-button" (click)="refresh()">
+                    <mat-icon>cancel</mat-icon>
+                  </button>
+                </mat-card-actions>
+        
+              </mat-toolbar-row>
+            </mat-toolbar>
+        
+            <mat-card-content >
+              <div class="form-card">
+                
+                <div class="spacing">
+                  <mat-form-field floatLabel="always" hideRequiredMarker style="display: block; width: 50%;">
+                    <label for="firstName">First Name</label>
+                    <mat-label></mat-label>
+                    <input matInput type="text" placeholder="First Name *" formControlName="firstName"/>
+                    <div>
+                      <!-- <small *ngIf="userForm.get('firstName')?.errors?.['nameLengthError']">
+                          First Name has from 2 to 30 characters long.
+                      </small> -->
+                      <small *ngIf="userForm.get('firstName')?.errors?.['noNumbersCharsSpaces']">
+                          First Name can't contain numbers, spaces or special characters.
+                      </small>
+                      <small *ngIf="userForm.get('firstName')?.errors?.['minlength']">
+                        First Name has from 2 to 30 characters long.
+                      </small>
+                      <small *ngIf="userForm.get('firstName')?.errors?.['maxlength']">
+                        First Name has from 2 to 30 characters long.
+                      </small>
+                    </div>
+                  </mat-form-field>
+  
+                  <mat-form-field floatLabel="always" hideRequiredMarker style="display: block; width: 50%;" >
+                    <label for="lastName">Last Name</label>
+                    <mat-label></mat-label>
+                    <input type="text" matInput placeholder="Last Name*" formControlName="lastName" />
+                    <div>
+                      <!-- <small *ngIf="userForm.get('lastName')?.errors?.['nameLengthError']">
+                          Last Name has from 2 to 30 characters long.
+                      </small> -->
+                      <small *ngIf="userForm.get('lastName')?.errors?.['minlength']">
+                        First Name has from 2 to 30 characters long.
+                      </small>
+                      <small *ngIf="userForm.get('lastName')?.errors?.['maxlength']">
+                        First Name has from 2 to 30 characters long.
+                      </small>
+                      <small *ngIf="userForm.get('lastName')?.errors?.['noNumbersCharsSpaces']">
+                          Last Name can't contain numbers, spaces or special characters.
+                      </small>
+                    </div>
+                  </mat-form-field>
+                </div>
+                
+
+                <div class="spacing">
+                  <mat-form-field floatLabel="always" hideRequiredMarker style="display: block; width: 50%;" >
+                    <label for="email">Email</label>
+                    <mat-label></mat-label>
+                    <input type="text" matInput placeholder="Email*" formControlName="email" />
+                    <div>
+                      <small *ngIf="userForm.get('email')?.errors?.['minlength']">
+                        Email has to be at least 5 characters long.
+                      </small>
+                      <small *ngIf="userForm.get('email')?.errors?.['maxlength']">
+                        Email can't be more than 30 characters long.
+                      </small>
+                      <small *ngIf="userForm.get('email')?.errors?.['email']">
+                        Email doesn't fit to email format. Please check your email.
+                      </small>
+                    </div>
+                  </mat-form-field>
+          
+          
+          
+                  <mat-form-field floatLabel="always" hideRequiredMarker style="display: block; width: 50%;" >
+                    <label for="password">Password</label>
+                    <mat-label></mat-label>
+                    <input type="password" matInput placeholder="Password*" formControlName="password" />
+                    <div>
+                      <small *ngIf="userForm.get('password')?.errors?.['minlength']">
+                        Password has to be at least 8 characters long.
+                      </small>
+                      <small *ngIf="userForm.get('password')?.errors?.['maxlength']">
+                        Password can't be more than 20 characters long.
+                      </small>
+                      <small *ngIf="userForm.get('password')?.errors?.['lowercaseLetterCheck']">
+                        Password has to contain at least one lowercase letter.
+                      </small>
+                      <small *ngIf="userForm.get('password')?.errors?.['uppercaseLetterCheck']">
+                        Password has to contain at least one uppercase letter.
+                      </small>
+                      <small *ngIf="userForm.get('password')?.errors?.['digitCheck']">
+                        Password has to contain at least one digit.
+                      </small>
+                      <small *ngIf="userForm.get('password')?.errors?.['specialCharCheck']">
+                        Password has to contain at least one special character.
+                      </small>
+                    </div>
+                  </mat-form-field>
+                </div>
+                <!-- <mat-form-field class="form-field-90">
+                  <input matInput type="email" placeholder="Email. (required)" formControlName="email"/>
+                  <div>
+                    <small *ngIf="userForm.get('email')?.errors?.['minlength']">
+                      Email has to be at least 5 characters long.
+                    </small>
+                    <small *ngIf="userForm.get('email')?.errors?.['maxlength']">
+                      Email can't be more than 30 characters long.
+                    </small>
+                    <small *ngIf="userForm.get('email')?.errors?.['email']">
+                      Email doesn't fit to email format. Please check your email.
+                    </small>
+                  </div>
+                </mat-form-field>
+
+                <mat-form-field class="form-field-90">
+                  <input matInput type="password" placeholder="Password. (required)" formControlName="password"/>
+                </mat-form-field> -->
+
+                <div class="spacing">
+                  <mat-form-field floatLabel="always" hideRequiredMarker style="display: block; width: 33%;" >
+                    <label for="age">Age</label>
+                    <mat-label></mat-label>
+                    <input type="text" matInput placeholder="Age*" formControlName="age" />
+                    <div>
+                      <small *ngIf="userForm.get('age')?.errors?.['noLettersAllowed']">
+                          Age has to be written only with digits.
+                      </small>
+                      <small *ngIf="userForm.get('age')?.errors?.['ageRangeError']">
+                          Age has to be greater than 3 and less 102. 
+                      </small>
+                    </div>
+                  </mat-form-field>
+                   
+          
+                  <div style="width: 33%; display: flex; flex-direction: column; justify-content: center; align-items: center;">
+                    <label for="gender">Gender</label>
+                    
+                    <select id="gender" formControlName="gender">
+                      <option value="F">Female</option>
+                      <option value="M">Male</option>
+                    </select>
+                    <div>
+                      <small *ngIf="userForm.get('gender')?.errors?.['required']">
+                          Gender is required.
+                      </small>
+                    </div>
+                  </div>
+
+                  <div style="width: 33%; display: flex; flex-direction: column; justify-content: center; align-items: center;">
+                    <label for="isAdmin">IsAdmin</label>
+                    <select id="isAdmin" formControlName="isAdmin">
+                      <option value="true">Yes</option>
+                      <option value="false">No</option>
+                    </select>
+                    <div>
+                      <small *ngIf="userForm.get('isAdmin')?.errors?.['required']">
+                          IsAdmin is required.
+                      </small>
+                    </div>
+                  </div>
+                    
+          
+                </div>
+                <!-- <mat-form-field class="form-field-90">
+                  <input matInput type="number" placeholder="Age. (required)" formControlName="age"/>
+                </mat-form-field>
+
+                <mat-form-field class="form-field-90">
+                  <input matInput type="text" placeholder="Gender. (required)" formControlName="gender"/>
+                </mat-form-field>
+
+                <mat-form-field class="form-field-90">
+                  <input matInput type="text" placeholder="IsAdmin. (required)" formControlName="isAdmin"/>
+                </mat-form-field> -->
+        
+                <!-- <mat-form-field class="form-field-30">
+                  <mat-select placeholder="Select Publisher" formControlName="publisherId">
+                    <mat-option *ngFor="let publisher of publishers" [value]="publisher.id">
+                      {{publisher.name}}
+                    </mat-option>
+                  </mat-select>
+                </mat-form-field> -->
+        
+                
+        
+               
+              </div>
+            </mat-card-content>
+          </form>
+        </mat-card>
+      </div>
+    </mat-card>
+      
+      
