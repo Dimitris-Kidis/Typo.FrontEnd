@@ -11,7 +11,8 @@ export class BioComponent implements OnInit {
 
   constructor(private authService: AuthenticationService) { }
 
-  user: User = new User(0, "", "", "", "", "", 0, "", false);
+  // user: User = new User(0, "", "", "", "", "", 0, "", false);
+  user: User;
 
   ngOnInit() {
     this.authService.getUserdata().subscribe((res: User) => this.user = res);

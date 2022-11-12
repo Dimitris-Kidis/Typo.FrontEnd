@@ -1,0 +1,47 @@
+<div class="menu-container">
+    <!-- <div class="menu-item"><a href="" [mat-dialog-close]="true" [routerLink]="['/typo/leaderboard']">Main</a></div> -->
+    <a href="" [mat-dialog-close]="true" [routerLink]="['/typo/main']" class="menu-item">Main</a>
+    <a href="" [mat-dialog-close]="true" [routerLink]="['/typo/account']" class="menu-item">Dashboard</a>
+    <a href="" [mat-dialog-close]="true" [routerLink]="['/typo/leaderboard']" class="menu-item">Leaderboard</a>
+    <a href="" [mat-dialog-close]="true" (click)="signOut()" class="menu-item sign-out">Sign Out</a>
+</div>
+
+<style>
+    .menu-container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    }
+
+    a {
+        text-decoration: none;
+        color: white;
+    }
+
+    a:focus {
+        outline: none;
+    }
+
+    .menu-item {
+        width: 100%;
+        text-align: center;
+        padding-top: 10px;
+        padding-bottom: 10px;
+        font-size: 16px;
+        cursor: pointer;
+        transition: background 0.25s;
+    }
+
+    .menu-item:hover {
+        background: rgba(0, 0, 0, 0.11);
+    }
+
+    .sign-out {
+        color: #f85149;
+        font-weight: 700;
+    }
+
+    
+    
+</style>

@@ -29,7 +29,8 @@ import { MatTableDataSource } from '@angular/material/table';
   styleUrls: ['./leaderboard.component.scss']
 })
 export class LeaderboardComponent implements OnInit {
-  stats: AverageStats = new AverageStats(56, 96, "01:01", 0);
+  // stats: AverageStats = new AverageStats(56, 96, "01:01", 0);
+  stats: AverageStats;
   
   constructor(
     private _authService: AuthenticationService,

@@ -47,6 +47,7 @@ import { MatSidenav } from '@angular/material/sidenav';
 import { MatSelect, MatSelectModule } from '@angular/material/select';
 import { ReviewListComponent } from './components/review-list/review-list.component';
 import { TextsListComponent } from './components/texts-list/texts-list.component';
+import { DialogComponent } from './components/main-header/dialog/dialog.component';
 
 
 
@@ -78,7 +79,9 @@ import { TextsListComponent } from './components/texts-list/texts-list.component
     ConfirmDialogComponent,
     UsersListComponent,
     ReviewListComponent,
-    TextsListComponent
+    TextsListComponent,
+    DialogComponent,
+    
     
   ],
   imports: [
@@ -100,7 +103,8 @@ import { TextsListComponent } from './components/texts-list/texts-list.component
     MatPaginatorModule,
     MatSnackBarModule,
     MatDialogModule,
-    MatSelectModule
+    MatSelectModule,
+    
     // ChartChartsModule
     
   ],

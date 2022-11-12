@@ -1,9 +1,11 @@
 import { LocationStrategy, PathLocationStrategy } from '@angular/common';
-import { Component, DoCheck, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { Component, DoCheck, ElementRef, Inject, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { User } from 'src/models/User';
 import { AuthenticationService } from 'src/services/authentification.service';
 import { Location } from '@angular/common';
+import { MatDialog, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { DialogComponent } from './dialog/dialog.component';
 
 @Component({
   selector: 'app-main-header',
@@ -16,7 +18,8 @@ export class MainHeaderComponent implements OnInit {
   constructor(private _authService: AuthenticationService,
     private activatedRoute: ActivatedRoute,
     private location: Location,
-    private router: Router) {
+    private router: Router,
+    public dialog: MatDialog) {
       this.location = location;
   }
 
@@ -58,4 +61,13 @@ export class MainHeaderComponent implements OnInit {
    });
   }
 
+  openMenu() {
+    this.dialog.open(DialogComponent, {
+      data: {
+        animal: 'panda',
+      },
+    });
+  }
+
 }
+
