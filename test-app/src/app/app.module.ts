@@ -48,6 +48,7 @@ import { MatSelect, MatSelectModule } from '@angular/material/select';
 import { ReviewListComponent } from './components/review-list/review-list.component';
 import { TextsListComponent } from './components/texts-list/texts-list.component';
 import { DialogComponent } from './components/main-header/dialog/dialog.component';
+import { FirstscreenComponent } from './components/main/firstscreen/firstscreen.component';
 
 
 
@@ -81,6 +82,7 @@ import { DialogComponent } from './components/main-header/dialog/dialog.componen
     ReviewListComponent,
     TextsListComponent,
     DialogComponent,
+    FirstscreenComponent,
     
     
   ],
