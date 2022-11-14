@@ -1,17 +1,32 @@
 <div class="container">
-    <div class="textbox unselectable">
+    <div class="textbox unselectable" #textbox>
         {{textContent!}}
     </div>
     <div class="input">
-        <input id="input" type="text" class="input-text" placeholder="Type in your first letters..." value="" autofocus autocomplete="off">
+        <input
+            id="input"
+            type="text"
+            class="input-text"
+            [(ngModel)]='myValue'
+            (input)="inputStart(myValue)"
+            (copy)="false"
+            
+            (paste)="false"
+            (cut)="false"
+            placeholder="Type in your first letter..."
+            value=""
+            autofocus
+            autocomplete="off"
+            #mainInput
+        />
     </div>
     <div class="bar">
         <div class="input-line">
-            <input style="width: 0.2%" id="input-progress" type="text" readonly class="input-progress"/>
+            <input style="width: 0.2%" id="input-progress" #inputProgress type="text" readonly class="input-progress"/>
         </div>
     </div>
     <div class="keyboard">
-
+        <app-keyboard [nextLetter]="nextLetter" [mainInput]="mainInput"></app-keyboard>
     </div>
 </div>
 

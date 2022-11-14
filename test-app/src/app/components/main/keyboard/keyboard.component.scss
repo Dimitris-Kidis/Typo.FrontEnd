@@ -1,0 +1,363 @@
+.triggers {
+    display: flex;
+    justify-content: flex-end;
+    margin-bottom: 3px;
+    margin-right: 2px;
+    cursor: pointer;
+    transition: all 0.8s ease-in;
+}
+  .trigger {
+    margin-left: 7px;
+}
+
+
+.keyboard-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    cursor: grab;
+}
+
+
+.keyboard .line {
+    display: -webkit-box;
+    display: flex;
+}
+.keyboard .line div {
+    width: 49px;
+    height: 49px;
+    line-height: 37px;
+    font-size: 15px;
+    border: 1px solid #c7d0d4;
+    /* background: #fff; */
+    margin: 1px;
+    padding: 5px;
+    text-align: center;
+    box-shadow: 2px 2px 2px rgb(0 0 0 / 14%);
+    border-radius: 5px;
+}
+.keyboard .line div.hint {
+    background: #c7d0d4;
+}
+.keyboard .line .backspace {
+    width: 75px;
+    text-align: right;
+    /* color: #ddd; */
+    font-size: 10px;
+}
+  
+.backspace {
+    color: #95a0a4;
+}
+  
+.keyboard .line .tab {
+    width: 75px;
+    text-align: left;
+    color: #95a0a4;
+    font-size: 10px;
+}
+.keyboard .line .caps {
+    width: 87px;
+    text-align: left;
+    color: #95a0a4;
+    font-size: 10px;
+}
+.keyboard .line .enter {
+    width: 88px;
+    text-align: right;
+    color: #95a0a4;
+    font-size: 10px;
+}
+.keyboard .line .shift {
+    width: 113px;
+    text-align: left;
+    color: #95a0a4;
+    font-size: 10px;
+}
+.keyboard .line .shift:last-child {
+    text-align: right;
+}
+.keyboard .line .space {
+    margin-left: auto;
+    width: 312px;
+    text-align: right;
+    color: #95a0a4;
+    font-size: 10px;
+}
+.keyboard .line .alt {
+    width: 49px;
+    text-align: center;
+    color: #95a0a4;
+    font-size: 10px;
+    margin-right: auto;
+}
+  
+sup {
+    margin-left: 5px;
+    vertical-align: super;
+    font-size: 13px;
+}
+
+
+/* ПЕРВЫЙ РЯД КЛАВИАТУРЫ */
+
+.hand {
+    width: 59px;
+    height: 103px;
+    position: absolute;
+}
+
+#little-finger-right-purple-1 {
+    transform: translate(650px, 0px);
+    opacity: 75%;
+}
+  #little-finger-right-purple-2 {
+    transform: translate(650px, 0px);
+    opacity: 75%;
+}
+  #little-finger-left-purple-1 {
+    transform: translate(70px, 0px);
+    opacity: 75%;
+}
+  /* левый шифт */
+  #little-finger-left-purple-2 {
+    transform: translate(50px, 0px);
+    opacity: 75%;
+}
+  #ring-finger-left-lilac-1 {
+    transform: translate(110px, 23px);
+    opacity: 75%;
+}
+  #middle-finger-left-green-1 {
+    transform: translate(147px, 23px);
+    opacity: 75%;
+}
+  #index-finger-orange-1 {
+    transform: translate(184px, 23px);
+    opacity: 75%;
+}
+  #index-finger-orange-2 {
+    transform: translate(237px, 23px);
+    opacity: 75%;
+}
+  #index-finger-yellow-1 {
+    transform: translate(310px, 23px);
+    opacity: 75%;
+}
+  #index-finger-yellow-2 {
+    transform: translate(360px, 23px);
+    opacity: 75%;
+}
+  
+  #middle-finger-right-green-1 {
+    transform: translate(400px, 23px);
+    opacity: 75%;
+}
+  
+  #ring-finger-right-lilac-1 {
+    transform: translate(445px, 23px);
+    opacity: 75%;
+}
+  
+  #little-finger-right-purple-3 {
+    transform: translate(480px, 15px);
+    opacity: 75%;
+}
+  #little-finger-right-purple-4 {
+    transform: translate(530px, 15px);
+    opacity: 75%;
+}
+  #little-finger-right-purple-5 {
+    transform: translate(580px, 15px);
+    opacity: 75%;
+}
+  
+  /* ВТОРОЙ РЯД КЛАВИАТУРЫ */
+  
+  #little-finger-left-purple-3 {
+    transform: translate(95px, 5px);
+    opacity: 75%;
+}
+  
+  #ring-finger-left-lilac-2 {
+    transform: translate(140px, 5px);
+    opacity: 75%;
+}
+  
+  #middle-finger-left-green-2 {
+    transform: translate(175px, 5px);
+    opacity: 75%;
+}
+  
+  #index-finger-orange-3 {
+    transform: translate(208px, 5px);
+    opacity: 75%;
+}
+  
+  #index-finger-orange-4 {
+    transform: translate(262px, 5px);
+    opacity: 75%;
+}
+  
+  #index-finger-yellow-3 {
+    transform: translate(340px, 5px);
+    opacity: 75%;
+}
+  
+  #index-finger-yellow-4 {
+    transform: translate(385px, 5px);
+    opacity: 75%;
+}
+  
+  #middle-finger-right-green-2 {
+    transform: translate(430px, 5px);
+    opacity: 75%;
+}
+  
+  #ring-finger-right-lilac-2 {
+    transform: translate(478px, 5px);
+    opacity: 75%;
+}
+  
+  #little-finger-right-purple-6 {
+    transform: translate(520px, 5px);
+    opacity: 75%;
+}
+  
+  #little-finger-right-purple-7 {
+    transform: translate(563px, 5px);
+    opacity: 75%;
+}
+  
+  #little-finger-right-purple-8 {
+    transform: translate(610px, 5px);
+    opacity: 75%;
+}
+  
+  #little-finger-right-purple-9 {
+    transform: translate(663px, 5px);
+    opacity: 75%;
+}
+  
+  /* ТРЕТИЙ РЯД КЛАВИАТУРЫ */
+  
+  #little-finger-left-purple-4 {
+    transform: translate(106px, 5px);
+    opacity: 75%;
+}
+  
+  #ring-finger-left-lilac-3 {
+    transform: translate(143px, 5px);
+    opacity: 75%;
+}
+  
+  #middle-finger-left-green-3 {
+    transform: translate(183px, 5px);
+    opacity: 75%;
+}
+  
+  #index-finger-orange-5 {
+    transform: translate(223px, 5px);
+    opacity: 75%;
+}
+  
+  #index-finger-orange-6 {
+    transform: translate(270px, 5px);
+    opacity: 75%;
+}
+  
+  #index-finger-yellow-5 {
+    transform: translate(350px, 5px);
+    opacity: 75%;
+}
+  
+  #index-finger-yellow-6 {
+    transform: translate(400px, 5px);
+    opacity: 75%;
+}
+  
+  #middle-finger-right-green-3 {
+    transform: translate(445px, 5px);
+    opacity: 75%;
+}
+  
+  #ring-finger-right-lilac-3 {
+    transform: translate(485px, 5px);
+    opacity: 75%;
+}
+  
+  #little-finger-right-purple-10 {
+    transform: translate(525px, 5px);
+    opacity: 75%;
+}
+  
+  #little-finger-right-purple-11 {
+    transform: translate(572px, 5px);
+    opacity: 75%;
+}
+  
+  /* ЧЕТВЕРТЫЙ РЯД КЛАВИАТУРЫ */
+  
+  #little-finger-left-purple-5 {
+    transform: translate(130px, 10px);
+    opacity: 75%;
+}
+  
+  #ring-finger-left-lilac-4 {
+    transform: translate(177px, 10px);
+    opacity: 75%;
+}
+  
+  #middle-finger-left-green-4 {
+    transform: translate(215px, 10px);
+    opacity: 75%;
+}
+  
+  #index-finger-orange-7 {
+    transform: translate(256px, 10px);
+    opacity: 75%;
+}
+  
+  #index-finger-orange-8 {
+    transform: translate(302px, 10px);
+    opacity: 75%;
+}
+  
+  #index-finger-yellow-7 {
+    transform: translate(377px, 10px);
+    opacity: 75%;
+}
+  
+  #index-finger-yellow-8 {
+    transform: translate(427px, 10px);
+    opacity: 75%;
+}
+  
+  #middle-finger-right-green-4 {
+    transform: translate(467px, 10px);
+    opacity: 75%;
+}
+  
+  #ring-finger-right-lilac-4 {
+    transform: translate(507px, 10px);
+    opacity: 75%;
+}
+  
+  #little-finger-right-purple-12 {
+    transform: translate(549px, 10px);
+    opacity: 75%;
+}
+  
+  /* ПРОБЕЛ */
+  
+  #big-finger-right-gray {
+    transform: translate(390px, -20px);
+    opacity: 75%;
+}
+  

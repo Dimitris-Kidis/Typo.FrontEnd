@@ -49,6 +49,8 @@ import { ReviewListComponent } from './components/review-list/review-list.compon
 import { TextsListComponent } from './components/texts-list/texts-list.component';
 import { DialogComponent } from './components/main-header/dialog/dialog.component';
 import { FirstscreenComponent } from './components/main/firstscreen/firstscreen.component';
+import { KeyboardComponent } from './components/main/keyboard/keyboard.component';
+import { EventEmitterService } from './components/main/event-emitter.service';
 
 
 
@@ -83,6 +85,7 @@ import { FirstscreenComponent } from './components/main/firstscreen/firstscreen.
     TextsListComponent,
     DialogComponent,
     FirstscreenComponent,
+    KeyboardComponent,
     
     
   ],
@@ -110,7 +113,7 @@ import { FirstscreenComponent } from './components/main/firstscreen/firstscreen.
     // ChartChartsModule
     
   ],
-  providers: [],
+  providers: [EventEmitterService],
   bootstrap: [AppComponent],
 
   exports: [

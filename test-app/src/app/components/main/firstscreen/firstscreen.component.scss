@@ -37,7 +37,7 @@
 
 .input-progress {
     background-color: #5ee26b;
-  
+    cursor: default;
     height: 8px;
     transition: all 0.8s ease-in;
     border: 1px solid #66ce70;
@@ -45,6 +45,10 @@
     box-shadow: 2px 2px 7px rgb(0 0 0 / 14%);
     margin-bottom: 30px;
     transform: translate(0px, 0px);
+}
+
+.input-progress:focus {
+    outline: none;
 }
 
 .input-text {
@@ -65,3 +69,5 @@
 .input-text:focus {
     outline: none;
 }
+
+// .correct .incorrect ----> styles.scss

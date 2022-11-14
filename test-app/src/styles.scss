@@ -21,3 +21,21 @@ html, body { height: 100%; }
 .mat-dialog-container {
     width: 500px !important;
 }
+
+// input
+.correct {
+    color: #5ee26b !important;
+}
+
+.incorrect {
+    color: #ff0000 !important;
+}
+
+.highlighted {
+    background-color: #ffa !important;
+    color: #4e4e4e;
+}
+
+.hidden {
+    display: none;
+}
