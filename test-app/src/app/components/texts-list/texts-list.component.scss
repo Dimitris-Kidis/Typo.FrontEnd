@@ -111,6 +111,7 @@
     width: 40px;
     height: 40px;
     transition: all 0.3s ease;
+    color: white;
 }
 
 .save-button:hover {
@@ -119,6 +120,7 @@
 }
 
 .cancel-button {
+    color: white;
     background-color:#ec5699 !important;
     margin: 5px;
     border: none;
@@ -285,6 +287,7 @@
             // padding-left: 15px;
             padding-top: 5px;
             padding-bottom: 5px;
+            color: #3d3d3d !important;
         }
         
         input:focus {
@@ -297,6 +300,7 @@
             width: 100%;
             margin: 0;
             text-align: center;
+            color: #3d3d3d !important;
         }
 
         select {
@@ -307,7 +311,8 @@
             margin: 10px;
             border-radius: 10px;
             border: 1px solid #ececee;
-            background-color: #424242;
+            // background-color: #424242;
+            color: #3d3d3d;
             box-shadow: 0 2px 3px -1px #25252505,0 2px 4px -1px #0000000f;
             padding-left: 15px;
             padding-top: 5px;

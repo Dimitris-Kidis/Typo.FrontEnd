@@ -58,12 +58,12 @@ export class TextsListComponent {
   @ViewChild(MatSort, { static: false}) sort: MatSort;
 
   constructor(
-    private textService: TextsService,
-    private formBuilder: FormBuilder,
+    private _textService: TextsService,
+    private _formBuilder: FormBuilder,
     public dialog: MatDialog,
     public snackBar: MatSnackBar,
-    private route: ActivatedRoute,
-    private router: Router,
+    private _route: ActivatedRoute,
+    private _router: Router,
   ) {
     this.displayedColumns = this.tableColumns.map(column => column.name);
   }
@@ -80,7 +80,7 @@ export class TextsListComponent {
 
   loadPagedTexts() {
     const paginatedRequest = new PaginatedRequest(this.paginator, this.sort, this.requestFilters);
-    this.textService.getPagedTexts(paginatedRequest)
+    this._textService.getPagedTexts(paginatedRequest)
       .subscribe((pagedTexts: PagedResult<ITextGridRow>) => {
         this.pagedTexts = pagedTexts;
         console.log(this.pagedTexts);
@@ -95,7 +95,7 @@ export class TextsListComponent {
 
     dialogRef.afterClosed().subscribe(result => {
       if (result === dialogRef.componentInstance.ACTION_CONFIRM) {
-        this.textService.deleteTextById(id).subscribe(
+        this._textService.deleteTextById(id).subscribe(
           () => {
             this.loadPagedTexts();
 
@@ -201,7 +201,7 @@ export class TextsListComponent {
   }
 
   getText(id: number) {
-    this.textService.getTextById(id).subscribe((text: Text) => {
+    this._textService.getTextById(id).subscribe((text: Text) => {
       this.textForm.patchValue({
         textContent: text.textContent,
         author: text.author,
@@ -221,7 +221,7 @@ export class TextsListComponent {
           language: this.textForm.value.language,
           level: +this.textForm.value.level,
         }
-        this.textService.createText(createUser).subscribe(
+        this._textService.createText(createUser).subscribe(
           () => this.onSaveComplete()
         );
 
@@ -236,7 +236,7 @@ export class TextsListComponent {
           language: this.textForm.value.language,
           level: +this.textForm.value.level,
         };
-        this.textService.updateText(updateUser).subscribe(
+        this._textService.updateText(updateUser).subscribe(
           () => this.onSaveComplete()
         );
       }

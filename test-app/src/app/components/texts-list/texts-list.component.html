@@ -19,7 +19,7 @@
                 <button mat-mini-fab class="add-button" (click)="hidePagination('Add', -1)"> <!--  -->
                   <mat-icon >add</mat-icon>
                 </button>
-                <button mat-mini-fab class="refresh-button" (click)="loadPagedTexts()">
+                <button mat-mini-fab class="refresh-button" (click)="resetGrid()">
                   <mat-icon>refresh</mat-icon>
                 </button>
               </div>
@@ -51,7 +51,7 @@
       
             <ng-container matColumnDef="id">
               <mat-header-cell *matHeaderCellDef style="justify-content:right;">
-                <button mat-button class="reset-button" (click)="resetGrid()">Reset</button>
+                <!-- <button mat-button class="reset-button" (click)="resetGrid()">Reset</button> -->
               </mat-header-cell>
               <mat-cell *matCellDef="let book" style="justify-content:right;">
                 <button mat-mini-fab class="edit-button" (click)="hidePagination('Edit', book.id)">

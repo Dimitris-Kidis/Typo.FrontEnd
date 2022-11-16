@@ -14,40 +14,40 @@ import { PaginatedRequest } from 'src/pagination/PaginatedRequest';
 })
 export class UsersService {
 
-  constructor(private httpService: HttpClient) {
+  constructor(private _httpService: HttpClient) {
   }
 
   // GET
   getAllUsers(): Observable<User[]> {
-    return this.httpService.get<User[]>("api/users/all-users");
+    return this._httpService.get<User[]>("api/users/all-users");
   }
 
   getUserById(id: number): Observable<User> {
-    return this.httpService.get<User>(`api/users/${id}`);
+    return this._httpService.get<User>(`api/users/${id}`);
   }
 
   getChartDataById(id: number): Observable<ChartData[]> {
-    return this.httpService.get<ChartData[]>(`api/users/chart-data/${id}`);
+    return this._httpService.get<ChartData[]>(`api/users/chart-data/${id}`);
   }
 
   getPagedUsers(paginatedRequest: PaginatedRequest): Observable<PagedResult<User>> {
     console.log(paginatedRequest);
-    return this.httpService.post<PagedResult<User>>('api/users/paginated', paginatedRequest);
+    return this._httpService.post<PagedResult<User>>('api/users/paginated', paginatedRequest);
   }
 
   // DELETE
   deleteUserById(id: number): Observable<any> {
-    return this.httpService.delete<any>(`/api/users/${id}`);
+    return this._httpService.delete<any>(`/api/users/${id}`);
   }
 
   // POST
   createUser(command: CreateUserCommand): Observable<any> {
-    return this.httpService.post<any>("/api/auth/registration", command);
+    return this._httpService.post<any>("/api/auth/registration", command);
   }
 
   // PUT
   updateUser(command: UpdateUserCommand): Observable<any> {
-    return this.httpService.put<any>("api/users", command);
+    return this._httpService.put<any>("api/users", command);
   }
 
   // -----

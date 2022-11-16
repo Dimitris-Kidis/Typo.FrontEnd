@@ -9,20 +9,20 @@ import { Statistic } from 'src/models/Statistic';
 })
 export class StatisticsService {
 
-  constructor(private httpService: HttpClient) { }
+  constructor(private _httpService: HttpClient) { }
 
   // GET
   getStatisticsListById(id: number): Observable<Statistic[]> {
-    return this.httpService.get<Statistic[]>(`api/statistics/statistics-list-${id}`);
+    return this._httpService.get<Statistic[]>(`api/statistics/statistics-list-${id}`);
   }
 
   // POST
   createStatisticLine(command: CreateStatisticLineCommand): Observable<any> {
-    return this.httpService.post<any>("api/statistics", command);
+    return this._httpService.post<any>("api/statistics", command);
   }
 
   // DELETE
   deleteAllStatisticLinesById(id: number): Observable<any> {
-    return this.httpService.delete<any>(`api/statistics/${id}`);
+    return this._httpService.delete<any>(`api/statistics/${id}`);
   }
 }

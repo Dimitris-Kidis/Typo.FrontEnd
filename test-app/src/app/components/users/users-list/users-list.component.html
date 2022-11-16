@@ -19,7 +19,7 @@
               <button mat-mini-fab class="add-button" (click)="hidePagination('Add', -1)"> <!--  -->
                 <mat-icon >add</mat-icon>
               </button>
-              <button mat-mini-fab class="refresh-button" (click)="loadPagedUsers()">
+              <button mat-mini-fab class="refresh-button" (click)="resetGrid()">
                 <mat-icon>refresh</mat-icon>
               </button>
             </div>
@@ -66,7 +66,7 @@
     
           <ng-container matColumnDef="id">
             <mat-header-cell *matHeaderCellDef style="justify-content:right;">
-              <button mat-button class="reset-button" (click)="resetGrid()">Reset</button>
+              <!-- <button mat-button class="reset-button" (click)="resetGrid()">Reset</button> -->
             </mat-header-cell>
             <mat-cell *matCellDef="let book" style="justify-content:right;">
               <button mat-mini-fab class="edit-button" (click)="test(book.id)" (click)="hidePagination('Edit', book.id)">
@@ -267,29 +267,6 @@
                     
           
                 </div>
-                <!-- <mat-form-field class="form-field-90">
-                  <input matInput type="number" placeholder="Age. (required)" formControlName="age"/>
-                </mat-form-field>
-
-                <mat-form-field class="form-field-90">
-                  <input matInput type="text" placeholder="Gender. (required)" formControlName="gender"/>
-                </mat-form-field>
-
-                <mat-form-field class="form-field-90">
-                  <input matInput type="text" placeholder="IsAdmin. (required)" formControlName="isAdmin"/>
-                </mat-form-field> -->
-        
-                <!-- <mat-form-field class="form-field-30">
-                  <mat-select placeholder="Select Publisher" formControlName="publisherId">
-                    <mat-option *ngFor="let publisher of publishers" [value]="publisher.id">
-                      {{publisher.name}}
-                    </mat-option>
-                  </mat-select>
-                </mat-form-field> -->
-        
-                
-        
-               
               </div>
             </mat-card-content>
           </form>

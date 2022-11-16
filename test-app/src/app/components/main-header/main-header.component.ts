@@ -16,11 +16,11 @@ import { DialogComponent } from './dialog/dialog.component';
 export class MainHeaderComponent implements OnInit {
 
   constructor(private _authService: AuthenticationService,
-    private activatedRoute: ActivatedRoute,
-    private location: Location,
-    private router: Router,
+    private _activatedRoute: ActivatedRoute,
+    private _location: Location,
+    private _router: Router,
     public dialog: MatDialog) {
-      this.location = location;
+      this._location = _location;
   }
 
   isLoggedIn: boolean = this._authService.isLoggedIn();
@@ -43,20 +43,20 @@ export class MainHeaderComponent implements OnInit {
   }
 
   goBack(): void{
-    this.router.navigate(['/typo/main']).then(() => {
+    this._router.navigate(['/typo/main']).then(() => {
       window.location.reload();
    });
   }
 
   goForward(): void{
-    this.router.navigate(['/typo/account']).then(() => {
+    this._router.navigate(['/typo/account']).then(() => {
       window.location.reload();
    });
   }
 
   signOut() {
     this._authService.logOut();
-    this.router.navigate(['/typo/login']).then(() => {
+    this._router.navigate(['/typo/login']).then(() => {
       window.location.reload();
    });
   }

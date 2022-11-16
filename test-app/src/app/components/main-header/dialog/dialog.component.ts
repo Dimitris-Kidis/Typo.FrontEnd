@@ -12,13 +12,13 @@ export class DialogComponent {
 
   constructor(@Inject(MAT_DIALOG_DATA) public data: any,
   private _authService: AuthenticationService,
-  private router: Router) {}
+  private _router: Router) {}
 
 
 
   signOut() {
     this._authService.logOut();
-    this.router.navigate(['/typo/login']).then(() => {
+    this._router.navigate(['/typo/login']).then(() => {
       window.location.reload();
    });
   }

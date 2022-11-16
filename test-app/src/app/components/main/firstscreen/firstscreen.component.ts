@@ -27,8 +27,8 @@ export class FirstscreenComponent implements OnInit {
   userId: number = this._authService.getUserId();
     
   constructor(private _textService: TextsService,
-    private eventEmitterService: EventEmitterService,
-    private eventEmitterService2: EventEmitterService,
+    private _eventEmitterService: EventEmitterService,
+    private _eventEmitterService2: EventEmitterService,
     private _authService: AuthenticationService,
     private _statsService: StatisticsService,
     private _averageStatsService: StatisticsAverageService
@@ -40,7 +40,7 @@ export class FirstscreenComponent implements OnInit {
       .subscribe((res: any) => {
         this.textObject = res;
         this.textContent = res.textContent;
-        // this.textContent = `<span>Hello world!</span>` //----------------------
+        // this.textContent = `vslkjvkdk` //----------------------
         this.author += res.author;
         this.textContentLength = this.textContent.length;
         console.log(this.author);
@@ -97,11 +97,11 @@ export class FirstscreenComponent implements OnInit {
   }
 
   passLetterToKeyboard(letter: string){    
-    this.eventEmitterService.passToKeyboard(letter);    
+    this._eventEmitterService.passToKeyboard(letter);    
   }
 
   showError () {
-    this.eventEmitterService.invokeBackspace();
+    this._eventEmitterService.invokeBackspace();
   }
 
   finishing(speed: number, accuracy: number, time: string) {
@@ -138,7 +138,9 @@ export class FirstscreenComponent implements OnInit {
 
 
     setTimeout(() => {
-      this.eventEmitterService2.finished([speed, accuracy, time]);
+      let passText = this.textbox.nativeElement.innerHTML;
+      passText += this.author;
+      this._eventEmitterService2.finished([speed, accuracy, time, passText, this.textId]);
     }, 2000);
   }
 

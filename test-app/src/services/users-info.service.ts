@@ -9,15 +9,15 @@ import { UpdateThemeByIdCommand } from 'src/commands/UsersInfo/UpdateThemeByIdCo
 })
 export class UsersInfoService {
 
-  constructor(private httpService: HttpClient) {
+  constructor(private _httpService: HttpClient) {
   }
 
   // UPDATE
   updateLanguageById(command: UpdateLanguageByIdCommand): Observable<any> {
-    return this.httpService.patch<any>("api/user-info/language", command);
+    return this._httpService.patch<any>("api/user-info/language", command);
   }
 
   updateThemeById(command: UpdateThemeByIdCommand): Observable<any> {
-    return this.httpService.patch<any>("api/user-info/theme", command);
+    return this._httpService.patch<any>("api/user-info/theme", command);
   }
 }

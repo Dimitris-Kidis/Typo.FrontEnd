@@ -30,7 +30,7 @@
     margin-bottom: 30px;
     width: 970px;
 }
-.line-2 {
+.results-container {
     display: flex;
     flex-direction: row;
     justify-content: center;
@@ -43,6 +43,35 @@
     padding-right: 30px;
     width: 670px;
     height: 252px;
+    display: flex;
+    flex-direction: column;
+}
+
+.data {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 10px;
+}
+
+h2 {
+    font-weight: 800;
+}
+
+.char {
+    margin-top: 15px;
+    font-weight: bold;
+    font-size: 70px;
+    color: #ff5454;
+    padding-top: 7px;
+}
+
+.result {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
 }
 
 .your-result {
@@ -127,3 +156,185 @@
 .btn-new-text:hover {
     background-color: #53d160;
 }
+
+
+
+// --------------------------
+
+form {
+    margin: 0 auto;
+    background-color: white;
+    // border: 1px solid #3d3d3d;
+    box-shadow: 0 4px 6px -1px #0000001a,0 2px 4px -1px #0000000f;
+    border-radius: 10px;
+    padding: 20px;
+    border: 1px solid black;
+    width: 400px;
+
+}
+
+.review-container {
+    margin-bottom: 40px;
+}
+
+.review-input {
+    width: 100%;
+    height: 90px !important;
+    margin: 10px;
+    border-radius: 10px;
+    border: 1px solid #ececee;
+    box-shadow: 0 2px 3px -1px #25252505,0 2px 4px -1px #0000000f;
+    // padding-left: 15px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+}
+.review-input:hover {
+    outline: none;
+}
+
+.review-label {
+    margin-top: 18px;
+    display: block;
+    width: 100%;
+    margin: 0;
+    text-align: center;
+}
+
+small {
+    font-size: 10px;
+    display: block;
+    transition: all 0.5s ease;
+    color: #ec3434;
+}
+
+.review-button {
+    width: 100px;
+    border-radius: 10px;
+    cursor: pointer;
+    background-image: none;
+    font-weight: 500;
+    padding: 10px 20px;
+    font-size: 15px;
+    line-height: 1.25rem;
+    border-width: 1px;
+    border-color: #0000;
+    background-color: #3d3d3d;
+    color: white;
+    transition: background 0.4s;
+    margin-left: 45px;
+}
+
+.review-wrapper {
+    display: flex;
+    flex-direction: row;
+
+}
+
+form {
+    width: 970px;
+    height: 200px;
+}
+
+.review-button:hover {
+    background: #8AE393;
+    color: #3d3d3d;  
+}
+
+.ng-dirty.ng-invalid:not(form)  {
+    border: 1px solid red ; /* red */
+}
+
+.ng-valid:not(form)  {
+    border: 1px solid green;/* red */
+}
+
+
+:host {
+    ::ng-deep {
+        .mat-form-field-wrapper {
+            padding-bottom: 0;
+        }
+
+        .mat-form-field {
+            color: black;
+            border: transparent !important;
+            background-color: white;
+            box-shadow: none;
+            text-align: center;
+            display: none;
+        }
+
+        .mat-form-field-infix {
+            width: 770px !important;
+        }
+        .mat-form-field-underline {
+            display: none; //
+        }
+
+        .mat-form-field-appearance {
+            display: none !important;
+            color: transparent;
+        }
+
+        .mat-focused .mat-form-field-outline .mat-form-field-outline-start,
+        .mat-focused .mat-form-field-outline .mat-form-field-outline-gap,
+        .mat-focused .mat-form-field-outline .mat-form-field-outline-end
+        {
+            border-bottom: none;
+            border-radius: 0;
+            color: transparent;
+        }
+
+        .mat-form-field-infix {
+            border: transparent;
+        }
+
+        
+        .mat-input-element {
+            
+        }
+        
+        ::placeholder {
+            color: lightgrey;
+        }
+
+
+        .mat-form-field input {
+            height: 20px;
+            transition: height ease-in-out 400ms;
+        }
+        
+        .mat-form-field input:focus {
+
+        }
+        // .mat-focused
+        .mat-form-field-label {
+            /*change color of label*/
+            color: transparent !important;
+           }
+
+        .mat-form-field-ripple {
+            /*change color of underline when focused*/
+            background-color: transparent !important;
+           }
+
+        .mat-form-field-outline-start,
+        .mat-form-field-outline-end {
+        border-radius: 0px !important;
+        }
+
+        .mat-form-field-outline {}
+
+        .mat-form-field-fill {}
+
+        .mat-form-field-standard {}
+
+        .mat-button-base {
+            border-radius: 0px !important;
+    
+        }
+
+        
+    }
+}
+

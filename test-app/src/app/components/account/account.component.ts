@@ -10,10 +10,10 @@ import { UploadAvatarComponent } from '../upload-avatar/upload-avatar.component'
 })
 export class AccountComponent implements OnInit {
 
-  constructor(private userService: UsersService,
-    private authService: AuthenticationService) { }
+  constructor(private _userService: UsersService,
+    private _authService: AuthenticationService) { }
 
-  isAdmin: boolean = this.authService.isUserAdmin();
+  isAdmin: boolean = this._authService.isUserAdmin();
 
   ngOnInit(): void {
   }

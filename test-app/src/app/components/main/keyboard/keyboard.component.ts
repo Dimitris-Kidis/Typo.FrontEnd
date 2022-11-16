@@ -8,20 +8,20 @@ import { EventEmitterService } from '../event-emitter.service';
 })
 export class KeyboardComponent implements OnInit {
 
-  constructor(private eventEmitterService: EventEmitterService,
-    private eventEmitterService2: EventEmitterService) { }
+  constructor(private _eventEmitterService: EventEmitterService,
+    private _eventEmitterService2: EventEmitterService) { }
 
   ngOnInit(): void {
-      if (this.eventEmitterService.subsVar==undefined) {    
-        this.eventEmitterService.subsVar = this.eventEmitterService.    
+      if (this._eventEmitterService.subsVar==undefined) {    
+        this._eventEmitterService.subsVar = this._eventEmitterService.    
         invokeKeyboardFunction.subscribe((letter: string) => {    
           this.passLetter(letter);  
         }); 
         
       }
 
-      if (this.eventEmitterService2.subsVar2==undefined) {    
-        this.eventEmitterService2.subsVar2 = this.eventEmitterService2.
+      if (this._eventEmitterService2.subsVar2==undefined) {    
+        this._eventEmitterService2.subsVar2 = this._eventEmitterService2.
         invokeBackspaceFunction.subscribe(() => {    
           this.highlightError();   
         }); 

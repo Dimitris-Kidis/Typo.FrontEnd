@@ -76,7 +76,9 @@ export class RegisterComponent implements OnInit {
               next: (res: any) => {
                 localStorage.setItem("token", res.token);
                 console.log('GOT IT ' + res.token);
-                this._router.navigate(['/typo/main']);
+                this._router.navigate(['/typo/main']).then(() => {
+                  window.location.reload();
+               });
               },
               error:
                 async () => {

@@ -57,12 +57,12 @@ export class UsersListComponent {
   @ViewChild(MatSort, { static: false}) sort: MatSort;
 
   constructor(
-    private userService: UsersService,
-    private formBuilder: FormBuilder,
+    private _userService: UsersService,
+    private _formBuilder: FormBuilder,
     public dialog: MatDialog,
     public snackBar: MatSnackBar,
-    private route: ActivatedRoute,
-    private router: Router,
+    private _route: ActivatedRoute,
+    private _router: Router,
   ) {
     this.displayedColumns = this.tableColumns.map(column => column.name);
   }
@@ -79,7 +79,7 @@ export class UsersListComponent {
 
   loadPagedUsers() {
     const paginatedRequest = new PaginatedRequest(this.paginator, this.sort, this.requestFilters);
-    this.userService.getPagedUsers(paginatedRequest)
+    this._userService.getPagedUsers(paginatedRequest)
       .subscribe((pagedUsers: PagedResult<IUserGridRow>) => {
         this.pagedUsers = pagedUsers;
         console.log(this.pagedUsers);
@@ -94,7 +94,7 @@ export class UsersListComponent {
 
     dialogRef.afterClosed().subscribe(result => {
       if (result === dialogRef.componentInstance.ACTION_CONFIRM) {
-        this.userService.deleteUserById(id).subscribe(
+        this._userService.deleteUserById(id).subscribe(
           () => {
             this.loadPagedUsers();
 
@@ -219,7 +219,7 @@ export class UsersListComponent {
   }
 
   getUser(id: number) {
-    this.userService.getUserById(id).subscribe((user: User) => {
+    this._userService.getUserById(id).subscribe((user: User) => {
       this.userForm.patchValue({
         isAdmin: user.isAdmin,
         email: user.email,
@@ -246,7 +246,7 @@ export class UsersListComponent {
           createUser.isAdmin = false;
         }
         console.log(typeof createUser.isAdmin + '  ' + createUser.isAdmin);
-        this.userService.createUser(createUser).subscribe(
+        this._userService.createUser(createUser).subscribe(
           () => this.onSaveComplete()
         );
 
@@ -258,7 +258,7 @@ export class UsersListComponent {
           id: this.userId,
           ...this.userForm.value
         };
-        this.userService.updateUser(updateUser).subscribe(
+        this._userService.updateUser(updateUser).subscribe(
           () => this.onSaveComplete()
         );
       }

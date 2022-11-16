@@ -9,13 +9,13 @@ import { AuthenticationService } from 'src/services/authentification.service';
 })
 export class BioComponent implements OnInit {
 
-  constructor(private authService: AuthenticationService) { }
+  constructor(private _authService: AuthenticationService) { }
 
   // user: User = new User(0, "", "", "", "", "", 0, "", false);
   user: User;
 
   ngOnInit() {
-    this.authService.getUserdata().subscribe((res: User) => this.user = res);
+    this._authService.getUserdata().subscribe((res: User) => this.user = res);
   }
 
 }

@@ -56,12 +56,12 @@ export class ReviewListComponent {
   @ViewChild(MatSort, { static: false}) sort: MatSort;
 
   constructor(
-    private reviewsService: ReviewsService,
-    private formBuilder: FormBuilder,
+    private _reviewsService: ReviewsService,
+    private _formBuilder: FormBuilder,
     public dialog: MatDialog,
     public snackBar: MatSnackBar,
-    private route: ActivatedRoute,
-    private router: Router,
+    private _route: ActivatedRoute,
+    private _router: Router,
   ) {
     this.displayedColumns = this.tableColumns.map(column => column.name);
   }
@@ -78,7 +78,7 @@ export class ReviewListComponent {
 
   loadPagedReviews() {
     const paginatedRequest = new PaginatedRequest(this.paginator, this.sort, this.requestFilters);
-    this.reviewsService.getPagedReviews(paginatedRequest)
+    this._reviewsService.getPagedReviews(paginatedRequest)
       .subscribe((pagedReviews: PagedResult<IReviewGridRow>) => {
         this.pagedReviews = pagedReviews;
         console.log(this.pagedReviews);
@@ -93,7 +93,7 @@ export class ReviewListComponent {
 
     dialogRef.afterClosed().subscribe(result => {
       if (result === dialogRef.componentInstance.ACTION_CONFIRM) {
-        this.reviewsService.deleteReviewById(id).subscribe(
+        this._reviewsService.deleteReviewById(id).subscribe(
           () => {
             this.loadPagedReviews();
 
@@ -199,7 +199,7 @@ export class ReviewListComponent {
   }
 
   getReview(id: number) {
-    this.reviewsService.getReviewById(id).subscribe((rev: Review) => {
+    this._reviewsService.getReviewById(id).subscribe((rev: Review) => {
       this.reviewForm.patchValue({
         reviewContent: rev.reviewContent,
         textId: rev.textId,
@@ -216,7 +216,7 @@ export class ReviewListComponent {
         const createReview: CreateReviewCommand = {
           ...this.reviewForm.value
         }
-        this.reviewsService.createReview(createReview).subscribe({
+        this._reviewsService.createReview(createReview).subscribe({
           next: () => {
             this.onSaveComplete();
           },
@@ -238,7 +238,7 @@ export class ReviewListComponent {
           ...this.reviewForm.value
         };
 
-        this.reviewsService.updateReview(updateReview).subscribe({
+        this._reviewsService.updateReview(updateReview).subscribe({
           next: () => {
             this.onSaveComplete();
           },

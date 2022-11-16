@@ -100,6 +100,7 @@
 
 
 .save-button {
+    color: white;
     background-color:#3dc37d !important;
     margin: 5px;
     border: none;
@@ -117,6 +118,7 @@
 }
 
 .cancel-button {
+    color: white;
     background-color:#ec5699 !important;
     margin: 5px;
     border: none;
@@ -282,6 +284,7 @@
             box-shadow: 0 2px 3px -1px #25252505,0 2px 4px -1px #0000000f;
             // padding-left: 15px;
             padding-top: 5px;
+            color: #3d3d3d !important;
             padding-bottom: 5px;
         }
         
@@ -295,6 +298,7 @@
             width: 100%;
             margin: 0;
             text-align: center;
+            color: #3d3d3d !important;
         }
 
         select {
@@ -305,7 +309,8 @@
             margin: 10px;
             border-radius: 10px;
             border: 1px solid #ececee;
-            background-color: #424242;
+            // background-color: #424242;
+            color: #3d3d3d;
             box-shadow: 0 2px 3px -1px #25252505,0 2px 4px -1px #0000000f;
             padding-left: 15px;
             padding-top: 5px;

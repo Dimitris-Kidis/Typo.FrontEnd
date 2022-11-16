@@ -4,37 +4,37 @@
         <app-firstscreen></app-firstscreen>
     </div>
     <div #results *ngIf="finished">
+    <!-- <div #results > -->
         <section class="results" id="results" >
             <div class="container">
                 <div class="text-result" id="text" >
-                    <p class="line line-1" id="result-text">
+                    <p class="line line-1" id="result-text" #resultText>
                         Lorem ipsum, dolor sit amet consectetur adipisicing elit. A cumque praesentium earum quisquam, veritatis eum maxime quam vel iusto unde. Officia, nihil deleniti voluptatibus magni cumque dicta. Labore, tenetur unde.
                     </p>
                 </div>
-                <div class="line-2">
+                <div class="results-container">
                     <div id="text" class="text-your-result" >
                         <h2>Results</h2>
-                        <div class="your-result">
-                            <div class="result-item">
-                                <h3>Chars Per Minute</h3>
-                                <p id="local-result-cpm">!</p>
+                        <div class="data">
+                            <div class="result">
+                                <h3>Chars For Min</h3>
+                                <span class="char">{{speed!}}</span>
                             </div>
-                            <img src="https://typostorage.blob.core.windows.net/avatars/smaller-line.svg" id="svg-lines">
-                            <div class="result-item">
+                            <div class="result">
                                 <h3>Accuracy</h3>
-                                <p id="local-result-accuracy">!</p>
+                                <span class="char">{{accuracy!}}%</span>
                             </div>
-                            <img src="https://typostorage.blob.core.windows.net/avatars/smaller-line.svg" id="svg-lines">
-                            <!-- <img src="https://typostorage.blob.core.windows.net/avatars/smaller-line.svg" id="svg-lines"> -->
-                            <div class="result-item">
+                            <div class="result">
                                 <h3>Time</h3>
-                                <p id="local-result-time">!</p>
+                                <span class="char">{{time!}}</span>
                             </div>
                         </div>
                     </div>
+                    <!-- <img src="https://typostorage.blob.core.windows.net/avatars/smaller-line.svg" id="svg-lines"> -->
+
                     <div class="column-2">
                         <div id="text" class="text-share" >
-                            <h2 style="margin: 0; padding-top: 5px; margin-right: 79px;">
+                            <h2 style="margin: 0; padding-top: 5px; margin-right: 75px;">
                                 Share
                             </h2>
                             <app-socials class="socials"></app-socials>
@@ -42,13 +42,36 @@
                         <a href="#" class="btn btn-new-text" onClick="window.location.reload();" style="margin-bottom: 29px;">
                             New text
                         </a>
-                        <a href="#" class="btn btn-review" onClick="window.location.reload();">
+                        <a class="btn btn-review" (click)="leaveReview()">
                             Leave a review
                         </a>
                     </div>
                 </div>
             </div>
         </section>
-        
+    </div>
+
+    <div class="review-container" *ngIf="goToReview">
+        <form class="reviewForm" [formGroup]="reviewForm" (ngSubmit)="submitReview(reviewForm.value)" >
+            <div class="review-wrapper">
+                <mat-form-field floatLabel="always" hideRequiredMarker style="display: block;" >
+                <label for="review" class="review-label">Review</label>
+                <mat-label></mat-label>
+                <input placeholder="Review text*" matInput type="text" #reviewInput class="review-input" formControlName="review" />
+                <div>
+                    <small *ngIf="reviewForm.get('review')?.errors?.['minlength']">
+                        Review has to be at least 50 characters long.
+                    </small>
+                    <small *ngIf="reviewForm.get('review')?.errors?.['maxlength']">
+                    Review can't be more than 300 characters long.
+                    </small>
+                    <small *ngIf="reviewForm.get('review')?.errors?.['required']">
+                    Review text is required
+                    </small>
+                </div>
+                </mat-form-field>
+                <button mat-raised-button [disabled]="!reviewForm.valid" disabled class="review-button">Send &#10132;</button>
+            </div>
+        </form>        
     </div>
 </div>

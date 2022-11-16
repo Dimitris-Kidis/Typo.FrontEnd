@@ -13,34 +13,34 @@ import { PaginatedRequest } from 'src/pagination/PaginatedRequest';
 })
 export class ReviewsService {
 
-  constructor(private httpService: HttpClient) { }
+  constructor(private _httpService: HttpClient) { }
 
   // POST
   createReview(command: CreateReviewCommand): Observable<any> {
-    return this.httpService.post<any>("api/reviews", command);
+    return this._httpService.post<any>("api/reviews", command);
   }
 
   // GET
   getAllReviews(): Observable<Review[]> {
-    return this.httpService.get<Review[]>("api/reviews/all-reviews");
+    return this._httpService.get<Review[]>("api/reviews/all-reviews");
   }
 
   getReviewById(id: number): Observable<Review> {
-    return this.httpService.get<Review>(`api/reviews/${id}`);
+    return this._httpService.get<Review>(`api/reviews/${id}`);
   }
 
   getPagedReviews(paginatedRequest: PaginatedRequest): Observable<PagedResult<IReviewGridRow>> {
     console.log(paginatedRequest);
-    return this.httpService.post<PagedResult<IReviewGridRow>>('api/reviews/paginated', paginatedRequest);
+    return this._httpService.post<PagedResult<IReviewGridRow>>('api/reviews/paginated', paginatedRequest);
   }
 
   // DELETE
   deleteReviewById(id: number): Observable<any> {
-    return this.httpService.delete<any>(`/api/reviews/${id}`);
+    return this._httpService.delete<any>(`/api/reviews/${id}`);
   }
 
   // PUT
   updateReview(command: UpdateReviewCommand): Observable<any> {
-    return this.httpService.put<any>("api/reviews", command);
+    return this._httpService.put<any>("api/reviews", command);
   }
 }

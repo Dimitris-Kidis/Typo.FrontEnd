@@ -8,7 +8,7 @@ import { Observable } from 'rxjs';
 })
 export class FileUploadService {
   private baseUrl = 'http://localhost:4200';
-  constructor(private http: HttpClient) { }
+  constructor(private _http: HttpClient) { }
   upload(file: File): Observable<HttpEvent<any>> {
     const formData: FormData = new FormData();
     formData.append('file', file);
@@ -16,9 +16,9 @@ export class FileUploadService {
       reportProgress: true,
       responseType: 'json'
     });
-    return this.http.request(req);
+    return this._http.request(req);
   }
   getFiles(): Observable<any> {
-    return this.http.get(`${this.baseUrl}/files`);
+    return this._http.get(`${this.baseUrl}/files`);
   }
 }

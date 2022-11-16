@@ -15,20 +15,20 @@ import { PaginatedRequest } from 'src/pagination/PaginatedRequest';
 })
 export class StatisticsAverageService {
 
-  constructor(private httpService: HttpClient) { }
+  constructor(private _httpService: HttpClient) { }
 
   // GET
   getAverageStatisticsById(id: number): Observable<AverageStats> {
-    return this.httpService.get<AverageStats>(`api/average-statistics/stats-avg-${id}`);
+    return this._httpService.get<AverageStats>(`api/average-statistics/stats-avg-${id}`);
   }
 
   getPagedUsersAndStatsAvg(paginatedRequest: PaginatedRequest): Observable<PagedResult<AverageStatsGridRow>> {
     console.log(paginatedRequest);
-    return this.httpService.post<PagedResult<AverageStatsGridRow>>('api/users/paginated-users-average', paginatedRequest);
+    return this._httpService.post<PagedResult<AverageStatsGridRow>>('api/users/paginated-users-average', paginatedRequest);
   }
 
   // PUT
   updateAverageStats(command: UpdateAverageStatsCommand): Observable<any> {
-    return this.httpService.put<any>("api/average-statistics/stats-avg", command);
+    return this._httpService.put<any>("api/average-statistics/stats-avg", command);
   }
 }

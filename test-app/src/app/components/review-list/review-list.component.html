@@ -20,7 +20,7 @@
             <!--  -->
             <mat-icon>add</mat-icon>
           </button>
-          <button mat-mini-fab class="refresh-button" (click)="loadPagedReviews()">
+          <button mat-mini-fab class="refresh-button" (click)="resetGrid()">
             <mat-icon>refresh</mat-icon>
           </button>
         </div>
@@ -48,7 +48,7 @@
 
       <ng-container matColumnDef="id">
         <mat-header-cell *matHeaderCellDef style="justify-content:right;">
-          <button mat-button class="reset-button" (click)="resetGrid()">Reset</button>
+          <!-- <button mat-button class="reset-button" (click)="resetGrid()">Reset</button> -->
         </mat-header-cell>
         <mat-cell *matCellDef="let book" style="justify-content:right;">
           <button mat-mini-fab class="edit-button" (click)="hidePagination('Edit', book.id)">

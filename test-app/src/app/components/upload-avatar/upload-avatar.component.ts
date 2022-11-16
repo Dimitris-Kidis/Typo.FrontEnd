@@ -11,7 +11,7 @@ import { AuthenticationService } from 'src/services/authentification.service';
 export class UploadAvatarComponent implements OnInit {
   selectedFile!: File;
 
-  constructor(private authService: AuthenticationService) { }
+  constructor(private _authService: AuthenticationService) { }
 
   ngOnInit(): void { }
 
@@ -22,14 +22,14 @@ export class UploadAvatarComponent implements OnInit {
 
   onFileSelected() {
     if (this.selectedFile) {
-      this.authService.uploadPhoto(this.selectedFile).subscribe(() => {
+      this._authService.uploadPhoto(this.selectedFile).subscribe(() => {
         window.location.reload();
       });
     }
   }
 
   onDeletePhoto() {
-    this.authService.deletePhoto().subscribe(() => {
+    this._authService.deletePhoto().subscribe(() => {
       window.location.reload()
     });
   }

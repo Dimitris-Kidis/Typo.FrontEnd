@@ -13,10 +13,10 @@ import { UsersService } from 'src/services/users.service';
   providedIn: 'root'
 })
 export class MainResolver implements Resolve<User> {
-  constructor(private usersService: UsersService, private _authService: AuthenticationService) {}
+  constructor(private _usersService: UsersService, private _authService: AuthenticationService) {}
   resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<User> {
     const id = this._authService.getUserId()
-    return this.usersService
+    return this._usersService
       .getUserById(id);
   }
 }

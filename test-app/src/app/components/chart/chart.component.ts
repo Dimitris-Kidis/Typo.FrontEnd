@@ -21,14 +21,14 @@ export class ChartComponent implements OnInit {
   dates: string[];
   speeds: number[];
 
-  constructor(private usersService: UsersService,
-    private authService: AuthenticationService,
-    private statsService: StatisticsService,
-    private router: Router) {}
+  constructor(private _usersService: UsersService,
+    private _authService: AuthenticationService,
+    private _statsService: StatisticsService,
+    private _router: Router) {}
 
   ngOnInit() {
-    const id = this.authService.getUserId();
-    this.usersService
+    const id = this._authService.getUserId();
+    this._usersService
       .getChartDataById(id)
       .subscribe((res: ChartData[]) => {
         this.chartData = res;
@@ -70,10 +70,10 @@ export class ChartComponent implements OnInit {
   }
 
   deleteAllStats() {
-    const id = this.authService.getUserId();
-    this.statsService.deleteAllStatisticLinesById(id).subscribe({
+    const id = this._authService.getUserId();
+    this._statsService.deleteAllStatisticLinesById(id).subscribe({
       next: async (res: any) => {
-        this.router.navigate(['/typo/account']).then(() => {
+        this._router.navigate(['/typo/account']).then(() => {
            window.location.reload();
         });
       },
