@@ -8,6 +8,7 @@
     height: 40px;
     transition: all 0.3s ease;
     margin: 5px;
+    color: white;
 }
 
 .delete-button:hover {
@@ -24,6 +25,7 @@
     width: 40px;
     height: 40px;
     transition: all 0.3s ease;
+    color: white;
 }
 
 .edit-button:hover {
@@ -51,6 +53,7 @@
     width: 40px;
     height: 40px;
     transition: all 0.3s ease;
+    color: white;
 }
 
 .add-button:hover {
@@ -67,6 +70,7 @@
     width: 40px;
     height: 40px;
     transition: all 0.3s ease;
+    color: white;
 }
 
 .refresh-button:hover {
@@ -83,6 +87,7 @@
     height: 40px;
     width: 40px;
     transition: all 0.3s ease;
+    font-weight: 400;
 }
 
 .reset-button:hover {
@@ -131,11 +136,42 @@
 :host {
     .mat-header-cell {
         width: 200px !important;
+        background-color: white !important;
+        color: #3d3d3d !important;
+        font-weight: 700 !important;
     }
+
     .mat-cell {
         width: 100%;
-        
+        background-color: white !important;
+        color: #3d3d3d !important;
+        font-weight: 700 !important;
+        border: none;
     }
+
+    .mat-row {
+        background-color: white !important;
+        color: #3d3d3d !important;
+        font-weight: 700 !important;
+        border: none;
+    }
+
+    .mat-paginator {
+        background-color: white !important;
+        color: #3d3d3d !important;
+        font-weight: 700 !important;
+        border: none;
+
+    }
+
+    .mat-form-field-wrapper {
+        background-color: white !important;
+        color: #3d3d3d !important;
+        font-weight: 700 !important;
+        border: none;
+    }
+
+    
 }
 
 :host {
@@ -295,7 +331,27 @@
     flex-direction: row;
 }
 
+.mat-card {
+    border-radius: 10px;
+    border: 1px solid #c7d0d4;
+    box-shadow: 2px 2px 20px rgba(126, 126, 126, 0.07);
+    background-color: white;
+}
 
+.mat-card-title {
+    color: #3d3d3d;
+    font-size: 40px !important;
+}
+
+h1 {
+    font-weight: 900 !important;
+}
+
+
+.mat-toolbar-row {
+    color: #3d3d3d;
+    background-color: white !important;
+}
 
 .mat-column-avatar {
     width: 80px;
@@ -331,4 +387,5 @@
     width: 150px;
     max-width: 150px;
 }
+
 

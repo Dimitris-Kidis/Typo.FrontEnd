@@ -10,7 +10,7 @@
             [(ngModel)]='myValue'
             (input)="inputStart(myValue)"
             (copy)="false"
-            
+            (capsLock)="capsOn=$event"
             (paste)="false"
             (cut)="false"
             placeholder="Type in your first letter..."
@@ -26,7 +26,10 @@
         </div>
     </div>
     <div class="keyboard">
-        <app-keyboard [nextLetter]="nextLetter" [mainInput]="mainInput"></app-keyboard>
+        <app-keyboard [nextLetter]="nextLetter" [mainInput]="mainInput" [capsFlag]="capsFlag"></app-keyboard>
+    </div>
+    <div class="finished">
+        
     </div>
 </div>
 

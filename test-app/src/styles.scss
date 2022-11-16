@@ -39,3 +39,37 @@ html, body { height: 100%; }
 .hidden {
     display: none;
 }
+
+
+
+.mat-dialog-container {
+    background-color: white;
+    border-radius: 10px !important;
+}
+
+
+.mat-select-min-line {
+    color: #3d3d3d !important;
+}
+
+.mat-select-arrow-wrapper {
+    background-color: #3d3d3d !important;
+}
+
+.mat-form-field-underline {
+    background-color: #3d3d3d !important;
+    border: 1px solid #3d3d3d !important;
+}
+
+mat-option {
+    background-color: white !important;
+    color: #3d3d3d !important;
+    transition: background 0.4s !important;
+}
+
+mat-option:hover {
+    background: rgba(0, 0, 0, 0.0001) !important;
+    cursor: pointer !important;
+    color: white !important;
+}
+

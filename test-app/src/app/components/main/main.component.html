@@ -1,6 +1,54 @@
-<div class="container">
+<div class="container" #main>
     <!-- NAVIGATION -->
-    <div class="firstscreen">
+    <div class="firstscreen" #scroll>
         <app-firstscreen></app-firstscreen>
+    </div>
+    <div #results *ngIf="finished">
+        <section class="results" id="results" >
+            <div class="container">
+                <div class="text-result" id="text" >
+                    <p class="line line-1" id="result-text">
+                        Lorem ipsum, dolor sit amet consectetur adipisicing elit. A cumque praesentium earum quisquam, veritatis eum maxime quam vel iusto unde. Officia, nihil deleniti voluptatibus magni cumque dicta. Labore, tenetur unde.
+                    </p>
+                </div>
+                <div class="line-2">
+                    <div id="text" class="text-your-result" >
+                        <h2>Results</h2>
+                        <div class="your-result">
+                            <div class="result-item">
+                                <h3>Chars Per Minute</h3>
+                                <p id="local-result-cpm">!</p>
+                            </div>
+                            <img src="https://typostorage.blob.core.windows.net/avatars/smaller-line.svg" id="svg-lines">
+                            <div class="result-item">
+                                <h3>Accuracy</h3>
+                                <p id="local-result-accuracy">!</p>
+                            </div>
+                            <img src="https://typostorage.blob.core.windows.net/avatars/smaller-line.svg" id="svg-lines">
+                            <!-- <img src="https://typostorage.blob.core.windows.net/avatars/smaller-line.svg" id="svg-lines"> -->
+                            <div class="result-item">
+                                <h3>Time</h3>
+                                <p id="local-result-time">!</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="column-2">
+                        <div id="text" class="text-share" >
+                            <h2 style="margin: 0; padding-top: 5px; margin-right: 79px;">
+                                Share
+                            </h2>
+                            <app-socials class="socials"></app-socials>
+                        </div>
+                        <a href="#" class="btn btn-new-text" onClick="window.location.reload();" style="margin-bottom: 29px;">
+                            New text
+                        </a>
+                        <a href="#" class="btn btn-review" onClick="window.location.reload();">
+                            Leave a review
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
     </div>
 </div>

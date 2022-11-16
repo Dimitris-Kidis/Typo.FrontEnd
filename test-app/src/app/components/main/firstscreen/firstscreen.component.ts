@@ -1,4 +1,10 @@
 import { Component, ElementRef, EventEmitter, OnInit, ViewChild } from '@angular/core';
+import { UpdateAverageStatsCommand } from 'src/commands/AverageStats/UpdateAverageStatisticsCommand';
+import { CreateStatisticLineCommand } from 'src/commands/Statistics/CreateStatisticLineCommand';
+import { AverageStats } from 'src/models/AverageStats';
+import { AuthenticationService } from 'src/services/authentification.service';
+import { StatisticsAverageService } from 'src/services/statistics-average.service';
+import { StatisticsService } from 'src/services/statistics.service';
 import { TextsService } from 'src/services/texts.service';
 import { EventEmitterService } from '../event-emitter.service';
 
@@ -14,9 +20,19 @@ export class FirstscreenComponent implements OnInit {
   textObject: Text;
   author: string = '  -  ';
   nextLetter: string;
+  finished: boolean = false;
+  averageStats: AverageStats;
+
+  textId: number;
+  userId: number = this._authService.getUserId();
     
   constructor(private _textService: TextsService,
-    private eventEmitterService: EventEmitterService) { }
+    private eventEmitterService: EventEmitterService,
+    private eventEmitterService2: EventEmitterService,
+    private _authService: AuthenticationService,
+    private _statsService: StatisticsService,
+    private _averageStatsService: StatisticsAverageService
+    ) { }
 
   ngOnInit(): void {
     this._textService
@@ -24,22 +40,35 @@ export class FirstscreenComponent implements OnInit {
       .subscribe((res: any) => {
         this.textObject = res;
         this.textContent = res.textContent;
-        this.textContent = '1!2@3#4$5%6^7&8*9(0)-_=+' //----------------------
+        // this.textContent = `<span>Hello world!</span>` //----------------------
         this.author += res.author;
         this.textContentLength = this.textContent.length;
         console.log(this.author);
         this.nextLetter = this.textContent[0];
+        this.textId = res.id;
+      })
+    
+    this._averageStatsService.getAverageStatisticsById(this.userId).subscribe(
+      (res: AverageStats) => {
+        this.averageStats = res;
       })
          
         
-      }
+  }
 
-      
+  capsOn: any;
+  capsFlag: boolean;
+
+  capsLockCheck () {
+    if (this.capsOn) {
+      this.capsFlag = true
+    } else {
+      this.capsFlag = false
+    }
+  }
   
 
   
-
-
   myValue: string;
   key = false;
   startTime: Date;
@@ -50,7 +79,7 @@ export class FirstscreenComponent implements OnInit {
   @ViewChild('mainInput') mainInput: ElementRef;
   mistakes:number[] = [];
   inputStart(val: string) {
-    
+    this.capsLockCheck()
     this.updateBar(val.length);
     if (!this.startFlag) {
       this.convertText();
@@ -71,10 +100,58 @@ export class FirstscreenComponent implements OnInit {
     this.eventEmitterService.passToKeyboard(letter);    
   }
 
+  showError () {
+    this.eventEmitterService.invokeBackspace();
+  }
+
+  finishing(speed: number, accuracy: number, time: string) {
+    const mist = this.mistakes.length == null ? 0 : this.mistakes.length;
+    const statLine: CreateStatisticLineCommand = {
+      userId: this.userId,
+      textId: this.textId,
+      symbolsPerMinute: speed,
+      accuracy: accuracy,
+      time: time,
+      numberOfMistakes: mist
+    }
+    this._statsService.createStatisticLine(statLine).subscribe();
+
+
+    const oldSecs = this.returnSecsFromString(this.averageStats.avgTime);
+    const newSecs = this.returnSecsFromString(time);
+    const newTimeString = `${Math.trunc(((oldSecs+newSecs)/2)/60).toFixed(0).toString().padStart(2, "0")}:${((((oldSecs+newSecs)/2)%60).toFixed(0)).toString().padStart(2, "0")}`
+    console.log(oldSecs, newSecs, newTimeString);
+    // const oldAvgSecsArr = (this.averageStats.avgTime).split(':');
+    // const oldSecs = (+oldAvgSecsArr[0] * 60) + (+oldAvgSecsArr[1]);
+                          
+
+
+    const averageStatLine: UpdateAverageStatsCommand = {
+      id: this.userId,
+      avgSymbolsPerMin: (statLine.symbolsPerMinute + this.averageStats.avgSymbolsPerMin)/2,
+      avgAccuracy: (statLine.accuracy + this.averageStats.avgAccuracy)/2,
+      avgTime: newTimeString,
+      textsCount: 1+this.averageStats.textsCount
+    }
+    this._averageStatsService.updateAverageStats(averageStatLine).subscribe();
+
+
+
+    setTimeout(() => {
+      this.eventEmitterService2.finished([speed, accuracy, time]);
+    }, 2000);
+  }
+
   @ViewChild('inputProgress') bar: ElementRef;
   updateBar(currentLength: number) {
     const textLength = this.textContent.length;
     this.bar.nativeElement.style.width = `${Math.floor((currentLength/textLength) * 100)}%`;
+  }
+
+  returnSecsFromString(time: string): number {
+    const oldAvgSecsArr = (time).split(':');
+    const oldSecs = (+oldAvgSecsArr[0] * 60) + (+oldAvgSecsArr[1]);
+    return oldSecs;
   }
 
   
@@ -96,15 +173,22 @@ export class FirstscreenComponent implements OnInit {
     })
 
     for(let i = this.textbox.nativeElement.childNodes.length - 1; i >= 0; i--) {
-      if ( this.textbox.nativeElement.children[i].classList.contains('incorrect') ) {
+      if ( this.textbox.nativeElement.children[i].classList.contains('incorrect') 
+      && this.mistakes.indexOf(i) == -1) {
         this.mistakes.push(i);
+        this.showError();
       }
-  }
+    }
+
+  
+  
+
 
   if ( (+(new Date()) - +this.startTime) / 1000 >= 300 ) {
     this.timeFlag = true;
   }
   if (this.mainInput.nativeElement.value.length >= this.textContentLength || this.timeFlag === true) {
+    this.finished = true;
     this.endTime = new Date();
     var timeDiff: number = +this.endTime - +this.startTime;
     timeDiff /= 1000;
@@ -116,13 +200,17 @@ export class FirstscreenComponent implements OnInit {
 
     const symsPerMin:number = +`${Math.trunc((this.textbox.nativeElement.childNodes.length-uniqueMistakes.length)/(seconds/60))}`;
     const accuracy: number = +`${Math.round((this.textbox.nativeElement.childNodes.length-uniqueMistakes.length)/this.textbox.nativeElement.childNodes.length * 100)}`;
-    const time = `${Math.trunc(seconds/60).toFixed(0).toString().padStart(2, "0")}:${((seconds%60).toFixed(0)).toString().padStart(2, "0")}`;
+    const time: string = `${Math.trunc(seconds/60).toFixed(0).toString().padStart(2, "0")}:${((seconds%60).toFixed(0)).toString().padStart(2, "0")}`;
 
     console.log(`
     SPM: ${symsPerMin}, 
     ACC: ${accuracy}%,
-    TIME: ${time}
+    TIME: ${time},
+    MISTAKES: ${this.mistakes}
     `);
+
+    this.finishing(symsPerMin, accuracy, time);
+
   }
   }
 

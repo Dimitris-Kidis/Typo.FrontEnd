@@ -113,6 +113,10 @@ sup {
     position: absolute;
 }
 
+.caps, .backspace{
+  transition: all 0.2s ease-out;
+}
+
 #little-finger-right-purple-1 {
     transform: translate(650px, 0px);
     opacity: 75%;

@@ -9,7 +9,8 @@
     color: #3d3d3d;
     border-radius: 10px;
     border: 1px solid #3d3d3d;
-    width: 100%;
+    width: 970px;
+    // width: 100%;
     padding: 30px;
 }
 
@@ -71,3 +72,7 @@
 }
 
 // .correct .incorrect ----> styles.scss
+
+.keyboard {
+    margin-bottom: 20px;
+}

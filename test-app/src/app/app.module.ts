@@ -51,6 +51,7 @@ import { DialogComponent } from './components/main-header/dialog/dialog.componen
 import { FirstscreenComponent } from './components/main/firstscreen/firstscreen.component';
 import { KeyboardComponent } from './components/main/keyboard/keyboard.component';
 import { EventEmitterService } from './components/main/event-emitter.service';
+import { CapslockDirective } from './components/main/capslock.directive';
 
 
 
@@ -86,6 +87,7 @@ import { EventEmitterService } from './components/main/event-emitter.service';
     DialogComponent,
     FirstscreenComponent,
     KeyboardComponent,
+    CapslockDirective,
     
     
   ],

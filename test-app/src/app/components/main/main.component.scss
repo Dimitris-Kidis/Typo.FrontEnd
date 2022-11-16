@@ -8,3 +8,122 @@
 .firstscreen {
     margin-top: 35px;
 }
+
+// 
+#text {
+    border: 1px solid #4e4e4e;
+    box-shadow: 2px 2px 7px rgb(0 0 0 / 14%);
+    border-radius: 5px;
+    font-size: 15px;
+    padding: 23px;
+}
+#text .line {
+    margin-bottom: 1px;
+    // line-height: 1.3em;
+}
+
+.results {
+    padding-top: 80px;
+    padding-bottom: 80px;
+}
+.text-result {
+    margin-bottom: 30px;
+    width: 970px;
+}
+.line-2 {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+.text-your-result {
+    margin-bottom: 30px;
+    margin-right: 30px;
+    padding-left: 30px;
+    padding-right: 30px;
+    width: 670px;
+    height: 252px;
+}
+
+.your-result {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    // flex-wrap: wrap;
+}
+
+#svg-lines {
+    transform: translateY(15px);
+}
+  
+.result-item {
+    justify-content: center;
+    margin-top: 37px;
+}
+
+.result-item p {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    font-size: 65px;
+    color: #ff5454;
+    padding-top: 7px;
+}
+
+.result-item h3 {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.text-share {
+    width: 270px;
+    padding: 15px !important;
+    margin-bottom: 30px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.socials {
+    // padding-left: 20px;
+}
+
+.network {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    justify-content: center;
+    text-align: center;
+    height: 43px;
+    margin-top: 13px;
+}
+
+.btn {
+    height: 60px;
+    padding: 19px 49px;
+    background-color: #5ee26b;
+    color: #fff;
+    font-weight: bold;
+    font-size: 16px;
+    border-radius: 5px;
+    display: block;
+    box-shadow: 2px 2px 7px rgb(0 0 0 / 14%);
+    text-align: center;
+    vertical-align: middle;
+}
+
+.btn-review {
+    background-color: #e2d05e;
+}
+
+.btn-review:hover {
+    background-color: #c4b658;
+}
+  
+.btn-new-text:hover {
+    background-color: #53d160;
+}

@@ -44,6 +44,10 @@ export class LeaderboardComponent implements OnInit {
     const id = this._authService.getUserId();
     this._averageStatsService
       .getAverageStatisticsById(id)
-      .subscribe((res: AverageStats) => this.stats = res);
+      .subscribe((res: AverageStats) => {
+        this.stats = res;
+        this.stats.avgAccuracy = Math.round(res.avgAccuracy * 100) / 100;
+        this.stats.avgSymbolsPerMin = Math.round(res.avgSymbolsPerMin * 100) / 100;
+      });
   }
 }

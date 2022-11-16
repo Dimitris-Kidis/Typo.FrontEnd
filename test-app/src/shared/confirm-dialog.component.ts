@@ -20,6 +20,9 @@ import { MatButtonModule } from '@angular/material/button';
     ,
     styles: [
         `
+        h1 {
+            color: #3d3d3d;
+        }
         .confirm-dialog {
             min-width: 350px;
             font-family: sans-serif;
@@ -32,6 +35,7 @@ import { MatButtonModule } from '@angular/material/button';
         .confirm-dialog-content {
             padding-top:10px; 
             padding-bottom:20px;
+            color: #3d3d3d;
         }
         .confirm-dialog-action {
             justify-content: center;
@@ -44,6 +48,7 @@ import { MatButtonModule } from '@angular/material/button';
             padding: 6px 12px;
             border-radius: 10px;
             transition: all 0.3s ease;
+            background-color: #c7d0d4;
         }
         .accent:hover {
             background-color: #3dc37d;

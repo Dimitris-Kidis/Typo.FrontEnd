@@ -8,24 +8,61 @@ import { EventEmitterService } from '../event-emitter.service';
 })
 export class KeyboardComponent implements OnInit {
 
-  constructor(private eventEmitterService: EventEmitterService) { }
+  constructor(private eventEmitterService: EventEmitterService,
+    private eventEmitterService2: EventEmitterService) { }
 
   ngOnInit(): void {
       if (this.eventEmitterService.subsVar==undefined) {    
         this.eventEmitterService.subsVar = this.eventEmitterService.    
         invokeKeyboardFunction.subscribe((letter: string) => {    
-          this.passLetter(letter);    
+          this.passLetter(letter);  
         }); 
-    }
+        
+      }
+
+      if (this.eventEmitterService2.subsVar2==undefined) {    
+        this.eventEmitterService2.subsVar2 = this.eventEmitterService2.
+        invokeBackspaceFunction.subscribe(() => {    
+          this.highlightError();   
+        }); 
+      }
   }
 
+  @ViewChild('caps') capsLock: ElementRef;
+
   passLetter(letter: string) {    
+    if (this.capsFlag == true) {
+      this.capsLock.nativeElement.style.backgroundColor = '#ff000024'
+      this.capsLock.nativeElement.style.border = '1px solid 1px solid rgb(168 125 125 / 34%)';
+      this.capsLock.nativeElement.style.boxShadow = 'rgb(219 49 49 / 20%) 2px 2px 10px 6px'
+      
+    } else {
+      this.capsLock.nativeElement.style.backgroundColor = 'white'
+      this.capsLock.nativeElement.style.border = '1px solid #c7d0d4'
+      this.capsLock.nativeElement.style.boxShadow = '2px 2px 2px rgb(0 0 0 / 14%)'
+    }
+    if (this.handCross.nativeElement.style.display == 'block') {
       disableHelper(this.keyboard);
-      helpingHand(this.keyboard, letter, true);  
+      helpingHand(this.keyboard, letter, true); 
+    }
   } 
+
+  async highlightError() {
+    console.log('high');
+    const backspace = await this.keyboard.nativeElement.childNodes[0].childNodes[13];
+    // console.log(backspace);
+    backspace.style.backgroundColor = '#ff000024';
+    backspace.style.border = '1px solid 1px solid rgb(168 125 125 / 34%)';
+    backspace.style.boxShadow = 'rgb(219 49 49 / 20%) 2px 2px 10px 6px';
+    await delay(2500);
+    backspace.style.backgroundColor = 'white';
+    backspace.style.border = '1px solid #c7d0d4';
+    backspace.style.boxShadow = '2px 2px 2px rgb(0 0 0 / 14%)';
+  }
 
   @Input() nextLetter: string;
   @Input() mainInput: any;
+  @Input() capsFlag: boolean;
 
   @ViewChild('bucketHelper') bucketHelper: ElementRef; @ViewChild('cross1') bucketCross: ElementRef;
   @ViewChild('keyboardHelper') keyboardHelper: ElementRef; @ViewChild('cross2') keyboardCross: ElementRef;
@@ -34,6 +71,7 @@ export class KeyboardComponent implements OnInit {
   @ViewChild('keyboard') keyboard: ElementRef;
 
 
+ 
 
   toggleBucket () {
     if (this.bucketCross.nativeElement.style.display == 'block') {
@@ -139,18 +177,16 @@ function keysColor (keyboard: any, flag: boolean) {
 
 
 function helpingHand(keyboard: ElementRef, nextLetter:string, flag: boolean) {
-  console.log('hand ' + nextLetter)
-  // nextLetter = '9';
   console.log(keyboard.nativeElement);
     switch (nextLetter) {
-      // ПЕРВЫЙ РЯД КЛАВИАТУРЫ
+      // I
       case '1':
         keyboard.nativeElement.childNodes[0].childNodes[1].classList.add('highlighted');
         keyboard.nativeElement.childNodes[0].childNodes[15].classList.remove('hidden');
         break;
       case '!':
         keyboard.nativeElement.childNodes[0].childNodes[1].classList.add('highlighted');
-        keyboard.nativeElement.childNodes[3].childNodes[11].classList.add('highlighted');;
+        keyboard.nativeElement.childNodes[3].childNodes[11].classList.add('highlighted');
         keyboard.nativeElement.childNodes[0].childNodes[15].classList.remove('hidden');
         keyboard.nativeElement.childNodes[3].childNodes[22].classList.remove('hidden');
         break;
@@ -161,7 +197,7 @@ function helpingHand(keyboard: ElementRef, nextLetter:string, flag: boolean) {
       case '@':
         keyboard.nativeElement.childNodes[0].childNodes[2].classList.add('highlighted');
         keyboard.nativeElement.childNodes[0].childNodes[16].classList.remove('hidden');
-        keyboard.nativeElement.childNodes[3].childNodes[11].classList.add('highlighted');;
+        keyboard.nativeElement.childNodes[3].childNodes[11].classList.add('highlighted');
         keyboard.nativeElement.childNodes[3].childNodes[22].classList.remove('hidden');
         break;
       case '3':
@@ -171,7 +207,7 @@ function helpingHand(keyboard: ElementRef, nextLetter:string, flag: boolean) {
       case '#':
         keyboard.nativeElement.childNodes[0].childNodes[3].classList.add('highlighted');
         keyboard.nativeElement.childNodes[0].childNodes[17].classList.remove('hidden');
-        keyboard.nativeElement.childNodes[3].childNodes[11].classList.add('highlighted');;
+        keyboard.nativeElement.childNodes[3].childNodes[11].classList.add('highlighted');
         keyboard.nativeElement.childNodes[3].childNodes[22].classList.remove('hidden');
         break;
       case '4':
@@ -181,7 +217,7 @@ function helpingHand(keyboard: ElementRef, nextLetter:string, flag: boolean) {
       case '$':
         keyboard.nativeElement.childNodes[0].childNodes[4].classList.add('highlighted');
         keyboard.nativeElement.childNodes[0].childNodes[18].classList.remove('hidden');
-        keyboard.nativeElement.childNodes[3].childNodes[11].classList.add('highlighted');;
+        keyboard.nativeElement.childNodes[3].childNodes[11].classList.add('highlighted');
         keyboard.nativeElement.childNodes[3].childNodes[22].classList.remove('hidden');
         break;
       case '5':
@@ -191,7 +227,7 @@ function helpingHand(keyboard: ElementRef, nextLetter:string, flag: boolean) {
       case '%':
         keyboard.nativeElement.childNodes[0].childNodes[5].classList.add('highlighted');
         keyboard.nativeElement.childNodes[0].childNodes[19].classList.remove('hidden');
-        keyboard.nativeElement.childNodes[3].childNodes[11].classList.add('highlighted');;
+        keyboard.nativeElement.childNodes[3].childNodes[11].classList.add('highlighted');
         keyboard.nativeElement.childNodes[3].childNodes[22].classList.remove('hidden');
         break;
       case '6':
@@ -201,7 +237,7 @@ function helpingHand(keyboard: ElementRef, nextLetter:string, flag: boolean) {
       case '^':
         keyboard.nativeElement.childNodes[0].childNodes[6].classList.add('highlighted');
         keyboard.nativeElement.childNodes[0].childNodes[20].classList.remove('hidden');
-        keyboard.nativeElement.childNodes[3].childNodes[11].classList.add('highlighted');;
+        keyboard.nativeElement.childNodes[3].childNodes[11].classList.add('highlighted');
         keyboard.nativeElement.childNodes[3].childNodes[22].classList.remove('hidden');
         break;
       case '7':
@@ -211,7 +247,7 @@ function helpingHand(keyboard: ElementRef, nextLetter:string, flag: boolean) {
       case '&':
         keyboard.nativeElement.childNodes[0].childNodes[7].classList.add('highlighted');
         keyboard.nativeElement.childNodes[0].childNodes[21].classList.remove('hidden');
-        keyboard.nativeElement.childNodes[3].childNodes[0].classList.add('highlighted');;
+        keyboard.nativeElement.childNodes[3].childNodes[0].classList.add('highlighted');
         keyboard.nativeElement.childNodes[3].childNodes[23].classList.remove('hidden');
         break;
       case '8':
@@ -221,7 +257,7 @@ function helpingHand(keyboard: ElementRef, nextLetter:string, flag: boolean) {
       case '*':
         keyboard.nativeElement.childNodes[0].childNodes[8].classList.add('highlighted');
         keyboard.nativeElement.childNodes[0].childNodes[22].classList.remove('hidden');
-        keyboard.nativeElement.childNodes[3].childNodes[0].classList.add('highlighted');;
+        keyboard.nativeElement.childNodes[3].childNodes[0].classList.add('highlighted');
         keyboard.nativeElement.childNodes[3].childNodes[23].classList.remove('hidden');
         break;
       case '9':
@@ -231,9 +267,393 @@ function helpingHand(keyboard: ElementRef, nextLetter:string, flag: boolean) {
       case '(':
         keyboard.nativeElement.childNodes[0].childNodes[9].classList.add('highlighted');
         keyboard.nativeElement.childNodes[0].childNodes[23].classList.remove('hidden');
-        keyboard.nativeElement.childNodes[3].childNodes[0].classList.add('highlighted');;
+        keyboard.nativeElement.childNodes[3].childNodes[0].classList.add('highlighted');
         keyboard.nativeElement.childNodes[3].childNodes[23].classList.remove('hidden');
         break;
+      case '0':
+        keyboard.nativeElement.childNodes[0].childNodes[10].classList.add('highlighted');
+        keyboard.nativeElement.childNodes[0].childNodes[24].classList.remove('hidden');
+        break;
+      case ')':
+        keyboard.nativeElement.childNodes[0].childNodes[10].classList.add('highlighted');
+        keyboard.nativeElement.childNodes[0].childNodes[24].classList.remove('hidden');
+        keyboard.nativeElement.childNodes[3].childNodes[0].classList.add('highlighted');
+        keyboard.nativeElement.childNodes[3].childNodes[23].classList.remove('hidden');
+        break;
+      case '-':
+        keyboard.nativeElement.childNodes[0].childNodes[11].classList.add('highlighted');
+        keyboard.nativeElement.childNodes[0].childNodes[25].classList.remove('hidden');
+        break;
+      case '_':
+        keyboard.nativeElement.childNodes[0].childNodes[11].classList.add('highlighted');
+        keyboard.nativeElement.childNodes[0].childNodes[25].classList.remove('hidden');
+        keyboard.nativeElement.childNodes[3].childNodes[0].classList.add('highlighted');
+        keyboard.nativeElement.childNodes[3].childNodes[23].classList.remove('hidden');
+        break;
+      case '=':
+        keyboard.nativeElement.childNodes[0].childNodes[12].classList.add('highlighted');
+        keyboard.nativeElement.childNodes[0].childNodes[26].classList.remove('hidden');
+        break;
+      case '+':
+        keyboard.nativeElement.childNodes[0].childNodes[12].classList.add('highlighted');
+        keyboard.nativeElement.childNodes[0].childNodes[26].classList.remove('hidden');
+        keyboard.nativeElement.childNodes[3].childNodes[0].classList.add('highlighted');
+        keyboard.nativeElement.childNodes[3].childNodes[23].classList.remove('hidden');
+        break;
+
+
+      // II
+      case 'q':
+        keyboard.nativeElement.childNodes[1].childNodes[1].classList.add('highlighted');
+        keyboard.nativeElement.childNodes[1].childNodes[14].classList.remove('hidden');
+        break;
+      case 'Q':
+        keyboard.nativeElement.childNodes[1].childNodes[1].classList.add('highlighted');
+        keyboard.nativeElement.childNodes[1].childNodes[14].classList.remove('hidden');
+        keyboard.nativeElement.childNodes[3].childNodes[11].classList.add('highlighted');
+        keyboard.nativeElement.childNodes[3].childNodes[22].classList.remove('hidden');
+        break;
+      case 'w':
+        keyboard.nativeElement.childNodes[1].childNodes[2].classList.add('highlighted');
+        keyboard.nativeElement.childNodes[1].childNodes[15].classList.remove('hidden');
+        break;
+      case 'W':
+        keyboard.nativeElement.childNodes[1].childNodes[2].classList.add('highlighted');
+        keyboard.nativeElement.childNodes[1].childNodes[15].classList.remove('hidden');
+        keyboard.nativeElement.childNodes[3].childNodes[11].classList.add('highlighted');
+        keyboard.nativeElement.childNodes[3].childNodes[22].classList.remove('hidden');
+        break;
+      case 'e':
+        keyboard.nativeElement.childNodes[1].childNodes[3].classList.add('highlighted');
+        keyboard.nativeElement.childNodes[1].childNodes[16].classList.remove('hidden');
+        break;
+      case 'E':
+        keyboard.nativeElement.childNodes[1].childNodes[3].classList.add('highlighted');
+        keyboard.nativeElement.childNodes[1].childNodes[16].classList.remove('hidden');
+        keyboard.nativeElement.childNodes[3].childNodes[11].classList.add('highlighted');
+        keyboard.nativeElement.childNodes[3].childNodes[22].classList.remove('hidden');
+        break;
+      case 'r':
+        keyboard.nativeElement.childNodes[1].childNodes[4].classList.add('highlighted');
+        keyboard.nativeElement.childNodes[1].childNodes[17].classList.remove('hidden');
+        break;
+      case 'R':
+        keyboard.nativeElement.childNodes[1].childNodes[4].classList.add('highlighted');
+        keyboard.nativeElement.childNodes[1].childNodes[17].classList.remove('hidden');
+        keyboard.nativeElement.childNodes[3].childNodes[11].classList.add('highlighted');
+        keyboard.nativeElement.childNodes[3].childNodes[22].classList.remove('hidden');
+        break;
+      case 't':
+        keyboard.nativeElement.childNodes[1].childNodes[5].classList.add('highlighted');
+        keyboard.nativeElement.childNodes[1].childNodes[18].classList.remove('hidden');
+        break;
+      case 'T':
+        keyboard.nativeElement.childNodes[1].childNodes[5].classList.add('highlighted');
+        keyboard.nativeElement.childNodes[1].childNodes[18].classList.remove('hidden');
+        keyboard.nativeElement.childNodes[3].childNodes[11].classList.add('highlighted');
+        keyboard.nativeElement.childNodes[3].childNodes[22].classList.remove('hidden');
+        break;
+      case 'y':
+        keyboard.nativeElement.childNodes[1].childNodes[6].classList.add('highlighted');
+        keyboard.nativeElement.childNodes[1].childNodes[19].classList.remove('hidden');
+        break;
+      case 'Y':
+        keyboard.nativeElement.childNodes[1].childNodes[6].classList.add('highlighted');
+        keyboard.nativeElement.childNodes[1].childNodes[19].classList.remove('hidden');
+        keyboard.nativeElement.childNodes[3].childNodes[0].classList.add('highlighted');
+        keyboard.nativeElement.childNodes[3].childNodes[23].classList.remove('hidden');
+        break;
+      case 'u':
+        keyboard.nativeElement.childNodes[1].childNodes[7].classList.add('highlighted');
+        keyboard.nativeElement.childNodes[1].childNodes[20].classList.remove('hidden');
+        break;
+      case 'U':
+        keyboard.nativeElement.childNodes[1].childNodes[7].classList.add('highlighted');
+        keyboard.nativeElement.childNodes[1].childNodes[20].classList.remove('hidden');
+        keyboard.nativeElement.childNodes[3].childNodes[0].classList.add('highlighted');
+        keyboard.nativeElement.childNodes[3].childNodes[23].classList.remove('hidden');
+        break;
+      case 'i':
+        keyboard.nativeElement.childNodes[1].childNodes[8].classList.add('highlighted');
+        keyboard.nativeElement.childNodes[1].childNodes[21].classList.remove('hidden');
+        break;
+      case 'I':
+        keyboard.nativeElement.childNodes[1].childNodes[8].classList.add('highlighted');
+        keyboard.nativeElement.childNodes[1].childNodes[21].classList.remove('hidden');
+        keyboard.nativeElement.childNodes[3].childNodes[0].classList.add('highlighted');
+        keyboard.nativeElement.childNodes[3].childNodes[23].classList.remove('hidden');
+        break;
+      case 'o':
+        keyboard.nativeElement.childNodes[1].childNodes[9].classList.add('highlighted');
+        keyboard.nativeElement.childNodes[1].childNodes[22].classList.remove('hidden');
+        break;
+      case 'O':
+        keyboard.nativeElement.childNodes[1].childNodes[9].classList.add('highlighted');
+        keyboard.nativeElement.childNodes[1].childNodes[22].classList.remove('hidden');
+        keyboard.nativeElement.childNodes[3].childNodes[0].classList.add('highlighted');
+        keyboard.nativeElement.childNodes[3].childNodes[23].classList.remove('hidden');
+        break;
+      case 'p':
+        keyboard.nativeElement.childNodes[1].childNodes[10].classList.add('highlighted');
+        keyboard.nativeElement.childNodes[1].childNodes[23].classList.remove('hidden');
+        break;
+      case 'P':
+        keyboard.nativeElement.childNodes[1].childNodes[10].classList.add('highlighted');
+        keyboard.nativeElement.childNodes[1].childNodes[23].classList.remove('hidden');
+        keyboard.nativeElement.childNodes[3].childNodes[0].classList.add('highlighted');
+        keyboard.nativeElement.childNodes[3].childNodes[23].classList.remove('hidden');
+        break;
+      case '[':
+        keyboard.nativeElement.childNodes[1].childNodes[11].classList.add('highlighted');
+        keyboard.nativeElement.childNodes[1].childNodes[24].classList.remove('hidden');
+        break;
+      case '{':
+        keyboard.nativeElement.childNodes[1].childNodes[11].classList.add('highlighted');
+        keyboard.nativeElement.childNodes[1].childNodes[24].classList.remove('hidden');
+        keyboard.nativeElement.childNodes[3].childNodes[0].classList.add('highlighted');
+        keyboard.nativeElement.childNodes[3].childNodes[23].classList.remove('hidden');
+        break;
+      case ']':
+        keyboard.nativeElement.childNodes[1].childNodes[12].classList.add('highlighted');
+        keyboard.nativeElement.childNodes[1].childNodes[25].classList.remove('hidden');
+        break;
+      case '}':
+        keyboard.nativeElement.childNodes[1].childNodes[12].classList.add('highlighted');
+        keyboard.nativeElement.childNodes[1].childNodes[25].classList.remove('hidden');
+        keyboard.nativeElement.childNodes[3].childNodes[0].classList.add('highlighted');
+        keyboard.nativeElement.childNodes[3].childNodes[23].classList.remove('hidden');
+        break;
+      case '\\':
+        keyboard.nativeElement.childNodes[1].childNodes[13].classList.add('highlighted');
+        keyboard.nativeElement.childNodes[1].childNodes[26].classList.remove('hidden');
+        break;
+      case '|':
+        keyboard.nativeElement.childNodes[1].childNodes[13].classList.add('highlighted');
+        keyboard.nativeElement.childNodes[1].childNodes[26].classList.remove('hidden');
+        keyboard.nativeElement.childNodes[3].childNodes[0].classList.add('highlighted');
+        keyboard.nativeElement.childNodes[3].childNodes[23].classList.remove('hidden');
+        break;
+      
+      // III
+      case 'a':
+        keyboard.nativeElement.childNodes[2].childNodes[1].classList.add('highlighted');
+        keyboard.nativeElement.childNodes[2].childNodes[12].classList.remove('hidden');
+        break;
+      case 'A':
+        keyboard.nativeElement.childNodes[2].childNodes[1].classList.add('highlighted');
+        keyboard.nativeElement.childNodes[2].childNodes[12].classList.remove('hidden');
+        keyboard.nativeElement.childNodes[3].childNodes[11].classList.add('highlighted');
+        keyboard.nativeElement.childNodes[3].childNodes[22].classList.remove('hidden');
+        break;
+      case 's':
+        keyboard.nativeElement.childNodes[2].childNodes[2].classList.add('highlighted');
+        keyboard.nativeElement.childNodes[2].childNodes[13].classList.remove('hidden');
+        break;
+      case 'S':
+        keyboard.nativeElement.childNodes[2].childNodes[2].classList.add('highlighted');
+        keyboard.nativeElement.childNodes[2].childNodes[13].classList.remove('hidden');
+        keyboard.nativeElement.childNodes[3].childNodes[11].classList.add('highlighted');
+        keyboard.nativeElement.childNodes[3].childNodes[22].classList.remove('hidden');
+        break;
+      case 'd':
+        keyboard.nativeElement.childNodes[2].childNodes[3].classList.add('highlighted');
+        keyboard.nativeElement.childNodes[2].childNodes[14].classList.remove('hidden');
+        break;
+      case 'D':
+        keyboard.nativeElement.childNodes[2].childNodes[3].classList.add('highlighted');
+        keyboard.nativeElement.childNodes[2].childNodes[14].classList.remove('hidden');
+        keyboard.nativeElement.childNodes[3].childNodes[11].classList.add('highlighted');
+        keyboard.nativeElement.childNodes[3].childNodes[22].classList.remove('hidden');
+        break;
+      case 'f':
+        keyboard.nativeElement.childNodes[2].childNodes[4].classList.add('highlighted');
+        keyboard.nativeElement.childNodes[2].childNodes[15].classList.remove('hidden');
+        break;
+      case 'F':
+        keyboard.nativeElement.childNodes[2].childNodes[4].classList.add('highlighted');
+        keyboard.nativeElement.childNodes[2].childNodes[15].classList.remove('hidden');
+        keyboard.nativeElement.childNodes[3].childNodes[11].classList.add('highlighted');
+        keyboard.nativeElement.childNodes[3].childNodes[22].classList.remove('hidden');
+        break;
+      case 'g':
+        keyboard.nativeElement.childNodes[2].childNodes[5].classList.add('highlighted');
+        keyboard.nativeElement.childNodes[2].childNodes[16].classList.remove('hidden');
+        break;
+      case 'G':
+        keyboard.nativeElement.childNodes[2].childNodes[5].classList.add('highlighted');
+        keyboard.nativeElement.childNodes[2].childNodes[16].classList.remove('hidden');
+        keyboard.nativeElement.childNodes[3].childNodes[11].classList.add('highlighted');
+        keyboard.nativeElement.childNodes[3].childNodes[22].classList.remove('hidden');
+        break;
+      case 'h':
+        keyboard.nativeElement.childNodes[2].childNodes[6].classList.add('highlighted');
+        keyboard.nativeElement.childNodes[2].childNodes[17].classList.remove('hidden');
+        break;
+      case 'H':
+        keyboard.nativeElement.childNodes[2].childNodes[6].classList.add('highlighted');
+        keyboard.nativeElement.childNodes[2].childNodes[17].classList.remove('hidden');
+        keyboard.nativeElement.childNodes[3].childNodes[0].classList.add('highlighted');
+        keyboard.nativeElement.childNodes[3].childNodes[23].classList.remove('hidden');
+        break;
+      case 'j':
+        keyboard.nativeElement.childNodes[2].childNodes[7].classList.add('highlighted');
+        keyboard.nativeElement.childNodes[2].childNodes[18].classList.remove('hidden');
+        break;
+      case 'J':
+        keyboard.nativeElement.childNodes[2].childNodes[7].classList.add('highlighted');
+        keyboard.nativeElement.childNodes[2].childNodes[18].classList.remove('hidden');
+        keyboard.nativeElement.childNodes[3].childNodes[0].classList.add('highlighted');
+        keyboard.nativeElement.childNodes[3].childNodes[23].classList.remove('hidden');
+        break;
+      case 'k':
+        keyboard.nativeElement.childNodes[2].childNodes[8].classList.add('highlighted');
+        keyboard.nativeElement.childNodes[2].childNodes[19].classList.remove('hidden');
+        break;
+      case 'K':
+        keyboard.nativeElement.childNodes[2].childNodes[8].classList.add('highlighted');
+        keyboard.nativeElement.childNodes[2].childNodes[19].classList.remove('hidden');
+        keyboard.nativeElement.childNodes[3].childNodes[0].classList.add('highlighted');
+        keyboard.nativeElement.childNodes[3].childNodes[23].classList.remove('hidden');
+        break;
+      case 'l':
+        keyboard.nativeElement.childNodes[2].childNodes[9].classList.add('highlighted');
+        keyboard.nativeElement.childNodes[2].childNodes[20].classList.remove('hidden');
+        break;
+      case 'L':
+        keyboard.nativeElement.childNodes[2].childNodes[9].classList.add('highlighted');
+        keyboard.nativeElement.childNodes[2].childNodes[20].classList.remove('hidden');
+        keyboard.nativeElement.childNodes[3].childNodes[0].classList.add('highlighted');
+        keyboard.nativeElement.childNodes[3].childNodes[23].classList.remove('hidden');
+        break;
+      case ';':
+        keyboard.nativeElement.childNodes[2].childNodes[10].classList.add('highlighted');
+        keyboard.nativeElement.childNodes[2].childNodes[21].classList.remove('hidden');
+        break;
+      case ':':
+        keyboard.nativeElement.childNodes[2].childNodes[10].classList.add('highlighted');
+        keyboard.nativeElement.childNodes[2].childNodes[21].classList.remove('hidden');
+        keyboard.nativeElement.childNodes[3].childNodes[0].classList.add('highlighted');
+        keyboard.nativeElement.childNodes[3].childNodes[23].classList.remove('hidden');
+        break;
+      case '\'':
+        keyboard.nativeElement.childNodes[2].childNodes[11].classList.add('highlighted');
+        keyboard.nativeElement.childNodes[2].childNodes[22].classList.remove('hidden');
+        break;
+      case '"':
+        keyboard.nativeElement.childNodes[2].childNodes[11].classList.add('highlighted');
+        keyboard.nativeElement.childNodes[2].childNodes[22].classList.remove('hidden');
+        keyboard.nativeElement.childNodes[3].childNodes[0].classList.add('highlighted');
+        keyboard.nativeElement.childNodes[3].childNodes[23].classList.remove('hidden');
+        break;
+      
+      // IV
+      case 'z':
+        keyboard.nativeElement.childNodes[3].childNodes[1].classList.add('highlighted');
+        keyboard.nativeElement.childNodes[3].childNodes[12].classList.remove('hidden');
+        break;
+      case 'Z':
+        keyboard.nativeElement.childNodes[3].childNodes[1].classList.add('highlighted');
+        keyboard.nativeElement.childNodes[3].childNodes[12].classList.remove('hidden');
+        keyboard.nativeElement.childNodes[3].childNodes[11].classList.add('highlighted');
+        keyboard.nativeElement.childNodes[3].childNodes[22].classList.remove('hidden');
+        break;
+      case 'x':
+        keyboard.nativeElement.childNodes[3].childNodes[2].classList.add('highlighted');
+        keyboard.nativeElement.childNodes[3].childNodes[13].classList.remove('hidden');
+        break;
+      case 'X':
+        keyboard.nativeElement.childNodes[3].childNodes[2].classList.add('highlighted');
+        keyboard.nativeElement.childNodes[3].childNodes[13].classList.remove('hidden');
+        keyboard.nativeElement.childNodes[3].childNodes[11].classList.add('highlighted');
+        keyboard.nativeElement.childNodes[3].childNodes[22].classList.remove('hidden');
+        break;
+      case 'c':
+        keyboard.nativeElement.childNodes[3].childNodes[3].classList.add('highlighted');
+        keyboard.nativeElement.childNodes[3].childNodes[14].classList.remove('hidden');
+        break;
+      case 'C':
+        keyboard.nativeElement.childNodes[3].childNodes[3].classList.add('highlighted');
+        keyboard.nativeElement.childNodes[3].childNodes[14].classList.remove('hidden');
+        keyboard.nativeElement.childNodes[3].childNodes[11].classList.add('highlighted');
+        keyboard.nativeElement.childNodes[3].childNodes[22].classList.remove('hidden');
+        break;
+      case 'v':
+        keyboard.nativeElement.childNodes[3].childNodes[4].classList.add('highlighted');
+        keyboard.nativeElement.childNodes[3].childNodes[15].classList.remove('hidden');
+        break;
+      case 'V':
+        keyboard.nativeElement.childNodes[3].childNodes[4].classList.add('highlighted');
+        keyboard.nativeElement.childNodes[3].childNodes[15].classList.remove('hidden');
+        keyboard.nativeElement.childNodes[3].childNodes[11].classList.add('highlighted');
+        keyboard.nativeElement.childNodes[3].childNodes[22].classList.remove('hidden');
+        break;
+      case 'b':
+        keyboard.nativeElement.childNodes[3].childNodes[5].classList.add('highlighted');
+        keyboard.nativeElement.childNodes[3].childNodes[16].classList.remove('hidden');
+        break;
+      case 'B':
+        keyboard.nativeElement.childNodes[3].childNodes[5].classList.add('highlighted');
+        keyboard.nativeElement.childNodes[3].childNodes[16].classList.remove('hidden');
+        keyboard.nativeElement.childNodes[3].childNodes[11].classList.add('highlighted');
+        keyboard.nativeElement.childNodes[3].childNodes[22].classList.remove('hidden');
+        break;
+      case 'n':
+        keyboard.nativeElement.childNodes[3].childNodes[6].classList.add('highlighted');
+        keyboard.nativeElement.childNodes[3].childNodes[17].classList.remove('hidden');
+        break;
+      case 'N':
+        keyboard.nativeElement.childNodes[3].childNodes[6].classList.add('highlighted');
+        keyboard.nativeElement.childNodes[3].childNodes[17].classList.remove('hidden');
+        keyboard.nativeElement.childNodes[3].childNodes[0].classList.add('highlighted');
+        keyboard.nativeElement.childNodes[3].childNodes[23].classList.remove('hidden');
+        break;
+      case 'm':
+        keyboard.nativeElement.childNodes[3].childNodes[7].classList.add('highlighted');
+        keyboard.nativeElement.childNodes[3].childNodes[18].classList.remove('hidden');
+        break;
+      case 'M':
+        keyboard.nativeElement.childNodes[3].childNodes[7].classList.add('highlighted');
+        keyboard.nativeElement.childNodes[3].childNodes[18].classList.remove('hidden');
+        keyboard.nativeElement.childNodes[3].childNodes[0].classList.add('highlighted');
+        keyboard.nativeElement.childNodes[3].childNodes[23].classList.remove('hidden');
+        break;
+      case ',':
+        keyboard.nativeElement.childNodes[3].childNodes[8].classList.add('highlighted');
+        keyboard.nativeElement.childNodes[3].childNodes[19].classList.remove('hidden');
+        break;
+      case '<':
+        keyboard.nativeElement.childNodes[3].childNodes[8].classList.add('highlighted');
+        keyboard.nativeElement.childNodes[3].childNodes[19].classList.remove('hidden');
+        keyboard.nativeElement.childNodes[3].childNodes[0].classList.add('highlighted');
+        keyboard.nativeElement.childNodes[3].childNodes[23].classList.remove('hidden');
+        break;
+      case '.':
+        keyboard.nativeElement.childNodes[3].childNodes[9].classList.add('highlighted');
+        keyboard.nativeElement.childNodes[3].childNodes[20].classList.remove('hidden');
+        break;
+      case '>':
+        keyboard.nativeElement.childNodes[3].childNodes[9].classList.add('highlighted');
+        keyboard.nativeElement.childNodes[3].childNodes[20].classList.remove('hidden');
+        keyboard.nativeElement.childNodes[3].childNodes[0].classList.add('highlighted');
+        keyboard.nativeElement.childNodes[3].childNodes[23].classList.remove('hidden');
+        break;
+      case '/':
+        keyboard.nativeElement.childNodes[3].childNodes[10].classList.add('highlighted');
+        keyboard.nativeElement.childNodes[3].childNodes[21].classList.remove('hidden');
+        break;
+      case '?':
+        keyboard.nativeElement.childNodes[3].childNodes[10].classList.add('highlighted');
+        keyboard.nativeElement.childNodes[3].childNodes[21].classList.remove('hidden');
+        keyboard.nativeElement.childNodes[3].childNodes[0].classList.add('highlighted');
+        keyboard.nativeElement.childNodes[3].childNodes[23].classList.remove('hidden');
+        break;
+
+      // specials
+      case ' ':
+        keyboard.nativeElement.childNodes[4].childNodes[0].classList.add('highlighted');
+        keyboard.nativeElement.childNodes[4].childNodes[1].classList.remove('hidden');
+        break;
+      
     }
 }
 
@@ -252,4 +672,8 @@ function disableHelper (keyboard: ElementRef) {
       }
     }
   }
+}
+
+function delay(ms: number) {
+  return new Promise(resolve => setTimeout(resolve, ms));
 }
