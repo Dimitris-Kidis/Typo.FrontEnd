@@ -1,6 +1,7 @@
 import { DOCUMENT } from '@angular/common';
 import { AfterViewInit, Component, ElementRef, HostListener, Inject, OnInit, Renderer2, ViewChild } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { CreateReviewCommand } from 'src/commands/Reviews/CreateReviewCommand';
 import { AuthenticationService } from 'src/services/authentification.service';
 import { ReviewsService } from 'src/services/reviews.service';
@@ -15,8 +16,9 @@ export class MainComponent implements OnInit {
 
 
   constructor(private _eventEmitterService: EventEmitterService,
+    private _reviewService: ReviewsService,
     private _authService: AuthenticationService,
-    private _reviewService: ReviewsService) {}
+    private _router: Router) {}
 
   @ViewChild('scroll') scroll: ElementRef;
   @ViewChild('main') main: HTMLElement;
@@ -35,6 +37,7 @@ export class MainComponent implements OnInit {
   reviewForm!: FormGroup;
 
   ngOnInit(): void {
+    if (!this._authService.isLoggedIn()) this._router.navigate(['/typo/login']);
     this.userId = this._authService.getUserId();
     this.reviewForm = new FormGroup({
       review: new FormControl("", [Validators.required,

@@ -24,7 +24,7 @@ export class RegisterComponent implements OnInit {
   @ViewChild('image') image!: ElementRef;
 
   ngOnInit(): void {
-    // if (this._authService.isLoggedIn()) this._router.navigate(['/typo/main']); !!!
+    if (this._authService.isLoggedIn()) this._router.navigate(['/typo/main']);
     this.registrationForm = new FormGroup({
       firstName: new FormControl("", [Validators.required,
                                       nameLength,
