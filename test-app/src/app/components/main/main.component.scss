@@ -146,11 +146,11 @@ h2 {
 }
 
 .btn-review {
-    background-color: #e2d05e;
+    background-color: #ffcf5a;
 }
 
 .btn-review:hover {
-    background-color: #c4b658;
+    background-color: #dcae37;
 }
   
 .btn-new-text:hover {
@@ -214,7 +214,7 @@ small {
     background-image: none;
     font-weight: 500;
     padding: 10px 20px;
-    font-size: 15px;
+    font-size: 65px;
     line-height: 1.25rem;
     border-width: 1px;
     border-color: #0000;
@@ -222,12 +222,17 @@ small {
     color: white;
     transition: background 0.4s;
     margin-left: 45px;
+    height: 102px;
+    padding-left: 16px;
+    margin-top: 4px;
+    margin-top: 4px;
 }
 
 .review-wrapper {
     display: flex;
     flex-direction: row;
-
+    justify-content: center;
+    align-items: center;
 }
 
 form {

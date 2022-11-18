@@ -25,6 +25,7 @@ export class MainComponent implements OnInit {
   @ViewChild('results') results: ElementRef;
   @ViewChild('resultText') resultText: ElementRef;
   @ViewChild('reviewInput') reviewInput: ElementRef;
+  @ViewChild('buttonText') buttonText: ElementRef;
   finished: boolean = false;
   speed: number;
   accuracy: number;
@@ -62,7 +63,7 @@ export class MainComponent implements OnInit {
     this.textId = arr[4];
     this.finished = true;
     await delay(1000);
-    this.resultText.nativeElement.innerHTML = arr[3];
+    this.resultText.nativeElement.innerHTML = arr[3]; // !!!! BUG 
     // console.log(arr, this.resultText.nativeElement)
     console.log(arr);
     window.scrollTo({
@@ -84,6 +85,9 @@ export class MainComponent implements OnInit {
   }
 
   submitReview = (reviewFormValue: any) => {
+    this.buttonText.nativeElement.innerText = '✔';
+    this.buttonText.nativeElement.style.backgroundColor = '#53d160';
+    this.buttonText.nativeElement.style.color = 'white';
     if (this.reviewSent) return;
     this.reviewInput.nativeElement.setAttribute('readonly', 'readonly');
     const createReview: CreateReviewCommand = {

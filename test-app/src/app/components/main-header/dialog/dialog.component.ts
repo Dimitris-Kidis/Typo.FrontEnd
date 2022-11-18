@@ -14,13 +14,18 @@ export class DialogComponent {
   private _authService: AuthenticationService,
   private _router: Router) {}
 
-
+  isAdmin: boolean = this._authService.isUserAdmin();
 
   signOut() {
     this._authService.logOut();
     this._router.navigate(['/typo/login']).then(() => {
       window.location.reload();
    });
+  }
+
+  setLanguage(language: string) {
+    localStorage.setItem("language", language);
+    window.location.reload();
   }
 }
 

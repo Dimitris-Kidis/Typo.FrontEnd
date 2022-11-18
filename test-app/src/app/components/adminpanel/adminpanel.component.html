@@ -1,0 +1,12 @@
+<div class="container">
+    <h1 *ngIf="isAdmin" style="text-align: center; font-weight: 900; margin: 30px;">Admin Dashboard</h1>
+     <div *ngIf="isAdmin" >
+          <app-users-list></app-users-list>
+     </div>
+     <div *ngIf="isAdmin" style="margin: 40px;">
+          <app-review-list></app-review-list>
+     </div>
+     <div *ngIf="isAdmin" style="margin: 40px;">
+          <app-texts-list></app-texts-list>
+     </div>
+</div>

@@ -69,10 +69,10 @@
               <!-- <button mat-button class="reset-button" (click)="resetGrid()">Reset</button> -->
             </mat-header-cell>
             <mat-cell *matCellDef="let book" style="justify-content:right;">
-              <button mat-mini-fab class="edit-button" (click)="test(book.id)" (click)="hidePagination('Edit', book.id)">
+              <button mat-mini-fab class="edit-button" *ngIf="book.email != 'admin@admin.com'" (click)="test(book.id)" (click)="hidePagination('Edit', book.id)">
                 <mat-icon>edit</mat-icon>
               </button>
-              <button mat-mini-fab class="delete-button" (click)="deleteDialog(book.id)">
+              <button mat-mini-fab class="delete-button" *ngIf="book.email != 'admin@admin.com'" (click)="deleteDialog(book.id)">
                 <mat-icon>delete</mat-icon>
               </button>
             </mat-cell>
@@ -177,7 +177,7 @@
           
           
           
-                  <mat-form-field floatLabel="always" hideRequiredMarker style="display: block; width: 50%;" >
+                  <mat-form-field floatLabel="always" hideRequiredMarker style="display: block; width: 50%;" *ngIf="pageTitle == 'Add'" >
                     <label for="password">Password</label>
                     <mat-label></mat-label>
                     <input type="password" matInput placeholder="Password*" formControlName="password" />

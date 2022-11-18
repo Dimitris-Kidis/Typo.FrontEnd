@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AppComponent } from './app.component';
 import { AccountComponent } from './components/account/account.component';
+import { AdminpanelComponent } from './components/adminpanel/adminpanel.component';
 import { LeaderboardComponent } from './components/leaderboard/leaderboard.component';
 import { LoginComponent } from './components/login/login/login.component';
 import { MainComponent } from './components/main/main.component';
@@ -25,6 +26,10 @@ const routes: Routes = [
   {
     path: 'typo/leaderboard',
     component: LeaderboardComponent
+  },
+  {
+    path: 'typo/adminpanel',
+    component: AdminpanelComponent
   },
   {
     path: 'typo/main',

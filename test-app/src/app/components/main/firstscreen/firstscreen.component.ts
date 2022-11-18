@@ -35,12 +35,27 @@ export class FirstscreenComponent implements OnInit {
     ) { }
 
   ngOnInit(): void {
+    let lang = localStorage.getItem('language') == null ? 'English' : localStorage.getItem('language');
     this._textService
-      .getTextByLanguage('English')
+      .getTextByLanguage(`${lang}`)
       .subscribe((res: any) => {
         this.textObject = res;
+        res.textContent = res.textContent.replace(/Ë/g, 'Е');
+        res.textContent = res.textContent.replace(/ё/g, 'е');
+        res.textContent = res.textContent.replace(/ţ/g, 'ț');
+        res.textContent = res.textContent.replace(/Ţ/g, 'Ț');
+        res.textContent = res.textContent.replace(/ş/g, 'ș');
+        res.textContent = res.textContent.replace(/Ş/g, 'Ș');
+
+
+
+
         this.textContent = res.textContent;
-        // this.textContent = `vslkjvkdk` //----------------------
+        
+        
+        // this.textContent.replace(/Ţ/g, 'Ț');
+
+        // this.textContent = `gțVțȚ` //----------------------
         this.author += res.author;
         this.textContentLength = this.textContent.length;
         console.log(this.author);

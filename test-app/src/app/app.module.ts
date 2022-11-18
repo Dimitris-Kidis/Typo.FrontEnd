@@ -52,6 +52,7 @@ import { FirstscreenComponent } from './components/main/firstscreen/firstscreen.
 import { KeyboardComponent } from './components/main/keyboard/keyboard.component';
 import { EventEmitterService } from './components/main/event-emitter.service';
 import { CapslockDirective } from './components/main/capslock.directive';
+import { AdminpanelComponent } from './components/adminpanel/adminpanel.component';
 
 
 
@@ -88,6 +89,7 @@ import { CapslockDirective } from './components/main/capslock.directive';
     FirstscreenComponent,
     KeyboardComponent,
     CapslockDirective,
+    AdminpanelComponent,
     
     
   ],

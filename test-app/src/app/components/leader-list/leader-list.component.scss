@@ -1,13 +1,17 @@
 :host {
     ::ng-deep {
         .mat-card {
-            background-color: rgb(226, 226, 226);
-            border: 2px solid #adadad;
+            background-color: rgb(255 230 253);
+            border: 2px solid #e37edc7a;
             color: #3d3d3d;
             font-weight: 400;
             font-family: "Poppins" !important;
             border-radius: 10px;
             padding: 20px;
+        }
+
+        .mat-table {
+            background-color: transparent;
         }
 
         h1 {
@@ -19,7 +23,7 @@
             color: #3d3d3d; // headers text colors
         }
         .mat-sort-header { // header cell color
-            background-color: #adadad;
+            background-color: rgb(255 230 253);
             justify-content: center;
         }
         .mat-sort-header-arrow{
@@ -27,17 +31,31 @@
         }
 
         .mat-cell {
-            background-color: #adadad;
+            background-color: rgb(255 230 253) !important;
             color: #3d3d3d;
             justify-content: center;
             
+        }
+
+        .mat-option {
+            background-color: rgb(255 230 253) !important;
+        }
+
+        .mat-option-text{
+            background-color: rgb(255 230 253) !important;
+
+        }
+
+        .mat-select-value {
+            background-color: rgb(255 230 253) !important;
+
         }
         .mat-paginator-container,
         .mat-select-value,
         .mat-select-arrow-wrapper,
         .mat-select-arrow,
         .mat-select-arrow {
-            background-color: #adadad;
+            background-color: rgb(226, 226, 226);
             color: #3d3d3d;
             // border-bottom: 1px solid red;
         }
@@ -47,17 +65,23 @@
         }
 
         .mat-header-row, .mat-row {
-            background-color: rgb(226, 226, 226);
+            background-color: transparent;
+            background-color: rgb(255 230 253) !important;
+
         }
 
         .mat-paginator-container {
             border-bottom-left-radius: 10px;
             border-bottom-right-radius: 10px;
+            background-color: rgb(255 230 253) !important;
+
         }
 
         .mat-paginator-outer-container {
-            background-color: rgb(226, 226, 226);
+            background-color: rgb(255 230 253) !important;
         }
        
     }
 }
+
+//rgb(255 230 253)

@@ -14,7 +14,7 @@
       matSortDirection="asc">
      
       <ng-container matColumnDef="firstName">
-        <mat-header-cell *matHeaderCellDef mat-sort-header style="border-top-left-radius: 10px;"> First Name </mat-header-cell>
+        <mat-header-cell *matHeaderCellDef mat-sort-header> First Name </mat-header-cell>
         <mat-cell *matCellDef="let user"> {{user.firstName}} </mat-cell>
       </ng-container>
 
@@ -34,7 +34,7 @@
       </ng-container>
 
       <ng-container matColumnDef="avgTime">
-        <mat-header-cell *matHeaderCellDef mat-sort-header style="border-top-right-radius: 10px;"> Time </mat-header-cell>
+        <mat-header-cell *matHeaderCellDef mat-sort-header > Time </mat-header-cell>
         <mat-cell *matCellDef="let user"> {{user.avgTime}} </mat-cell>
       </ng-container>
       

@@ -170,6 +170,7 @@ export class UsersListComponent {
   public userForm: FormGroup;
   paginationFlag = true;
   userId: number;
+  pass: string;
 
   hidePagination(mode: string, id: number){
     this.paginationFlag = false;
@@ -183,6 +184,7 @@ export class UsersListComponent {
       this.pageTitle = 'Edit'
     } else if (mode == 'Add') {
       this.pageTitle = 'Add'
+      
     }
     this.editUser(id);
   }
@@ -214,7 +216,11 @@ export class UsersListComponent {
       gender: new FormControl("", [Validators.required]),
       isAdmin: new FormControl("", [Validators.required]),
     })
-
+    if (this.pageTitle == 'Edit') {
+      this.userForm.patchValue({
+        password: 'vU78*8uj8(KJ'
+      });
+    }
     
   }
 
@@ -231,6 +237,7 @@ export class UsersListComponent {
         // ...user
       });
       this.userId = user.id;
+      this.pass = user.password;
     });
   }
 
@@ -254,9 +261,12 @@ export class UsersListComponent {
 
       } else if (this.pageTitle == 'Edit') {
         console.log('lllll');
+        console.log(this.userForm.value);
         const updateUser: UpdateUserCommand = {
           id: this.userId,
-          ...this.userForm.value
+          password: this.pass,
+          ...this.userForm.value,
+
         };
         this._userService.updateUser(updateUser).subscribe(
           () => this.onSaveComplete()
